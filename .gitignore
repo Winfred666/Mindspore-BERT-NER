@@ -1,5 +1,17 @@
+
+# mindrecord is a dataset type that suitable for the input of mindspore model.
+# this is the folder that store the transfered dataset.
+data/mindrecord/*
+
+
+ms_log/
+akg_kernel_meta/
+*.log
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
+
 *.py[cod]
 *$py.class
 
