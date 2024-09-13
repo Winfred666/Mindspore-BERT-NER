@@ -36,30 +36,32 @@ PROJECT_DIR=$(cd "$(dirname "$0")" || exit; pwd)
 export GLOG_log_dir=${CUR_DIR}/ms_log
 export GLOG_logtostderr=0
 
-python ${PROJECT_DIR}/../run_ner.py  \
+python3 ${PROJECT_DIR}/../run_ner.py  \
     --config_path="../../task_ner_config.yaml" \
     --device_target="GPU" \
+    \
     --do_train="true" \
-    --do_eval="false" \
+    --do_eval="true" \
+    \
     --assessment_method="BF1" \
-    --use_crf="false" \
-    --with_lstm="false" \
+    --use_crf="true" \
+    --with_lstm="true" \
     --epoch_num=5 \
     --train_data_shuffle="true" \
-    --eval_data_shuffle="false" \
-    --train_batch_size=2 \
-    --eval_batch_size=1 \
+    --eval_data_shuffle="true" \
+    --train_batch_size=4 \
+    --eval_batch_size=2 \
     \
-    --vocab_file_path="./data/vocab.txt" \
-    --label_file_path="./data/mindrecord/label_list.txt" \
-    --save_finetune_checkpoint_path="./data/finetuned/" \
-    --load_finetune_checkpoint_path="./data/finetuned/" \
+    --vocab_file_path="/data/songjh/bert/vocab.txt" \
+    --save_finetune_checkpoint_path="/data/songjh/bert/finetuned/" \
+    --load_finetune_checkpoint_path="/data/songjh/bert/finetuned/" \
     \
-    --load_pretrain_checkpoint_path="/home/winfred/.mscache/mindspore/1.9/bertfinetune_bilstmcrf_ascend_v190_chinesener_official_nlp_F1score96.07.ckpt" \
+    --load_pretrain_checkpoint_path="/data/songjh/bertfinetune_bilstmcrf_ascend_v190_chinesener_official_nlp_F1score96.07.ckpt" \
     \
-    --train_data_file_path="./data/mindrecord/train.mind_record" \
-    --eval_data_file_path="./data/mindrecord/dev.mind_record" \
+    --label_file_path="/data/songjh/mindrecord/literature_NER/label_list.txt" \
+    --train_data_file_path="/data/songjh/mindrecord/literature_NER/train.mind_record" \
+    --eval_data_file_path="/data/songjh/mindrecord/literature_NER/dev.mind_record" \
     \
-    --schema_file_path="" 
-    # do not run the command in the background , and log into file, need to see error directly
-    #> ner_log.txt 2>&1 &
+    --schema_file_path=""
+# > ner_log.txt 2>&1 &
+# do not run the command in the background , and log into file, need to see error directly 

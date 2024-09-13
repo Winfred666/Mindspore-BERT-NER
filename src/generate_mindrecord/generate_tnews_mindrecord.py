@@ -13,6 +13,9 @@
 # limitations under the License.
 # ============================================================================
 """Generate MindRecord for BERT finetuning runner: TNEWS."""
+
+# also generator for other Classification task. 
+
 import os
 import json
 import csv

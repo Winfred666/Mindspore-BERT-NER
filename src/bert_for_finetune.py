@@ -64,36 +64,47 @@ class BertFinetuneCell(nn.TrainOneStepWithLossScaleCell):
     """
 
     def __init__(self, network, optimizer, scale_update_cell=None):
+        # pass the "BertNER" class instance.
         super(BertFinetuneCell, self).__init__(network, optimizer, scale_update_cell)
         self.cast = P.Cast()
 
+    # when using Model.train, the parameter is given by the whole "dataset"
     def construct(self,
                   input_ids,
                   input_mask,
-                  token_type_id,
+                  token_type_id, # this is the same as segment_ids
                   label_ids,
+                  real_seq_length,
                   sens=None):
         """Bert Finetune"""
 
         weights = self.weights
+        # This is where we feeding every batch of training data to "BertNER" model.
         loss = self.network(input_ids,
                             input_mask,
                             token_type_id,
-                            label_ids)
+                            label_ids,
+                            real_seq_length)
         if sens is None:
             scaling_sens = self.scale_sense
         else:
             scaling_sens = sens
 
         status, scaling_sens = self.start_overflow_check(loss, scaling_sens)
+        
+        # calculating gradience.
         grads = self.grad(self.network, weights)(input_ids,
                                                  input_mask,
                                                  token_type_id,
                                                  label_ids,
+                                                 real_seq_length,
                                                  self.cast(scaling_sens,
                                                            mstype.float32))
+        
         grads = self.hyper_map(F.partial(grad_scale, scaling_sens), grads)
         grads = self.hyper_map(F.partial(clip_grad, GRADIENT_CLIP_TYPE, GRADIENT_CLIP_VALUE), grads)
+        # train the parameter, 
+        # this is volatile because reduce gradiance may cause hardware CUDA error.
         if self.reducer_flag:
             grads = self.grad_reducer(grads)
         cond = self.get_overflow_status(status, grads)
@@ -190,8 +201,10 @@ class BertNER(nn.Cell):
     def __init__(self, config, batch_size, is_training, num_labels=11, use_crf=False, with_lstm=False,
                  tag_to_index=None, dropout_prob=0.0, use_one_hot_embeddings=False):
         super(BertNER, self).__init__()
+        # this model can add LSTM at the end.
         self.bert = BertNERModel(config, is_training, num_labels, use_crf, with_lstm, dropout_prob,
                                  use_one_hot_embeddings)
+        # add a CRF layer.
         if use_crf:
             if not tag_to_index:
                 raise Exception("The dict for tag-index mapping should be provided for CRF.")
@@ -202,8 +215,10 @@ class BertNER(nn.Cell):
         self.num_labels = num_labels
         self.use_crf = use_crf
 
-    def construct(self, input_ids, input_mask, token_type_id, label_ids):
-        logits = self.bert(input_ids, input_mask, token_type_id)
+    def construct(self, input_ids, input_mask, token_type_id, label_ids,real_seq_length):
+        # WARNING: when use lstm, tell the model what is the actual length of each sequence.
+        logits = self.bert(input_ids, input_mask, token_type_id,real_seq_length)
+        
         if self.use_crf:
             loss = self.loss(logits, label_ids)
         else:

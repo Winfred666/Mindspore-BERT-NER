@@ -22,6 +22,7 @@ from mindspore.ops import operations as P
 from mindspore import context
 from .bert_model import BertModel
 
+import mindspore as ms
 
 class BertCLSModel(nn.Cell):
     """
@@ -118,11 +119,16 @@ class BertNERModel(nn.Cell):
         self.log_softmax = P.LogSoftmax(axis=-1)
         self.dtype = config.dtype
         self.num_labels = num_labels
+        
+        # last classification layer
         self.dense_1 = nn.Dense(config.hidden_size, self.num_labels, weight_init=self.weight_init,
                                 has_bias=True).to_float(config.compute_type)
+                
         if with_lstm:
             self.lstm_hidden_size = config.hidden_size // 2
-            self.lstm = nn.LSTM(config.hidden_size, self.lstm_hidden_size, batch_first=True, bidirectional=True)
+            self.lstm = nn.LSTM(config.hidden_size, self.lstm_hidden_size, has_bias=True,
+             batch_first=True, bidirectional=True)
+        
         self.dropout = nn.Dropout(1 - dropout_prob)
         self.reshape = P.Reshape()
         self.shape = (-1, config.hidden_size)
@@ -130,17 +136,30 @@ class BertNERModel(nn.Cell):
         self.with_lstm = with_lstm
         self.origin_shape = (-1, config.seq_length, self.num_labels)
 
-    def construct(self, input_ids, input_mask, token_type_id):
+        # the biggest length of one sequence, 
+        # however the padding token is not recommanded to use, 
+        # so need to explicit specify the actual length of sequence, 
+        # so that Bi-LSTM will not gather state from empty list when doing back to forth
+        
+        # self.seq_length = ms.Tensor(self.seq_length,ms.int64)
+
+    def construct(self, input_ids, input_mask, token_type_id, real_seq_length):
         """Return the final logits as the results of log_softmax."""
         sequence_output, _, _ = self.bert(input_ids, token_type_id, input_mask)
         seq = self.dropout(sequence_output)
+
         if self.with_lstm:
             batch_size = input_ids.shape[0]
             data_type = self.dtype
             hidden_size = self.lstm_hidden_size
+            # 2 is for bidirectional.
+            # provide h0 and c0 at both end, which is by default zero.
             h0 = P.Zeros()((2, batch_size, hidden_size), data_type)
             c0 = P.Zeros()((2, batch_size, hidden_size), data_type)
-            seq, _ = self.lstm(seq, (h0, c0))
+            
+            # here the seq:[batch_size , max_seq_length , embedding_hidden_dim]
+            seq, _ = self.lstm(seq, (h0,c0) , seq_length = real_seq_length)
+        
         seq = self.reshape(seq, self.shape)
         logits = self.dense_1(seq)
         logits = self.cast(logits, self.dtype)

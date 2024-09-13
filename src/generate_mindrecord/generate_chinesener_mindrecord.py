@@ -19,7 +19,7 @@ import codecs
 import pickle
 import numpy as np
 from mindspore.mindrecord import FileWriter
-import src.tokenization as tokenization
+import tokenization
 
 __all__ = ['NerProcessor', 'write_tokens', 'convert_single_example', 'filed_based_convert_examples_to_features']
 
@@ -47,6 +47,7 @@ class InputFeatures():
         self.input_mask = input_mask
         self.segment_ids = segment_ids
         self.label_ids = label_ids
+
 
 
 class NerProcessor():
@@ -85,7 +86,8 @@ class NerProcessor():
                 self.labels = pickle.load(rf)
         else:
             if self.labels:
-                self.labels = self.labels.union(set(["X", "[CLS]", "[SEP]"]))
+                # Do not include [CLS] because already use <START> and <STOP>
+                # self.labels = self.labels.union(set(["X", "[CLS]", "[SEP]"]))
                 with open(os.path.join(self.output_dir, 'label_list.txt'), 'w') as rf:
                     for label in self.labels:
                         rf.write(label + "\n")
@@ -98,6 +100,7 @@ class NerProcessor():
         examples = []
         for (i, line) in enumerate(lines):
             guid = "%s-%s" % (set_type, i)
+            # tokenization
             text = tokenization.convert_to_unicode(line[1])
             label = tokenization.convert_to_unicode(line[0])
             examples.append(InputExample(guid=guid, text=text, label=label))
@@ -109,13 +112,16 @@ class NerProcessor():
             lines = []
             words = []
             labels = []
+            # every line is just one token.
             for line in f:
                 contends = line.strip()
                 tokens = contends.split(' ')
+                
                 if len(tokens) == 2:
                     words.append(tokens[0])
                     labels.append(tokens[-1])
-                else:
+
+                else: # if no contends(means the end of a sequence), and we have accumulate some token, then make a seq.
                     if not contends and words:
                         label = []
                         word = []
@@ -167,22 +173,29 @@ def convert_single_example(ex_index, example, label_list, max_seq_length, tokeni
                 labels.append(label_1)
             else:
                 labels.append("X")
+    # if the length of one line(seq) exceed the max-seq-len, just cut it off(what a waste)
     if len(tokens) >= max_seq_length - 1:
         tokens = tokens[0:(max_seq_length - 2)]
         labels = labels[0:(max_seq_length - 2)]
     ntokens = []
     segment_ids = []
     label_ids = []
-    ntokens.append("[CLS]")  # add [CLS] begin of token
-    segment_ids.append(0)
-    label_ids.append(label_map["[CLS]"])
+
+    # Do not add [CLS] when there is already "start" and "stop" token for CLR layer.
+    
+    # ntokens.append("[CLS]")  # add [CLS] begin of token
+    # segment_ids.append(0)
+    # label_ids.append(label_map["[CLS]"])
+
     for i, token in enumerate(tokens):
         ntokens.append(token)
         segment_ids.append(0)
         label_ids.append(label_map[labels[i]])
-    ntokens.append("[SEP]")  # add [SEP] end of token
-    segment_ids.append(0)
-    label_ids.append(label_map["[SEP]"])
+    
+    # ntokens.append("[SEP]")  # add [SEP] end of token
+    # segment_ids.append(0)
+    # label_ids.append(label_map["[SEP]"])
+
     if(vocab_file == None):
         vocab_file = args_opt.vocab_file
     input_ids = tokenization.convert_tokens_to_ids(vocab_file, ntokens)  # convert ntokens to ID format
@@ -215,15 +228,19 @@ def filed_based_convert_examples_to_features(
     """
     convert examples to mindrecord format
     """
+    # Add a column of real_seq_length, so that bi_lstm can be optimized !!
     schema = {
         "input_ids": {"type": "int32", "shape": [-1]},
         "input_mask": {"type": "int32", "shape": [-1]},
         "segment_ids": {"type": "int32", "shape": [-1]},
         "label_ids": {"type": "int32", "shape": [-1]},
+        "real_seq_length":{"type": "int32", "shape":[1]}, # this is only one integer, but for standard type encapsulate it as a list.
     }
+    
     writer = FileWriter(output_file, overwrite=True)
     writer.add_schema(schema)
     total_written = 0
+
     for (ex_index, example) in enumerate(examples):
         all_data = []
         feature = convert_single_example(ex_index, example, label_list, max_seq_length, tokenizer, output_dir, mode)
@@ -231,15 +248,21 @@ def filed_based_convert_examples_to_features(
         input_mask = np.array(feature.input_mask, dtype=np.int32)
         segment_ids = np.array(feature.segment_ids, dtype=np.int32)
         label_ids = np.array(feature.label_ids, dtype=np.int32)
+        
         data = {'input_ids': input_ids,
                 "input_mask": input_mask,
                 "segment_ids": segment_ids,
-                "label_ids": label_ids}
+                "label_ids": label_ids,
+                "real_seq_length":np.array([len(example.text.split()) + 2],dtype=np.int32)
+        } # +2 is for <START> (no [CLR] [SEP]) <END>.
+        # print(len(example.text.split()) + 2)
+
         all_data.append(data)
         if all_data:
             writer.write_raw_data(all_data)
             total_written += 1
     writer.commit()
+    # this is the final part.
     print("Total instances is: ", total_written, flush=True)
 
 def main(args):
@@ -247,7 +270,7 @@ def main(args):
     if not os.path.exists(args.output_dir):
         os.makedirs(args.output_dir, exist_ok=True)
 
-    processor = NerProcessor(args.output_dir)
+    processor = NerProcessor(args.output_dir, labels=set(args.labels.split()))
 
     tokenizer = tokenization.FullTokenizer(
         vocab_file=args.vocab_file, do_lower_case=args.do_lower_case)
@@ -270,7 +293,7 @@ def main(args):
         print("  Num examples is: ", len(test_examples), flush=True)
 
     label_list = processor.get_labels()
-
+    
     if args.do_train and args.do_eval:
         train_file = os.path.join(args.output_dir, "train.mind_record")
         if not os.path.exists(train_file):
@@ -297,5 +320,7 @@ if __name__ == "__main__":
     parser.add_argument('--do_lower_case', default=True, type=bool, help='')
     parser.add_argument('--vocab_file', default="./vocab.txt", type=str, help='')
     parser.add_argument('--output_dir', default="./outputs", type=str, help='')
+    parser.add_argument('--labels', default="", type=str, help='')
+    
     args_opt = parser.parse_args()
     main(args_opt)
