@@ -3,6 +3,7 @@
 # this is the folder that store the transfered dataset.
 data/mindrecord/*
 
+nohup.out
 
 ms_log/
 akg_kernel_meta/

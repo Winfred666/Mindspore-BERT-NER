@@ -21,7 +21,7 @@ import mindspore.common.dtype as mstype
 from mindspore import Tensor, context, load_checkpoint, export
 
 from src.finetune_eval_model import BertCLSModel, BertSquadModel, BertNERModel
-from src.bert_for_finetune import BertNER
+from src.bert_for_finetune import BertNERONNX
 from src.utils import convert_labels_to_index
 from src.model_utils.config import config as args, bert_net_cfg
 from src.model_utils.moxing_adapter import moxing_wrapper
@@ -31,10 +31,10 @@ from src.model_utils.device_adapter import get_device_id
 def modelarts_pre_process():
     '''modelarts pre process function.'''
     args.device_id = get_device_id()
-    _file_dir = os.path.dirname(os.path.abspath(__file__))
-    args.export_ckpt_file = os.path.join(_file_dir, args.export_ckpt_file)
-    args.label_file_path = os.path.join(args.data_path, args.label_file_path)
-    args.export_file_name = os.path.join(_file_dir, args.export_file_name)
+    # _file_dir = os.path.dirname(os.path.abspath(__file__))
+    args.export_ckpt_file = args.export_ckpt_file
+    args.label_file_path = args.label_file_path
+    args.export_file_name = args.export_file_name
 
 
 @moxing_wrapper(pre_process=modelarts_pre_process)
@@ -54,10 +54,10 @@ def run_export():
 
         if args.use_crf.lower() == "true":
             max_val = max(tag_to_index.values())
-            tag_to_index["<START>"] = max_val + 1
+            tag_to_index["<START>"] = max_val + 1 # add <START> and <STOP> tag like trainer do.
             tag_to_index["<STOP>"] = max_val + 2
             number_labels = len(tag_to_index)
-            net = BertNER(bert_net_cfg, args.export_batch_size, False, num_labels=number_labels,
+            net = BertNERONNX(bert_net_cfg, args.export_batch_size, False, num_labels=number_labels,
                           use_crf=True, tag_to_index=tag_to_index)
         else:
             number_labels = len(tag_to_index)
@@ -78,10 +78,15 @@ def run_export():
     label_ids = Tensor(np.zeros([args.export_batch_size, bert_net_cfg.seq_length]), mstype.int32)
 
     if args.description == "run_ner" and args.use_crf.lower() == "true":
-        input_data = [input_ids, input_mask, token_type_id, label_ids]
+        # adding piece of data.
+        real_seq_length = Tensor([0],dtype=mstype.int32)
+        input_data = [input_ids, input_mask, token_type_id, label_ids, real_seq_length]
     else:
         input_data = [input_ids, input_mask, token_type_id]
+    # this is REAL entry for export,
+    # however this require the model to output a single Tensor instead of a tuple.
     export(net, *input_data, file_name=args.export_file_name, file_format=args.file_format)
+    
     if args.enable_modelarts:
         air_file = f"{args.export_file_name}.{args.file_format.lower()}"
         shutil.move(air_file, args.output_path)

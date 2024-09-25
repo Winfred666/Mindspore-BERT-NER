@@ -19,6 +19,8 @@ import codecs
 import pickle
 import numpy as np
 from mindspore.mindrecord import FileWriter
+
+# WARNING!!! if called by do_one_test, use src. else called by run_ner, delete src.
 import src.tokenization as tokenization
 
 __all__ = ['NerProcessor', 'write_tokens', 'convert_single_example', 'filed_based_convert_examples_to_features']
@@ -49,12 +51,14 @@ class InputFeatures():
         self.label_ids = label_ids
 
 
+
 class NerProcessor():
     def __init__(self, output_dir,labels=None):
-        if(type(labels) == set):
+        if isinstance(labels, list):
             self.labels = labels
         else:
-            self.labels = set()
+            self.labels = []
+        self.label_used = [False] * len(self.labels)
         self.output_dir = output_dir
 
     def get_train_examples(self, data_dir):
@@ -72,32 +76,27 @@ class NerProcessor():
             self._read_data(os.path.join(data_dir, "example.test")), "test")
 
     def get_labels(self, labels=None):
-        if labels is not None:
-            if os.path.exists(labels) and os.path.isfile(labels):
-                with codecs.open(labels, 'r', encoding='utf-8') as fd:
-                    for line in fd:
-                        self.labels.append(line.strip())
-            else:
-                self.labels = labels.split(',')
-            self.labels = set(self.labels)
-        if os.path.exists(os.path.join(self.output_dir, 'label_list.pkl')):
-            with codecs.open(os.path.join(self.output_dir, 'label_list.pkl'), 'rb') as rf:
-                self.labels = pickle.load(rf)
+
+        # This is where well go through
+        if self.labels:
+            # Do not include [CLS] because already use <START> and <STOP>
+            # self.labels = self.labels.union(set(["X", "[CLS]", "[SEP]"]))
+            print(self.labels)
+            with open(os.path.join(self.output_dir, 'label_list.txt'), 'w') as rf:
+                for label in self.labels:
+                    rf.write(label + "\n")
+        
+        
         else:
-            if self.labels:
-                self.labels = self.labels.union(set(["X", "[CLS]", "[SEP]"]))
-                with open(os.path.join(self.output_dir, 'label_list.txt'), 'w') as rf:
-                    for label in self.labels:
-                        rf.write(label + "\n")
-            else:
-                self.labels = ["O", 'B-TIM', 'I-TIM', "B-PER", "I-PER", "B-ORG", "I-ORG", "B-LOC", "I-LOC", "X",
-                               "[CLS]", "[SEP]"]
+            self.labels = ["O", 'B-TIM', 'I-TIM', "B-PER", "I-PER", "B-ORG", "I-ORG", "B-LOC", "I-LOC", "X",
+                            "[CLS]", "[SEP]"]
         return self.labels
 
     def _create_example(self, lines, set_type):
         examples = []
         for (i, line) in enumerate(lines):
             guid = "%s-%s" % (set_type, i)
+            # tokenization
             text = tokenization.convert_to_unicode(line[1])
             label = tokenization.convert_to_unicode(line[0])
             examples.append(InputExample(guid=guid, text=text, label=label))
@@ -109,20 +108,32 @@ class NerProcessor():
             lines = []
             words = []
             labels = []
+            
+            self.label_used = [False] * len(self.labels)
+
+            # every line is just one token.
             for line in f:
                 contends = line.strip()
                 tokens = contends.split(' ')
+                
                 if len(tokens) == 2:
                     words.append(tokens[0])
                     labels.append(tokens[-1])
-                else:
+
+                else: # if no contends(means the end of a sequence), and we have accumulate some token, then make a seq.
                     if not contends and words:
                         label = []
                         word = []
                         for l, w in zip(labels, words):
                             if l and w:
+                                # WARNING: Do not change indicated self.labels.
+                                # self.labels.add(l)
+                                # here we going to trainslate labels to index, if there are un-interested token, make them to O
+                                if l not in self.labels:
+                                    l = 'O'
+                                else :
+                                    self.label_used[self.labels.index(l)] = True
                                 label.append(l)
-                                self.labels.add(l)
                                 word.append(w)
                         lines.append([' '.join(label), ' '.join(word)])
                         words = []
@@ -130,6 +141,10 @@ class NerProcessor():
                         continue
                 if contends.startswith("-DOCSTART-"):
                     continue
+            # report the labels that no use in the file
+            for i in range(len(self.label_used)):
+                if( not self.label_used[i]):
+                    print(f"Label {self.labels[i]} is not used!!!")
             return lines
 
 
@@ -150,49 +165,66 @@ def convert_single_example(ex_index, example, label_list, max_seq_length, tokeni
     """
     convert example to id single by single
     """
+    # convert the label into index.
     label_map = {}
     for (i, label) in enumerate(label_list, 0):
         label_map[label] = i
 
     textlist = example.text.split(' ')
-    labellist = example.label.split(' ')
+    labellist = example.label.split(' ') # this may contain some labels that we do not want.
+
+    # Warning: In this we will
+
     tokens = []
     labels = []
     for i, word in enumerate(textlist):
         token = tokenizer.tokenize(word)
         tokens.extend(token)
-        label_1 = labellist[i]
+
+        label_1 = labellist[i] # extract one label output example, will not contain label we do not want.
         for m in range(len(token)):
             if m == 0:
                 labels.append(label_1)
             else:
-                labels.append("X")
+                print("Generate sub-token: ", word)
+                labels.append("X") # if extract multiple token, use X for sub-token (seldom happen)
+            
+    # if the length of one line(seq) exceed the max-seq-len, just cut it off(what a waste)
     if len(tokens) >= max_seq_length - 1:
         tokens = tokens[0:(max_seq_length - 2)]
         labels = labels[0:(max_seq_length - 2)]
     ntokens = []
     segment_ids = []
     label_ids = []
-    ntokens.append("[CLS]")  # add [CLS] begin of token
-    segment_ids.append(0)
-    label_ids.append(label_map["[CLS]"])
+
+    # Do not add [CLS] when there is already "start" and "stop" token for CLR layer.
+    
+    # ntokens.append("[CLS]")  # add [CLS] begin of token
+    # segment_ids.append(0)
+    # label_ids.append(label_map["[CLS]"])
+
     for i, token in enumerate(tokens):
         ntokens.append(token)
         segment_ids.append(0)
         label_ids.append(label_map[labels[i]])
-    ntokens.append("[SEP]")  # add [SEP] end of token
-    segment_ids.append(0)
-    label_ids.append(label_map["[SEP]"])
+    
+    # ntokens.append("[SEP]")  # add [SEP] end of token
+    # segment_ids.append(0)
+    # label_ids.append(label_map["[SEP]"])
+
     if(vocab_file == None):
         vocab_file = args_opt.vocab_file
     input_ids = tokenization.convert_tokens_to_ids(vocab_file, ntokens)  # convert ntokens to ID format
     input_mask = [1] * len(input_ids)
-    # padding
+    # padding for unrelated (WARNING: 0 must be O tag for no real meaning.)
+    padding_labels_id =  label_map['O']
     while len(input_ids) < max_seq_length:
         input_ids.append(0)
         input_mask.append(0)
         segment_ids.append(0)
-        label_ids.append(0)
+        # WARNING: For meaningless padding token, the label_id should be index of 'O'
+        label_ids.append(padding_labels_id)
+        
         ntokens.append("**NULL**")
     assert len(input_ids) == max_seq_length
     assert len(input_mask) == max_seq_length
@@ -215,39 +247,52 @@ def filed_based_convert_examples_to_features(
     """
     convert examples to mindrecord format
     """
+    # Add a column of real_seq_length, so that bi_lstm can be optimized !!
     schema = {
         "input_ids": {"type": "int32", "shape": [-1]},
         "input_mask": {"type": "int32", "shape": [-1]},
         "segment_ids": {"type": "int32", "shape": [-1]},
         "label_ids": {"type": "int32", "shape": [-1]},
+        "real_seq_length":{"type": "int32", "shape":[1]}, # this is only one integer, but for standard type encapsulate it as a list.
     }
+    
     writer = FileWriter(output_file, overwrite=True)
     writer.add_schema(schema)
     total_written = 0
+
     for (ex_index, example) in enumerate(examples):
         all_data = []
+        # this is the REAL entry for convert raw_dataset into mindrecord. also call by do_one_test.py
+        
         feature = convert_single_example(ex_index, example, label_list, max_seq_length, tokenizer, output_dir, mode)
         input_ids = np.array(feature.input_ids, dtype=np.int32)
         input_mask = np.array(feature.input_mask, dtype=np.int32)
         segment_ids = np.array(feature.segment_ids, dtype=np.int32)
         label_ids = np.array(feature.label_ids, dtype=np.int32)
+        
         data = {'input_ids': input_ids,
                 "input_mask": input_mask,
                 "segment_ids": segment_ids,
-                "label_ids": label_ids}
+                "label_ids": label_ids,
+                "real_seq_length":np.array([len(example.text.split()) + 2],dtype=np.int32)
+        } # +2 is for <START> (no [CLR] [SEP]) <END>.
+        # print(len(example.text.split()) + 2)
+
         all_data.append(data)
         if all_data:
             writer.write_raw_data(all_data)
             total_written += 1
     writer.commit()
+    # this is the final part.
     print("Total instances is: ", total_written, flush=True)
 
 def main(args):
     # check output dir exists
     if not os.path.exists(args.output_dir):
         os.makedirs(args.output_dir, exist_ok=True)
-
-    processor = NerProcessor(args.output_dir)
+    
+    # delete the repeated token while maintain the order !!
+    processor = NerProcessor(args.output_dir, labels=list(dict.fromkeys(args.labels.split())))
 
     tokenizer = tokenization.FullTokenizer(
         vocab_file=args.vocab_file, do_lower_case=args.do_lower_case)
@@ -269,23 +314,22 @@ def main(args):
         print("***** Running test *****")
         print("  Num examples is: ", len(test_examples), flush=True)
 
+
+    # get label list !!!
     label_list = processor.get_labels()
 
-    if args.do_train and args.do_eval:
-        train_file = os.path.join(args.output_dir, "train.mind_record")
-        if not os.path.exists(train_file):
-            filed_based_convert_examples_to_features(
-                train_examples, label_list, args.max_seq_length, tokenizer, train_file, args.output_dir)
+    # no matter how, write the file.
+    train_file = os.path.join(args.output_dir, "train.mind_record")
+    filed_based_convert_examples_to_features(
+        train_examples, label_list, args.max_seq_length, tokenizer, train_file, args.output_dir)
 
-        eval_file = os.path.join(args.output_dir, "eval.mind_record")
-        if not os.path.exists(eval_file):
-            filed_based_convert_examples_to_features(
-                eval_examples, label_list, args.max_seq_length, tokenizer, eval_file, args.output_dir)
+    eval_file = os.path.join(args.output_dir, "eval.mind_record")
+    filed_based_convert_examples_to_features(
+        eval_examples, label_list, args.max_seq_length, tokenizer, eval_file, args.output_dir)
 
-        test_file = os.path.join(args.output_dir, "test.mind_record")
-        if not os.path.exists(test_file):
-            filed_based_convert_examples_to_features(
-                test_examples, label_list, args.max_seq_length, tokenizer, test_file, args.output_dir)
+    test_file = os.path.join(args.output_dir, "test.mind_record")
+    filed_based_convert_examples_to_features(
+        test_examples, label_list, args.max_seq_length, tokenizer, test_file, args.output_dir)
 
 
 if __name__ == "__main__":
@@ -297,5 +341,7 @@ if __name__ == "__main__":
     parser.add_argument('--do_lower_case', default=True, type=bool, help='')
     parser.add_argument('--vocab_file', default="./vocab.txt", type=str, help='')
     parser.add_argument('--output_dir', default="./outputs", type=str, help='')
+    parser.add_argument('--labels', default="", type=str, help='')
+    
     args_opt = parser.parse_args()
     main(args_opt)

@@ -39,13 +39,13 @@ python ${PROJECT_DIR}/../run_classifier.py  \
     --config_path="../../task_classifier_config.yaml" \
     --device_target="GPU" \
     --do_train="true" \
-    --do_eval="false" \
+    --do_eval="true" \
     --assessment_method="Accuracy" \
     --epoch_num=3 \
     --num_class=2 \
     --train_data_shuffle="true" \
     --eval_data_shuffle="false" \
-    --train_batch_size=32 \
+    --train_batch_size=4 \
     --eval_batch_size=1 \
     --save_finetune_checkpoint_path="" \
     --load_pretrain_checkpoint_path="" \

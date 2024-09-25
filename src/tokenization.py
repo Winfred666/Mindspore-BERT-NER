@@ -74,7 +74,7 @@ def whitespace_tokenize(text):
     text = text.strip()
     if not text:
         return []
-    tokens = text.split()
+    tokens = text.split() # for chinese, must have whitespace, cannot use connect word like "中秋假期"
     return tokens
 
 
@@ -167,7 +167,7 @@ class BasicTokenizer():
             aaa = self._run_split_on_punc(token)
             split_tokens.extend(aaa)
 
-        output_tokens = whitespace_tokenize(" ".join(split_tokens))
+        output_tokens = whitespace_tokenize(" ".join(split_tokens)) # split by whitespace.
         return output_tokens
 
     def _run_strip_accents(self, text):

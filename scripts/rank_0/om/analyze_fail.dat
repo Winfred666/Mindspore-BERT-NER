@@ -1,0 +1,552 @@
+# 1.This file shows the parsed IR info when graph evaluating failed to help find the problem.
+# 2.You can search the last `------------------------>` to the node which is inferred failed.
+# 3.Refer to https://www.mindspore.cn/search?inputValue=analyze_fail.dat to get more instructions.
+# ===============================================================================
+
+# [No.1] Default_wrapper.1
+# In file /home/songjh/bert_1.9/src/bert_for_finetune.py:258/    def construct(self, input_ids, input_mask, token_type_id, label_ids,real_seq_length):/
+funcgraph fg_1(
+        %para1 : Tensor(I32)[1, 128]    # input_ids
+        , %para2 : Tensor(I32)[1, 128]    # input_mask
+        , %para3 : Tensor(I32)[1, 128]    # token_type_id
+        , %para4 : Tensor(I32)[1, 128]    # label_ids
+        , %para5 : Tensor(I32)[1]    # real_seq_length
+        , %para6 : Ref[Tensor(F32)][21128, 768]    # bert.bert.bert_embedding_lookup.embedding_table
+        , %para7 : Ref[Tensor(F32)][15, 15]    # loss.transitions
+        , %para8 : Ref[Tensor(F32)][15]    # bert.dense_1.bias
+        , %para9 : Ref[Tensor(F32)][15, 768]    # bert.dense_1.weight
+        , %para10 : Ref[Tensor(F32)][768]    # bert.bert.dense.bias
+        , %para11 : Ref[Tensor(F32)][768, 768]    # bert.bert.dense.weight
+        , %para12 : Ref[Tensor(F32)][768]    # bert.bert.bert_embedding_postprocessor.layernorm.gamma
+        , %para13 : Ref[Tensor(F32)][768]    # bert.bert.bert_embedding_postprocessor.layernorm.beta
+        , %para14 : Ref[Tensor(F32)][2, 768]    # bert.bert.bert_embedding_postprocessor.token_type_embedding.embedding_table
+        , %para15 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.output.layernorm.gamma
+        , %para16 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.output.layernorm.beta
+        , %para17 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.output.layernorm.gamma
+        , %para18 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.output.layernorm.beta
+        , %para19 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.output.layernorm.gamma
+        , %para20 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.output.layernorm.beta
+        , %para21 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.output.layernorm.gamma
+        , %para22 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.output.layernorm.beta
+        , %para23 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.output.layernorm.gamma
+        , %para24 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.output.layernorm.beta
+        , %para25 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.output.layernorm.gamma
+        , %para26 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.output.layernorm.beta
+        , %para27 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.output.layernorm.gamma
+        , %para28 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.output.layernorm.beta
+        , %para29 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.output.layernorm.gamma
+        , %para30 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.output.layernorm.beta
+        , %para31 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.output.layernorm.gamma
+        , %para32 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.output.layernorm.beta
+        , %para33 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.output.layernorm.gamma
+        , %para34 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.output.layernorm.beta
+        , %para35 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.output.layernorm.gamma
+        , %para36 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.output.layernorm.beta
+        , %para37 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.output.layernorm.gamma
+        , %para38 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.output.layernorm.beta
+        , %para39 : Ref[Tensor(F32)][512, 768]    # bert.bert.bert_embedding_postprocessor.full_position_embedding.embedding_table
+        , %para40 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.attention.output.layernorm.gamma
+        , %para41 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.attention.output.layernorm.beta
+        , %para42 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.attention.output.layernorm.gamma
+        , %para43 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.attention.output.layernorm.beta
+        , %para44 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.attention.output.layernorm.gamma
+        , %para45 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.attention.output.layernorm.beta
+        , %para46 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.attention.output.layernorm.gamma
+        , %para47 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.attention.output.layernorm.beta
+        , %para48 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.attention.output.layernorm.gamma
+        , %para49 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.attention.output.layernorm.beta
+        , %para50 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.attention.output.layernorm.gamma
+        , %para51 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.attention.output.layernorm.beta
+        , %para52 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.attention.output.layernorm.gamma
+        , %para53 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.attention.output.layernorm.beta
+        , %para54 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.attention.output.layernorm.gamma
+        , %para55 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.attention.output.layernorm.beta
+        , %para56 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.attention.output.layernorm.gamma
+        , %para57 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.attention.output.layernorm.beta
+        , %para58 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.attention.output.layernorm.gamma
+        , %para59 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.attention.output.layernorm.beta
+        , %para60 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.attention.output.layernorm.gamma
+        , %para61 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.attention.output.layernorm.beta
+        , %para62 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.attention.output.layernorm.gamma
+        , %para63 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.attention.output.layernorm.beta
+        , %para64 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.0.intermediate.bias
+        , %para65 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.0.intermediate.weight
+        , %para66 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.1.intermediate.bias
+        , %para67 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.1.intermediate.weight
+        , %para68 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.2.intermediate.bias
+        , %para69 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.2.intermediate.weight
+        , %para70 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.3.intermediate.bias
+        , %para71 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.3.intermediate.weight
+        , %para72 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.4.intermediate.bias
+        , %para73 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.4.intermediate.weight
+        , %para74 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.5.intermediate.bias
+        , %para75 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.5.intermediate.weight
+        , %para76 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.6.intermediate.bias
+        , %para77 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.6.intermediate.weight
+        , %para78 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.7.intermediate.bias
+        , %para79 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.7.intermediate.weight
+        , %para80 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.8.intermediate.bias
+        , %para81 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.8.intermediate.weight
+        , %para82 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.9.intermediate.bias
+        , %para83 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.9.intermediate.weight
+        , %para84 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.10.intermediate.bias
+        , %para85 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.10.intermediate.weight
+        , %para86 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.11.intermediate.bias
+        , %para87 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.11.intermediate.weight
+        , %para88 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.output.dense.bias
+        , %para89 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.0.output.dense.weight
+        , %para90 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.output.dense.bias
+        , %para91 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.1.output.dense.weight
+        , %para92 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.output.dense.bias
+        , %para93 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.2.output.dense.weight
+        , %para94 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.output.dense.bias
+        , %para95 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.3.output.dense.weight
+        , %para96 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.output.dense.bias
+        , %para97 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.4.output.dense.weight
+        , %para98 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.output.dense.bias
+        , %para99 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.5.output.dense.weight
+        , %para100 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.output.dense.bias
+        , %para101 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.6.output.dense.weight
+        , %para102 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.output.dense.bias
+        , %para103 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.7.output.dense.weight
+        , %para104 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.output.dense.bias
+        , %para105 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.8.output.dense.weight
+        , %para106 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.output.dense.bias
+        , %para107 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.9.output.dense.weight
+        , %para108 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.output.dense.bias
+        , %para109 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.10.output.dense.weight
+        , %para110 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.output.dense.bias
+        , %para111 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.11.output.dense.weight
+        , %para112 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.attention.output.dense.bias
+        , %para113 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.0.attention.output.dense.weight
+        , %para114 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.attention.output.dense.bias
+        , %para115 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.1.attention.output.dense.weight
+        , %para116 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.attention.output.dense.bias
+        , %para117 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.2.attention.output.dense.weight
+        , %para118 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.attention.output.dense.bias
+        , %para119 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.3.attention.output.dense.weight
+        , %para120 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.attention.output.dense.bias
+        , %para121 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.4.attention.output.dense.weight
+        , %para122 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.attention.output.dense.bias
+        , %para123 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.5.attention.output.dense.weight
+        , %para124 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.attention.output.dense.bias
+        , %para125 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.6.attention.output.dense.weight
+        , %para126 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.attention.output.dense.bias
+        , %para127 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.7.attention.output.dense.weight
+        , %para128 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.attention.output.dense.bias
+        , %para129 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.8.attention.output.dense.weight
+        , %para130 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.attention.output.dense.bias
+        , %para131 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.9.attention.output.dense.weight
+        , %para132 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.attention.output.dense.bias
+        , %para133 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.10.attention.output.dense.weight
+        , %para134 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.attention.output.dense.bias
+        , %para135 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.11.attention.output.dense.weight
+        , %para136 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.attention.attention.query_layer.bias
+        , %para137 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.0.attention.attention.query_layer.weight
+        , %para138 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.attention.attention.key_layer.bias
+        , %para139 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.0.attention.attention.key_layer.weight
+        , %para140 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.attention.attention.query_layer.bias
+        , %para141 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.1.attention.attention.query_layer.weight
+        , %para142 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.attention.attention.key_layer.bias
+        , %para143 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.1.attention.attention.key_layer.weight
+        , %para144 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.attention.attention.query_layer.bias
+        , %para145 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.2.attention.attention.query_layer.weight
+        , %para146 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.attention.attention.key_layer.bias
+        , %para147 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.2.attention.attention.key_layer.weight
+        , %para148 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.attention.attention.query_layer.bias
+        , %para149 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.3.attention.attention.query_layer.weight
+        , %para150 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.attention.attention.key_layer.bias
+        , %para151 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.3.attention.attention.key_layer.weight
+        , %para152 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.attention.attention.query_layer.bias
+        , %para153 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.4.attention.attention.query_layer.weight
+        , %para154 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.attention.attention.key_layer.bias
+        , %para155 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.4.attention.attention.key_layer.weight
+        , %para156 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.attention.attention.query_layer.bias
+        , %para157 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.5.attention.attention.query_layer.weight
+        , %para158 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.attention.attention.key_layer.bias
+        , %para159 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.5.attention.attention.key_layer.weight
+        , %para160 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.attention.attention.query_layer.bias
+        , %para161 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.6.attention.attention.query_layer.weight
+        , %para162 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.attention.attention.key_layer.bias
+        , %para163 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.6.attention.attention.key_layer.weight
+        , %para164 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.attention.attention.query_layer.bias
+        , %para165 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.7.attention.attention.query_layer.weight
+        , %para166 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.attention.attention.key_layer.bias
+        , %para167 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.7.attention.attention.key_layer.weight
+        , %para168 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.attention.attention.query_layer.bias
+        , %para169 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.8.attention.attention.query_layer.weight
+        , %para170 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.attention.attention.key_layer.bias
+        , %para171 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.8.attention.attention.key_layer.weight
+        , %para172 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.attention.attention.query_layer.bias
+        , %para173 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.9.attention.attention.query_layer.weight
+        , %para174 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.attention.attention.key_layer.bias
+        , %para175 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.9.attention.attention.key_layer.weight
+        , %para176 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.attention.attention.query_layer.bias
+        , %para177 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.10.attention.attention.query_layer.weight
+        , %para178 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.attention.attention.key_layer.bias
+        , %para179 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.10.attention.attention.key_layer.weight
+        , %para180 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.attention.attention.query_layer.bias
+        , %para181 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.11.attention.attention.query_layer.weight
+        , %para182 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.attention.attention.key_layer.bias
+        , %para183 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.11.attention.attention.key_layer.weight
+        , %para184 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.attention.attention.value_layer.bias
+        , %para185 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.0.attention.attention.value_layer.weight
+        , %para186 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.attention.attention.value_layer.bias
+        , %para187 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.1.attention.attention.value_layer.weight
+        , %para188 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.attention.attention.value_layer.bias
+        , %para189 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.2.attention.attention.value_layer.weight
+        , %para190 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.attention.attention.value_layer.bias
+        , %para191 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.3.attention.attention.value_layer.weight
+        , %para192 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.attention.attention.value_layer.bias
+        , %para193 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.4.attention.attention.value_layer.weight
+        , %para194 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.attention.attention.value_layer.bias
+        , %para195 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.5.attention.attention.value_layer.weight
+        , %para196 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.attention.attention.value_layer.bias
+        , %para197 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.6.attention.attention.value_layer.weight
+        , %para198 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.attention.attention.value_layer.bias
+        , %para199 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.7.attention.attention.value_layer.weight
+        , %para200 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.attention.attention.value_layer.bias
+        , %para201 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.8.attention.attention.value_layer.weight
+        , %para202 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.attention.attention.value_layer.bias
+        , %para203 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.9.attention.attention.value_layer.weight
+        , %para204 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.attention.attention.value_layer.bias
+        , %para205 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.10.attention.attention.value_layer.weight
+        , %para206 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.attention.attention.value_layer.bias
+        , %para207 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.11.attention.attention.value_layer.weight
+    ) {
+
+#------------------------> 0
+    %1 = FuncGraph::fg_32(%para1, %para2, %para3, %para4, %para5)    #(Tensor(I32)[1, 128], Tensor(I32)[1, 128], Tensor(I32)[1, 128], Tensor(I32)[1, 128], Tensor(I32)[1])    # fg_32=Default.32 #scope: Default
+#[CNode]44
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:262/        if self.use_crf:/#[CNode]45
+}
+# order:
+#   1: @Default_wrapper.1:[CNode]44{[0]: ValueNode<FuncGraph> Default.32, [1]: input_ids, [2]: input_mask, [3]: token_type_id, [4]: label_ids, [5]: real_seq_length}
+#   2: @Default_wrapper.1:[CNode]45{[0]: ValueNode<Primitive> Return, [1]: [CNode]44}
+
+
+# [No.2] Default.32
+# In file /home/songjh/bert_1.9/src/bert_for_finetune.py:258/    def construct(self, input_ids, input_mask, token_type_id, label_ids,real_seq_length):/
+funcgraph fg_32[fg_1](
+        %para208 : Tensor(I32)[1, 128]    # input_ids
+        , %para209 : Tensor(I32)[1, 128]    # input_mask
+        , %para210 : Tensor(I32)[1, 128]    # token_type_id
+        , %para211 : Tensor(I32)[1, 128]    # label_ids
+        , %para212 : Tensor(I32)[1]    # real_seq_length
+    ) {
+    %1 : BoolNoShape = FuncGraph::fg_9(Bool(1))    #(BoolNoShape)    # fg_9=bool_.9 #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:262/        if self.use_crf:/#[CNode]46
+    %2 : FuncNoShape = Primitive::Switch{prim_type=1}(%1, FuncGraph::fg_47, FuncGraph::fg_48)    #(BoolNoShape, FuncNoShape, FuncNoShape)    # fg_47=✓Default.47, fg_48=✗Default.48 #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:262/        if self.use_crf:/#[CNode]49
+    %3 : Tuple[Tuple[Tuple[Tensor(I32)]*128],Tensor(I32)]TupleShape(TupleShape(TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15))), (1)) = %2() #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:262/        if self.use_crf:/#[CNode]50
+
+#------------------------> 1
+    %4 = FuncGraph::fg_33(%3)    #(Tuple[Tuple[Tuple[Tensor(I32)]*128],Tensor(I32)]TupleShape(TupleShape(TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15))), (1)))    # fg_33=↓Default.33 #scope: Default
+#[CNode]51
+    Primitive::Return{prim_type=1}(%4)    #(Undefined) #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:262/        if self.use_crf:/#[CNode]52
+}
+# order:
+#   1: @Default.32:logits{[0]: ValueNode<FuncGraph> BertNERModel.53, [1]: input_ids, [2]: input_mask, [3]: token_type_id, [4]: real_seq_length}
+#   2: @Default.32:[CNode]46{[0]: ValueNode<FuncGraph> bool_.9, [1]: ValueNode<BoolImm> true}
+#   3: @Default.32:[CNode]49{[0]: ValueNode<Primitive> Switch, [1]: [CNode]46, [2]: ValueNode<FuncGraph> ✓Default.47, [3]: ValueNode<FuncGraph> ✗Default.48}
+#   4: @Default.32:[CNode]50{[0]: [CNode]49}
+#   5: @Default.32:[CNode]51{[0]: ValueNode<FuncGraph> ↓Default.33, [1]: [CNode]50}
+#   6: @Default.32:[CNode]52{[0]: ValueNode<Primitive> Return, [1]: [CNode]51}
+
+
+# [No.3] ↓Default.33
+# In file /home/songjh/bert_1.9/src/bert_for_finetune.py:262/        if self.use_crf:/
+funcgraph fg_33(
+        %para213 : Tuple[Tuple[Tuple[Tensor(I32)]*128],Tensor(I32)]TupleShape(TupleShape(TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15))), (1))    # фloss
+    ) {
+
+#------------------------> 2
+    %1 = FuncGraph::fg_34(I64(0), [])    #(I64NoShape, List[]ListShape[])    # fg_34=↵↓Default.34 #scope: Default
+#[CNode]54
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:269/        for inner_tuple in loss:/#[CNode]55
+}
+# order:
+#   1: @↓Default.33:[CNode]56{[0]: ValueNode<FuncGraph> ms_len.10, [1]: фloss}
+#   2: @↓Default.33:[CNode]55{[0]: ValueNode<Primitive> Return, [1]: [CNode]54}
+#   3: @↓Default.33:[CNode]54{[0]: ValueNode<FuncGraph> ↵↓Default.34, [1]: ValueNode<Int64Imm> 0, [2]: ValueNode<ValueList> []}
+
+
+# [No.4] ↵↓Default.34
+# In file /home/songjh/bert_1.9/src/bert_for_finetune.py:269/        for inner_tuple in loss:/
+funcgraph fg_34[fg_33](
+        %para214 : I64NoShape    # @[CNode]35
+        , %para215 : List[]ListShape[]    # фflat_list
+    ) {
+    %1 : $(↓Default.33):I64NoShape = FuncGraph::fg_10(%para213)    #(Tuple[Tuple[Tuple[Tensor(I32)]*128],Tensor(I32)]TupleShape(TupleShape(TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15))), (1)))    # fg_10=ms_len.10 #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:269/        for inner_tuple in loss:/#[CNode]56
+    %2 : BoolNoShape = MultitypeFuncGraph::less{(Tensor, Number), (Tensor, Tensor), (Number, Tensor), (Number, Number), (String, String)}(%para214, %1)    #(I64NoShape, I64NoShape) #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:269/        for inner_tuple in loss:/#[CNode]57
+    %3 : FuncNoShape = Primitive::Switch{prim_type=1}(%2, FuncGraph::fg_36, FuncGraph::fg_58)    #(BoolNoShape, FuncNoShape, FuncNoShape)    # fg_36=↻↓Default.36, fg_58=↓↓Default.58 #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:269/        for inner_tuple in loss:/#[CNode]59
+
+#------------------------> 5
+    %4 = %3() #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:269/        for inner_tuple in loss:/#[CNode]60
+    Primitive::Return{prim_type=1}(%4)    #(Undefined) #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:269/        for inner_tuple in loss:/#[CNode]61
+}
+# order:
+#   1: @↵↓Default.34:[CNode]57{[0]: ValueNode<MultitypeFuncGraph> less.12, [1]: @[CNode]35, [2]: [CNode]56}
+#   2: @↵↓Default.34:[CNode]59{[0]: ValueNode<Primitive> Switch, [1]: [CNode]57, [2]: ValueNode<FuncGraph> ↻↓Default.36, [3]: ValueNode<FuncGraph> ↓↓Default.58}
+#   3: @↵↓Default.34:[CNode]60{[0]: [CNode]59}
+#   4: @↵↓Default.34:[CNode]61{[0]: ValueNode<Primitive> Return, [1]: [CNode]60}
+
+
+# [No.5] ↻↓Default.36
+# In file /home/songjh/bert_1.9/src/bert_for_finetune.py:269/        for inner_tuple in loss:/
+funcgraph fg_36[fg_34](
+) {
+    %1 : I64NoShape = MultitypeFuncGraph::add{(Tensor, COOTensor), (NoneType, NoneType), (CSRTensor, CSRTensor), (Tuple, Tensor), (COOTensor, COOTensor), (Tensor, Tuple), (Tensor, Number), (Tuple, Tuple), (Number, Number), (Tensor, List), (Number, Tensor), (List, Tensor), (List, List), (COOTensor, Tensor), (String, String), (Tensor, Tensor), (RowTensor, Tensor)}(%para214, I64(1))    #(I64NoShape, I64NoShape) #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:269/        for inner_tuple in loss:/#[CNode]35
+    %2 : I64NoShape = Primitive::stop_gradient{prim_type=1}(%1)    #(I64NoShape) #scope: Default
+#[CNode]62
+    %3 : FuncNoShape = Primitive::getattr{prim_type=1}(%para215, "append")    #(List[]ListShape[], StringNoShape) #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:270/            flat_list.append(inner_tuple[0][0])/#[CNode]63
+    %4 : Tuple[Tuple[Tensor(I32)]*128]TupleShape(TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15))) = DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%para213, %para214)    #(Tuple[Tuple[Tuple[Tensor(I32)]*128],Tensor(I32)]TupleShape(TupleShape(TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15))), (1)), I64NoShape) #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:269/        for inner_tuple in loss:/#inner_tuple
+    %5 : Tuple[Tensor(I32)]TupleShape((1, 15)) = DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%4, I64(0))    #(Tuple[Tuple[Tensor(I32)]*128]TupleShape(TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15)), TupleShape((1, 15))), I64NoShape) #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:270/            flat_list.append(inner_tuple[0][0])/#[CNode]64
+
+#------------------------> 6
+    %6 : Tensor(I32)[1, 15] = DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%5, I64(0))    #(Tuple[Tensor(I32)]TupleShape((1, 15)), I64NoShape) #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:270/            flat_list.append(inner_tuple[0][0])/#[CNode]65
+    %7 : List[Tensor(I32)]ListShape[(1, 15)] = %3(%6)    #(Tensor(I32)[1, 15]) #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:270/            flat_list.append(inner_tuple[0][0])/#flat_list
+
+#------------------------> 4
+    %8 = FuncGraph::fg_34(%1, %7)    #(I64NoShape, List[Tensor(I32)]ListShape[(1, 15)])    # fg_34=↵↓Default.34 #scope: Default
+#[CNode]66
+    %9 = Primitive::Depend{prim_type=1}[side_effect_propagate=I64(1)](%8, %2)    #(Undefined, I64NoShape) #scope: Default
+#[CNode]67
+    Primitive::Return{prim_type=1}(%9)    #(Undefined) #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:269/        for inner_tuple in loss:/#[CNode]68
+}
+# order:
+#   1: @↻↓Default.36:inner_tuple{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: фloss, [2]: @[CNode]35}
+#   2: @↻↓Default.36:[CNode]35{[0]: ValueNode<MultitypeFuncGraph> add.2, [1]: @[CNode]35, [2]: ValueNode<Int64Imm> 1}
+#   3: @↻↓Default.36:[CNode]63{[0]: ValueNode<Primitive> getattr, [1]: фflat_list, [2]: ValueNode<StringImm> append}
+#   4: @↻↓Default.36:[CNode]64{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: inner_tuple, [2]: ValueNode<Int64Imm> 0}
+#   5: @↻↓Default.36:[CNode]65{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]64, [2]: ValueNode<Int64Imm> 0}
+#   6: @↻↓Default.36:flat_list{[0]: [CNode]63, [1]: [CNode]65}
+#   7: @↻↓Default.36:[CNode]68{[0]: ValueNode<Primitive> Return, [1]: [CNode]67}
+#   8: @↻↓Default.36:[CNode]66{[0]: ValueNode<FuncGraph> ↵↓Default.34, [1]: [CNode]35, [2]: flat_list}
+
+
+# [No.6] _tensor_getitem_by_number.37
+# In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/getitem_impl.py:208/def _tensor_getitem_by_number(data, number_index):/
+funcgraph fg_37(
+        %para216 : Tensor(I32)[]    # data
+        , %para217 : I64NoShape    # number_index
+    ) {
+    %1 : ExternalTypeNoShape = Primitive::resolve{prim_type=1}(NameSpace::SymbolStr, compile_utils)    #(ExternalTypeNoShape, ExternalTypeNoShape) #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:270/            flat_list.append(inner_tuple[0][0])/#[CNode]65
+    %2 : FuncNoShape = Primitive::getattr{prim_type=1}(%1, "tensor_index_by_number")    #(ExternalTypeNoShape, StringNoShape) #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:270/            flat_list.append(inner_tuple[0][0])/#[CNode]65
+
+#------------------------> 7
+    %3 = %2(%para216, %para217)    #(Tensor(I32)[], I64NoShape) #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:270/            flat_list.append(inner_tuple[0][0])/#[CNode]65
+    Primitive::Return{prim_type=1}(%3)    #(Undefined) #scope: Default
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:270/            flat_list.append(inner_tuple[0][0])/#[CNode]65
+}
+# order:
+#   1: @_tensor_getitem_by_number.69:[CNode]70{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore._extends.parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   2: @_tensor_getitem_by_number.69:[CNode]71{[0]: [CNode]70, [1]: data, [2]: number_index}
+#   3: @_tensor_getitem_by_number.37:[CNode]65{[0]: [CNode]65, [1]: data, [2]: number_index}
+#   4: @_tensor_getitem_by_number.37:[CNode]65{[0]: ValueNode<Primitive> Return, [1]: [CNode]65}
+
+
+# [No.7] tensor_index_by_number.38
+# In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:347/def tensor_index_by_number(data, number_index):/
+funcgraph fg_38(
+        %para218 : Tensor(I32)[]    # data
+        , %para219 : I64NoShape    # number_index
+    ) {
+    %1 : FuncNoShape = Primitive::resolve{prim_type=1}(NameSpace::CommonOPS, bool_)    #(ExternalTypeNoShape, ExternalTypeNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:349/    if isinstance(number_index, bool):/#[CNode]72
+    %2 : FuncNoShape = Primitive::resolve{prim_type=1}(NameSpace::SymbolStr, isinstance)    #(ExternalTypeNoShape, ExternalTypeNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:349/    if isinstance(number_index, bool):/#[CNode]73
+    %3 : TypeTypeNoShape = Primitive::resolve{prim_type=1}(NameSpace::SymbolStr, bool)    #(ExternalTypeNoShape, ExternalTypeNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:349/    if isinstance(number_index, bool):/#[CNode]74
+    %4 : BoolNoShape = %2(%para219, %3)    #(I64NoShape, TypeTypeNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:349/    if isinstance(number_index, bool):/#[CNode]75
+    %5 : BoolNoShape = %1(%4)    #(BoolNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:349/    if isinstance(number_index, bool):/#[CNode]76
+    %6 : FuncNoShape = Primitive::Switch{prim_type=1}(%5, FuncGraph::fg_77, FuncGraph::fg_39)    #(BoolNoShape, FuncNoShape, FuncNoShape)    # fg_77=✓tensor_index_by_number.77, fg_39=✗tensor_index_by_number.39 #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:349/    if isinstance(number_index, bool):/#[CNode]78
+
+#------------------------> 8
+    %7 = %6() #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:349/    if isinstance(number_index, bool):/#[CNode]79
+    Primitive::Return{prim_type=1}(%7)    #(Undefined) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:349/    if isinstance(number_index, bool):/#[CNode]80
+}
+# order:
+#   1: @tensor_index_by_number.38:[CNode]81{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore._extends.parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   2: @tensor_index_by_number.38:[CNode]82{[0]: [CNode]81, [1]: number_index, [2]: [CNode]74}
+#   3: @tensor_index_by_number.38:[CNode]75{[0]: [CNode]73, [1]: number_index, [2]: [CNode]74}
+#   4: @tensor_index_by_number.38:[CNode]76{[0]: [CNode]72, [1]: [CNode]75}
+#   5: @tensor_index_by_number.38:[CNode]83{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> SymbolStr: 'Namespace:mindspore.ops.composite.multitype_ops._compile_utils', [2]: ValueNode<Symbol> _tensor_index_by_bool}
+#   6: @tensor_index_by_number.38:[CNode]78{[0]: ValueNode<Primitive> Switch, [1]: [CNode]76, [2]: ValueNode<FuncGraph> ✓tensor_index_by_number.77, [3]: ValueNode<FuncGraph> ✗tensor_index_by_number.39}
+#   7: @tensor_index_by_number.38:[CNode]79{[0]: [CNode]78}
+#   8: @tensor_index_by_number.38:[CNode]80{[0]: ValueNode<Primitive> Return, [1]: [CNode]79}
+#   9: @tensor_index_by_number.38:[CNode]84{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> SymbolStr: 'Namespace:mindspore.ops.composite.multitype_ops._compile_utils', [2]: ValueNode<Symbol> const_utils}
+
+
+# [No.8] ✗tensor_index_by_number.39
+# In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:349/    if isinstance(number_index, bool):/
+funcgraph fg_39[fg_38](
+) {
+
+#------------------------> 9
+    %1 = FuncGraph::fg_40()    # fg_40=↓tensor_index_by_number.40 #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:349/    if isinstance(number_index, bool):/#[CNode]85
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:349/    if isinstance(number_index, bool):/#[CNode]86
+}
+# order:
+#   1: @✗tensor_index_by_number.39:[CNode]85{[0]: ValueNode<FuncGraph> ↓tensor_index_by_number.40}
+#   2: @✗tensor_index_by_number.39:[CNode]86{[0]: ValueNode<Primitive> Return, [1]: [CNode]85}
+
+
+# [No.9] ↓tensor_index_by_number.40
+# In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:349/    if isinstance(number_index, bool):/
+funcgraph fg_40[fg_38](
+) {
+    %1 : FuncNoShape = Primitive::resolve{prim_type=1}(NameSpace::CommonOPS, bool_)    #(ExternalTypeNoShape, ExternalTypeNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:351/    if isinstance(number_index, int):/#[CNode]87
+    %2 : $(tensor_index_by_number.38):FuncNoShape = Primitive::resolve{prim_type=1}(NameSpace::SymbolStr, isinstance)    #(ExternalTypeNoShape, ExternalTypeNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:349/    if isinstance(number_index, bool):/#[CNode]73
+    %3 : $(tensor_index_by_number.38):TypeTypeNoShape = Primitive::resolve{prim_type=1}(NameSpace::SymbolStr, int)    #(ExternalTypeNoShape, ExternalTypeNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:351/    if isinstance(number_index, int):/#[CNode]88
+    %4 : BoolNoShape = %2(%para219, %3)    #(I64NoShape, TypeTypeNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:351/    if isinstance(number_index, int):/#[CNode]89
+    %5 : BoolNoShape = %1(%4)    #(BoolNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:351/    if isinstance(number_index, int):/#[CNode]90
+    %6 : FuncNoShape = Primitive::Switch{prim_type=1}(%5, FuncGraph::fg_41, FuncGraph::fg_91)    #(BoolNoShape, FuncNoShape, FuncNoShape)    # fg_41=✓↓tensor_index_by_number.41, fg_91=✗↓tensor_index_by_number.91 #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:351/    if isinstance(number_index, int):/#[CNode]92
+
+#------------------------> 10
+    %7 = %6() #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:351/    if isinstance(number_index, int):/#[CNode]93
+    Primitive::Return{prim_type=1}(%7)    #(Undefined) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:351/    if isinstance(number_index, int):/#[CNode]94
+}
+# order:
+#   1: @↓tensor_index_by_number.40:[CNode]95{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore._extends.parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   2: @↓tensor_index_by_number.40:[CNode]96{[0]: [CNode]95, [1]: number_index, [2]: [CNode]88}
+#   3: @↓tensor_index_by_number.40:[CNode]89{[0]: [CNode]73, [1]: number_index, [2]: [CNode]88}
+#   4: @↓tensor_index_by_number.40:[CNode]90{[0]: [CNode]87, [1]: [CNode]89}
+#   5: @↓tensor_index_by_number.40:[CNode]92{[0]: ValueNode<Primitive> Switch, [1]: [CNode]90, [2]: ValueNode<FuncGraph> ✓↓tensor_index_by_number.41, [3]: ValueNode<FuncGraph> ✗↓tensor_index_by_number.91}
+#   6: @↓tensor_index_by_number.40:[CNode]93{[0]: [CNode]92}
+#   7: @↓tensor_index_by_number.40:[CNode]94{[0]: ValueNode<Primitive> Return, [1]: [CNode]93}
+
+
+# [No.10] ✓↓tensor_index_by_number.41
+# In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:351/    if isinstance(number_index, int):/
+funcgraph fg_41[fg_38](
+) {
+    %1 : $(tensor_index_by_number.38):FuncNoShape = Primitive::resolve{prim_type=1}(NameSpace::SymbolStr, _tensor_index_by_integer)    #(ExternalTypeNoShape, ExternalTypeNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:352/        return _tensor_index_by_integer(data, number_index)/#[CNode]97
+
+#------------------------> 11
+    %2 = %1(%para218, %para219)    #(Tensor(I32)[], I64NoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:352/        return _tensor_index_by_integer(data, number_index)/#[CNode]98
+    Primitive::Return{prim_type=1}(%2)    #(Undefined) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:352/        return _tensor_index_by_integer(data, number_index)/#[CNode]99
+}
+# order:
+#   1: @✓↓tensor_index_by_number.41:[CNode]100{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore._extends.parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   2: @✓↓tensor_index_by_number.41:[CNode]101{[0]: [CNode]100, [1]: data, [2]: number_index}
+#   3: @✓↓tensor_index_by_number.41:[CNode]98{[0]: [CNode]97, [1]: data, [2]: number_index}
+#   4: @✓↓tensor_index_by_number.41:[CNode]99{[0]: ValueNode<Primitive> Return, [1]: [CNode]98}
+
+
+# [No.11] _tensor_index_by_integer.42
+# In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:387/def _tensor_index_by_integer(data, int_index):/
+funcgraph fg_42(
+        %para220 : Tensor(I32)[]    # фdata
+        , %para221 : I64NoShape    # фint_index
+    ) {
+    %1 : FuncNoShape = Primitive::resolve{prim_type=1}(NameSpace::CommonOPS, bool_)    #(ExternalTypeNoShape, ExternalTypeNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:389/    if data.ndim < 1 or data.ndim > 8:/#[CNode]102
+    %2 : FuncNoShape = Primitive::resolve{prim_type=1}(NameSpace::CommonOPS, bool_)    #(ExternalTypeNoShape, ExternalTypeNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:389/    if data.ndim < 1 or data.ndim > 8:/#[CNode]103
+    %3 : FuncNoShape = Primitive::resolve{prim_type=1}(NameSpace::Ast, lt)    #(ExternalTypeNoShape, ExternalTypeNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:0/#[CNode]104
+    %4 : I64NoShape = Primitive::getattr{prim_type=1}(%para220, "ndim")    #(Tensor(I32)[], StringNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:389/    if data.ndim < 1 or data.ndim > 8:/#[CNode]105
+    %5 : BoolNoShape = %3(%4, I64(1))    #(I64NoShape, I64NoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:389/    if data.ndim < 1 or data.ndim > 8:/#[CNode]106
+    %6 : BoolNoShape = %2(%5)    #(BoolNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:389/    if data.ndim < 1 or data.ndim > 8:/#[CNode]107
+    %7 : FuncNoShape = Primitive::Switch{prim_type=1}(%6, FuncGraph::fg_108, FuncGraph::fg_109)    #(BoolNoShape, FuncNoShape, FuncNoShape)    # fg_108=↰_tensor_index_by_integer.108, fg_109=↱_tensor_index_by_integer.109 #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:389/    if data.ndim < 1 or data.ndim > 8:/#[CNode]110
+    %8 : BoolNoShape = %7() #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:389/    if data.ndim < 1 or data.ndim > 8:/#[CNode]111
+    %9 : BoolNoShape = %1(%8)    #(BoolNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:389/    if data.ndim < 1 or data.ndim > 8:/#[CNode]112
+    %10 : FuncNoShape = Primitive::Switch{prim_type=1}(%9, FuncGraph::fg_43, FuncGraph::fg_113)    #(BoolNoShape, FuncNoShape, FuncNoShape)    # fg_43=✓_tensor_index_by_integer.43, fg_113=✗_tensor_index_by_integer.113 #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:389/    if data.ndim < 1 or data.ndim > 8:/#[CNode]114
+
+#------------------------> 12
+    %11 = %10() #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:389/    if data.ndim < 1 or data.ndim > 8:/#[CNode]115
+    Primitive::Return{prim_type=1}(%11)    #(Undefined) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:389/    if data.ndim < 1 or data.ndim > 8:/#[CNode]116
+}
+# order:
+#   1: @_tensor_index_by_integer.42:[CNode]105{[0]: ValueNode<Primitive> getattr, [1]: фdata, [2]: ValueNode<StringImm> ndim}
+#   2: @_tensor_index_by_integer.42:[CNode]106{[0]: [CNode]104, [1]: [CNode]105, [2]: ValueNode<Int64Imm> 1}
+#   3: @_tensor_index_by_integer.42:[CNode]107{[0]: [CNode]103, [1]: [CNode]106}
+#   4: @_tensor_index_by_integer.42:[CNode]110{[0]: ValueNode<Primitive> Switch, [1]: [CNode]107, [2]: ValueNode<FuncGraph> ↰_tensor_index_by_integer.108, [3]: ValueNode<FuncGraph> ↱_tensor_index_by_integer.109}
+#   5: @_tensor_index_by_integer.42:[CNode]111{[0]: [CNode]110}
+#   6: @_tensor_index_by_integer.42:[CNode]112{[0]: [CNode]102, [1]: [CNode]111}
+#   7: @_tensor_index_by_integer.42:[CNode]114{[0]: ValueNode<Primitive> Switch, [1]: [CNode]112, [2]: ValueNode<FuncGraph> ✓_tensor_index_by_integer.43, [3]: ValueNode<FuncGraph> ✗_tensor_index_by_integer.113}
+#   8: @_tensor_index_by_integer.42:[CNode]115{[0]: [CNode]114}
+#   9: @_tensor_index_by_integer.42:[CNode]116{[0]: ValueNode<Primitive> Return, [1]: [CNode]115}
+#  10: @_tensor_index_by_integer.42:фcheck_range{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> SymbolStr: 'Namespace:mindspore.ops.composite.multitype_ops._compile_utils', [2]: ValueNode<Symbol> check_range}
+#  11: @_tensor_index_by_integer.42:фget_stride_info_from_integer{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> SymbolStr: 'Namespace:mindspore.ops.composite.multitype_ops._compile_utils', [2]: ValueNode<Symbol> get_stride_info_from_integer}
+
+
+# [No.12] ✓_tensor_index_by_integer.43
+# In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:389/    if data.ndim < 1 or data.ndim > 8:/
+funcgraph fg_43[fg_42](
+) {
+    %1 : $(_tensor_index_by_integer.42):ExternalTypeNoShape = Primitive::resolve{prim_type=1}(NameSpace::SymbolStr, const_utils)    #(ExternalTypeNoShape, ExternalTypeNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:398/        transformed_number = const_utils.check_range(int_index, data_shape[0])/#фconst_utils
+    %2 : FuncNoShape = Primitive::getattr{prim_type=1}(%1, "raise_value_error")    #(ExternalTypeNoShape, StringNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:390/        const_utils.raise_value_error("Expect Tensor to have dimension between 1 and 8.")/#[CNode]117
+
+#------------------------> 13
+    %3 = %2("Expect Tensor to have dimension between 1 and 8.")    #(StringNoShape) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:390/        const_utils.raise_value_error("Expect Tensor to have dimension between 1 and 8.")/#[CNode]118
+    %4 = Primitive::stop_gradient{prim_type=1}(%3)    #(Undefined) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:352/        return _tensor_index_by_integer(data, number_index)/#[CNode]119
+    %5 = FuncGraph::fg_120()    # fg_120=↓_tensor_index_by_integer.120 #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:352/        return _tensor_index_by_integer(data, number_index)/#[CNode]121
+    %6 = Primitive::Depend{prim_type=1}[side_effect_propagate=I64(1)](%5, %4)    #(Undefined, Undefined) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:352/        return _tensor_index_by_integer(data, number_index)/#[CNode]122
+    Primitive::Return{prim_type=1}(%6)    #(Undefined) #scope: Default
+      # In file /data/songjh/miniconda3/lib/python3.9/site-packages/mindspore/ops/composite/multitype_ops/_compile_utils.py:389/    if data.ndim < 1 or data.ndim > 8:/#[CNode]123
+}
+# order:
+#   1: @✓_tensor_index_by_integer.43:[CNode]124{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore._extends.parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   2: @✓_tensor_index_by_integer.43:[CNode]125{[0]: [CNode]124, [1]: ValueNode<StringImm> Expect Tensor to have dimension between 1 and 8.}
+#   3: @✓_tensor_index_by_integer.43:[CNode]118{[0]: [CNode]117, [1]: ValueNode<StringImm> Expect Tensor to have dimension between 1 and 8.}
+#   4: @✓_tensor_index_by_integer.43:[CNode]123{[0]: ValueNode<Primitive> Return, [1]: [CNode]126}
+#   5: @✓_tensor_index_by_integer.43:[CNode]123{[0]: ValueNode<Primitive> Return, [1]: [CNode]122}
+#   6: @✓_tensor_index_by_integer.43:[CNode]121{[0]: ValueNode<FuncGraph> ↓_tensor_index_by_integer.120}
+
+
+#===============================================================================
+# num of function graphs in stack: 12/16 (Ignored 4 internal frames).

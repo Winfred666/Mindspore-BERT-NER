@@ -167,28 +167,41 @@ def create_bert_dataset(device_num=1, rank=0, do_shuffle="true", data_dir=None, 
     return data_set
 
 
+def extract_real_len(array):
+    return array[0]  # Extract the first (and only) element of the array.
+
 def create_ner_dataset(batch_size=1, assessment_method="accuracy", data_file_path=None,
                        dataset_format="mindrecord", schema_file_path=None, do_shuffle=True, drop_remainder=True):
     """create finetune or evaluation dataset"""
     type_cast_op = C.TypeCast(mstype.int32)
+    # loading the mindrecord dataset into memory !!!
     if dataset_format == "mindrecord":
         dataset = ds.MindDataset([data_file_path],
-                                 columns_list=["input_ids", "input_mask", "segment_ids", "label_ids"],
+                                 columns_list=["input_ids", "input_mask", "segment_ids", "label_ids","real_seq_length"],
                                  shuffle=do_shuffle)
     elif dataset_format == "tfrecord":
         dataset = ds.TFRecordDataset([data_file_path], schema_file_path if schema_file_path != "" else None,
-                                     columns_list=["input_ids", "input_mask", "segment_ids", "label_ids"],
+                                     columns_list=["input_ids", "input_mask", "segment_ids", "label_ids","real_seq_length"],
                                      shuffle=do_shuffle)
     else:
         raise NotImplementedError("Only supported dataset_format for tfrecord or mindrecord.")
+    
+    # if using different evalidate assessment, should process differently.
     if assessment_method == "Spearman_correlation":
         type_cast_op_float = C.TypeCast(mstype.float32)
         dataset = dataset.map(operations=type_cast_op_float, input_columns="label_ids")
     else:
         dataset = dataset.map(operations=type_cast_op, input_columns="label_ids")
+    
+    # this is casting type to int32, suitale to feed into model.
     dataset = dataset.map(operations=type_cast_op, input_columns="segment_ids")
     dataset = dataset.map(operations=type_cast_op, input_columns="input_mask")
     dataset = dataset.map(operations=type_cast_op, input_columns="input_ids")
+    
+    # extract real_len out of [real_len] array.
+    dataset = dataset.map(operations=type_cast_op, input_columns="real_seq_length")
+    dataset = dataset.map(operations=extract_real_len, input_columns="real_seq_length")
+
     # apply batch operations
     dataset = dataset.batch(batch_size, drop_remainder=drop_remainder)
     return dataset

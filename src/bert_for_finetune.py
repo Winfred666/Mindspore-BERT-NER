@@ -25,8 +25,10 @@ from mindspore.common.tensor import Tensor
 from mindspore.common.parameter import Parameter
 from mindspore.common import dtype as mstype
 from .bert_for_pre_training import clip_grad
-from .finetune_eval_model import BertCLSModel, BertNERModel, BertSquadModel
+from .finetune_eval_model import BertCLSModel, BertNERModel, BertSquadModel, BertQuantiDCEModel
 from .utils import CrossEntropyCalculation
+
+import mindspore.ops as ops
 
 GRADIENT_CLIP_TYPE = 1
 GRADIENT_CLIP_VALUE = 1.0
@@ -47,7 +49,7 @@ grad_overflow = P.FloatStatus()
 def _tensor_grad_overflow(grad):
     return grad_overflow(grad)
 
-
+# outer cell.
 class BertFinetuneCell(nn.TrainOneStepWithLossScaleCell):
     """
     Especially defined for finetuning where only four inputs tensor are needed.
@@ -64,36 +66,47 @@ class BertFinetuneCell(nn.TrainOneStepWithLossScaleCell):
     """
 
     def __init__(self, network, optimizer, scale_update_cell=None):
+        # pass the "BertNER" class instance.
         super(BertFinetuneCell, self).__init__(network, optimizer, scale_update_cell)
         self.cast = P.Cast()
 
+    # when using Model.train, the parameter is given by the whole "dataset"
     def construct(self,
                   input_ids,
                   input_mask,
-                  token_type_id,
+                  token_type_id, # this is the same as segment_ids
                   label_ids,
+                  real_seq_length,
                   sens=None):
         """Bert Finetune"""
 
         weights = self.weights
+        # This is where we feeding every batch of training data to "BertNER" model.
         loss = self.network(input_ids,
                             input_mask,
                             token_type_id,
-                            label_ids)
+                            label_ids,
+                            real_seq_length)
         if sens is None:
             scaling_sens = self.scale_sense
         else:
             scaling_sens = sens
 
         status, scaling_sens = self.start_overflow_check(loss, scaling_sens)
+        
+        # calculating gradience.
         grads = self.grad(self.network, weights)(input_ids,
                                                  input_mask,
                                                  token_type_id,
                                                  label_ids,
+                                                 real_seq_length,
                                                  self.cast(scaling_sens,
                                                            mstype.float32))
+        
         grads = self.hyper_map(F.partial(grad_scale, scaling_sens), grads)
         grads = self.hyper_map(F.partial(clip_grad, GRADIENT_CLIP_TYPE, GRADIENT_CLIP_VALUE), grads)
+        # train the parameter, 
+        # this is volatile because reduce gradiance may cause hardware CUDA error.
         if self.reducer_flag:
             grads = self.grad_reducer(grads)
         cond = self.get_overflow_status(status, grads)
@@ -163,8 +176,10 @@ class BertCLS(nn.Cell):
     def __init__(self, config, is_training, num_labels=2, dropout_prob=0.0, use_one_hot_embeddings=False,
                  assessment_method=""):
         super(BertCLS, self).__init__()
+        # first create a BertCLSModel with Bert encoder layers and a loss.
         self.bert = BertCLSModel(config, is_training, num_labels, dropout_prob, use_one_hot_embeddings,
                                  assessment_method)
+        # the last layer is a cross-entropy loss.
         self.loss = CrossEntropyCalculation(is_training)
         self.num_labels = num_labels
         self.assessment_method = assessment_method
@@ -172,6 +187,7 @@ class BertCLS(nn.Cell):
 
     def construct(self, input_ids, input_mask, token_type_id, label_ids):
         logits = self.bert(input_ids, input_mask, token_type_id)
+        # just add a loss layer to the logits..
         if self.assessment_method == "spearman_correlation":
             if self.is_training:
                 loss = self.loss(logits, label_ids)
@@ -190,8 +206,10 @@ class BertNER(nn.Cell):
     def __init__(self, config, batch_size, is_training, num_labels=11, use_crf=False, with_lstm=False,
                  tag_to_index=None, dropout_prob=0.0, use_one_hot_embeddings=False):
         super(BertNER, self).__init__()
+        # this model can add LSTM at the end.
         self.bert = BertNERModel(config, is_training, num_labels, use_crf, with_lstm, dropout_prob,
                                  use_one_hot_embeddings)
+        # add a CRF layer.
         if use_crf:
             if not tag_to_index:
                 raise Exception("The dict for tag-index mapping should be provided for CRF.")
@@ -202,13 +220,59 @@ class BertNER(nn.Cell):
         self.num_labels = num_labels
         self.use_crf = use_crf
 
-    def construct(self, input_ids, input_mask, token_type_id, label_ids):
-        logits = self.bert(input_ids, input_mask, token_type_id)
+    def construct(self, input_ids, input_mask, token_type_id, label_ids,real_seq_length):
+        # WARNING: when use lstm, tell the model what is the actual length of each sequence.
+        logits = self.bert(input_ids, input_mask, token_type_id,real_seq_length)
+        
         if self.use_crf:
             loss = self.loss(logits, label_ids)
         else:
             loss = self.loss(logits, label_ids, self.num_labels)
         return loss
+
+
+# because for export ONNX, we cannot make model output tuple.
+# instead, must output One Single Tensor, so we will change output of construction
+class BertNERONNX(nn.Cell):
+    """
+    Train interface for sequence labeling finetuning task.
+    """
+
+    def __init__(self, config, batch_size, is_training, num_labels=11, use_crf=False, with_lstm=False,
+                 tag_to_index=None, dropout_prob=0.0, use_one_hot_embeddings=False):
+        super(BertNERONNX, self).__init__()
+        # this model can add LSTM at the end.
+        self.bert = BertNERModel(config, is_training, num_labels, use_crf, with_lstm, dropout_prob,
+                                 use_one_hot_embeddings)
+        # add a CRF layer.
+        if use_crf:
+            if not tag_to_index:
+                raise Exception("The dict for tag-index mapping should be provided for CRF.")
+            from src.CRF import CRF
+            self.loss = CRF(tag_to_index, batch_size, config.seq_length, is_training)
+        else:
+            self.loss = CrossEntropyCalculation(is_training)
+        self.num_labels = num_labels
+        self.use_crf = use_crf
+
+    def construct(self, input_ids, input_mask, token_type_id, label_ids,real_seq_length):
+        # WARNING: when use lstm, tell the model what is the actual length of each sequence.
+        logits = self.bert(input_ids, input_mask, token_type_id,real_seq_length)
+        
+        if self.use_crf:
+            loss = self.loss(logits, label_ids)
+        else:
+            loss = self.loss(logits, label_ids, self.num_labels)
+
+        # Flatten the nested tuple structure
+        flat_list = []
+        loss = loss[0]
+        for inner_tuple in loss:
+            flat_list.append(inner_tuple[0])
+        # Concatenate the tensors along axis 0
+        concatenated_tensor = ops.concat(flat_list, axis=0)
+        return concatenated_tensor
+    
 
 
 class BertSquad(nn.Cell):

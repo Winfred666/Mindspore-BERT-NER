@@ -13,6 +13,8 @@
 # limitations under the License.
 # ============================================================================
 """Generate MindRecord for BERT finetuning runner: TNEWS."""
+# also generator for other Classification task. (Here for LCQMC and Xiaobu)
+
 import os
 import json
 import csv
@@ -39,6 +41,9 @@ def parse_args():
     parser.add_argument("--do_eval", type=bool, default=True, help="Whether to run eval on the dev set.")
     parser.add_argument("--do_predict", type=bool, default=True,
                         help="Whether to run the model in inference mode on the test set.")
+    
+    parser.add_argument("--manually_split", type=bool, default=False, help="Only have one dataset file and split train, dev, test from it")
+    
     args_opt = parser.parse_args()
     return args_opt
 
@@ -52,6 +57,7 @@ class PaddingInputExample():
     We use this class instead of `None` because treating `None` as padding
     battches could cause silent errors.
     """
+    # only TPU needs this.
 
 
 class InputFeatures():
@@ -69,11 +75,11 @@ class InputFeatures():
         self.label_id = label_id
         self.is_real_example = is_real_example
 
-
+# the atom processer ! 
 def convert_single_example(ex_index, example, label_list, max_seq_length,
                            tokenizer):
     """Converts a single `InputExample` into a single `InputFeatures`."""
-
+    # Invalid input example, return an empty sequence.
     if isinstance(example, PaddingInputExample):
         return InputFeatures(
             input_ids=[0] * max_seq_length,
@@ -86,15 +92,19 @@ def convert_single_example(ex_index, example, label_list, max_seq_length,
     for (i, label) in enumerate(label_list):
         label_map[label] = i
 
+    # The first sequence.
     tokens_a = tokenizer.tokenize(example.text_a)
+    
+    # If the dataset is about comparason of two sequence (have text_b), make both of then into the same seq.
     tokens_b = None
     if example.text_b:
         tokens_b = tokenizer.tokenize(example.text_b)
-
+    
+    # Truncat: 
     if tokens_b:
         # Modifies `tokens_a` and `tokens_b` in place so that the total
         # length is less than the specified length.
-        # Account for [CLS], [SEP], [SEP] with "- 3"
+        # Account for [CLS], [SEP], [SEP] with "- 3" There will be [SEQ] to seperate the two sentence.
         _truncate_seq_pair(tokens_a, tokens_b, max_seq_length - 3)
     else:
         # Account for [CLS] and [SEP] with "- 2"
@@ -121,6 +131,9 @@ def convert_single_example(ex_index, example, label_list, max_seq_length,
     # the entire model is fine-tuned.
     tokens = []
     segment_ids = []
+
+
+
     tokens.append("[CLS]")
     segment_ids.append(0)
     for token in tokens_a:
@@ -176,6 +189,8 @@ def file_based_convert_examples_to_features(
         examples, label_list, max_seq_length, tokenizer, output_file):
     """Convert a set of `InputExample`s to a MindRecord file."""
 
+
+    # Define schema.
     schema = {
         "input_ids": {"type": "int32", "shape": [-1]},
         "input_mask": {"type": "int32", "shape": [-1]},
@@ -183,6 +198,7 @@ def file_based_convert_examples_to_features(
         "label_ids": {"type": "int32", "shape": [-1]},
         "is_real_example": {"type": "int32", "shape": [-1]},
     }
+
     writer = FileWriter(output_file, overwrite=True)
     writer.add_schema(schema)
     total_written = 0
@@ -220,6 +236,7 @@ def _truncate_seq_pair(tokens_a, tokens_b, max_length):
         total_length = len(tokens_a) + len(tokens_b)
         if total_length <= max_length:
             break
+        # While make the total length smaller than max_seq_len, try to balance the two sentense.
         if len(tokens_a) > len(tokens_b):
             tokens_a.pop()
         else:
@@ -242,7 +259,6 @@ def convert_examples_to_features(examples, label_list, max_seq_length,
 
 class DataProcessor():
     """Base class for data converters for sequence classification data sets."""
-
     def get_train_examples(self, data_dir):
         """Gets a collection of `InputExample`s for the train set."""
         raise NotImplementedError()
@@ -258,7 +274,27 @@ class DataProcessor():
     def get_labels(self):
         """Gets the list of labels for this data set."""
         raise NotImplementedError()
+    
+    @classmethod
+    # each line need to have sentence, label, and sentence_1 for tsv file.
+    def _create_examples(self, lines, set_type):
+        """Creates examples for the training and dev sets."""
+        examples = []
+        for (i, line) in enumerate(lines):
+            # later we can change type of example using this guid format
+            guid = "%s-%s" % (set_type, i)
+            text_a = convert_to_unicode(line['sentence'])
+            # Set text_b !!!
+            if 'sentence_1' in line:
+                text_b = convert_to_unicode(line['sentence_1'])
+            
+            label = convert_to_unicode(line['label']) if set_type != 'test' else "100"
+            examples.append(
+                InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+        # a list of example.
+        return examples
 
+    # here can read tsv file so that two seq compare task can be done.
     @classmethod
     def _read_tsv(cls, input_file, delimiter="\t", quotechar=None):
         """Reads a tab separated value file."""
@@ -266,7 +302,11 @@ class DataProcessor():
             reader = csv.reader(f, delimiter=delimiter, quotechar=quotechar)
             lines = []
             for line in reader:
-                lines.append(line)
+                extract_dict = {
+                    'sentence':line[0],
+                    'sentence_1':line[1]
+                }
+                lines.append(extract_dict)
             return lines
 
     @classmethod
@@ -326,7 +366,68 @@ class InputExample():
         self.text_b = text_b
         self.label = label
 
+class TSVProcessor(DataProcessor):
+    # get examples list from multi-file, and suffle it.
+    def append_positive_examples(self, data_file, added_label=None):
+        if self.all_examples is None:
+            self.all_examples = []
+        file_examples = self._create_examples(
+            self._read_tsv(data_file), "") # leave the mark for empty, add it later.
+        if added_label is not None:
+            for row in file_examples:
+                row["labels"] = added_label
+        
+        self.all_examples.extend(file_examples) 
+    
+    # call when all tsv dataset is loaded
+    def split_all_examples(self):
+        # shuffle example
+        all_examples = np.array(self.all_examples)
+        np.random.shuffle(all_examples)
+        
+        train_size = int(0.75 * len(all_examples))
+        validate_size = int(0.15 * len(all_examples))
+        
+        self.train_set = all_examples[:train_size]
+        for row in self.train_set:
+            row["guid"] += "train"
+        
+        self.validate_set = all_examples[train_size:train_size+validate_size]
+        for row in self.validate_set:
+            row["guid"] += "dev"
+        
+        self.test_set = all_examples[train_size+validate_size:]
+        for row in self.test_set:
+            row["guid"] += "test"
+    
 
+    def get_train_examples(self, data_dir = None):
+        if self.train_set is not None:
+            return self.train_set
+        else:
+            return self._create_examples(
+                self._read_tsv(os.path.join(data_dir, "train.tsv")), "train")
+
+    
+    def get_dev_examples(self, data_dir = None):
+        if self.validate_set is not None:
+            return self.validate_set
+        else:
+            return self._create_examples(
+                self._read_tsv(os.path.join(data_dir, "dev.tsv")), "dev")
+    
+    def get_test_examples(self, data_dir = None):
+        if self.test_set is not None:
+            return self.test_set
+        else:
+            return self._create_examples(
+                self._read_tsv(os.path.join(data_dir, "test.tsv")), "test")
+    
+    def get_labels(self):
+        return super().get_labels()
+    
+
+# Tnews is based on json
 class TnewsProcessor(DataProcessor):
     """Processor for the MRPC data set (GLUE version)."""
 
@@ -344,30 +445,20 @@ class TnewsProcessor(DataProcessor):
         """See base class."""
         return self._create_examples(
             self._read_json(os.path.join(data_dir, "test.json")), "test")
-
+    
     def get_labels(self):
         """See base class."""
         labels = []
+        # this is especially for t_news, t
         for i in range(17):
             if i in (5, 11):
                 continue
             labels.append(str(100 + i))
         return labels
 
-    def _create_examples(self, lines, set_type):
-        """Creates examples for the training and dev sets."""
-        examples = []
-        for (i, line) in enumerate(lines):
-            guid = "%s-%s" % (set_type, i)
-            text_a = convert_to_unicode(line['sentence'])
-            text_b = None
-            label = convert_to_unicode(line['label']) if set_type != 'test' else "100"
-            examples.append(
-                InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
-        return examples
-
 
 def main():
+    # only one tnews processor.
     processors = {
         "tnews": TnewsProcessor,
     }
@@ -379,17 +470,21 @@ def main():
     if not os.path.exists(args.output_dir):
         os.makedirs(args.output_dir, exist_ok=True)
 
-    task_name = args.task_name.lower()
 
+    # currently only support tnews dataset.
+    task_name = args.task_name.lower()
     if task_name not in processors:
         raise ValueError("Task not found: %s" % (task_name))
 
     processor = processors[task_name]()
 
+    # get label and init a tokenizer
     label_list = processor.get_labels()
-
     tokenizer = tokenization.FullTokenizer(
         vocab_file=args.vocab_file, do_lower_case=args.do_lower_case)
+    
+    if args.manually_split:
+        processor.get_all_examples_split(args.data_dir)
 
     if args.do_train:
         print("data_dir:", args.data_dir)

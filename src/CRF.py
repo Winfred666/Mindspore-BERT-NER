@@ -38,6 +38,8 @@ class CRF(nn.Cell):
         step with the highest score.
     '''
     def __init__(self, tag_to_index, batch_size=1, seq_length=128, is_training=True):
+        
+        # tag_to_index is label name to index.
 
         super(CRF, self).__init__()
         self.target_size = len(tag_to_index)
@@ -50,8 +52,23 @@ class CRF(nn.Cell):
         self.START_VALUE = Tensor(self.target_size-2, dtype=mstype.int32)
         self.STOP_VALUE = Tensor(self.target_size-1, dtype=mstype.int32)
         transitions = np.random.normal(size=(self.target_size, self.target_size)).astype(np.float32)
+        
+        # Set some initial rule here, penalize some illegal behavior
         transitions[tag_to_index[self.START_TAG], :] = -10000
         transitions[:, tag_to_index[self.STOP_TAG]] = -10000
+
+        # The rule should be carefully modified !!!!
+        # find O and I-XX pair , panelize the invalid transition without B.
+        i_indices = [index for tag, index in tag_to_index.items() if tag.startswith("I_")]
+        o_indice = tag_to_index['O']
+        transitions[o_indice, i_indices] = -4
+        
+        # find B-XX and I-XX pair, make the score of them higher
+        entitys = [tag[2:] for tag, index in tag_to_index.items() if tag.startswith("B_")]
+        for entity in entitys:
+            transitions[ tag_to_index["B_" + entity], tag_to_index["I_" + entity]] = 2
+
+
         self.transitions = Parameter(Tensor(transitions))
         self.cat = P.Concat(axis=-1)
         self.argmax = P.ArgMaxWithValue(axis=-1)

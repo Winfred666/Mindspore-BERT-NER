@@ -1,0 +1,812 @@
+# 1.This file shows the parsed IR info when graph evaluating failed to help find the problem.
+# 2.You can search the last `------------------------>` to the node which is inferred failed.
+# 3.Refer to https://www.mindspore.cn/search?inputValue=analyze_fail.dat to get more instructions.
+# ===============================================================================
+
+# [No.1] Default_wrapper.1
+# In file /home/songjh/.local/lib/python3.8/site-packages/mindspore/train/dataset_helper.py:105/    def construct(self):/
+funcgraph fg_1(
+        %para1 : Ref[Tensor(F32)][]    # scale_sense
+        , %para2 : Ref[Tensor(F32)][21128, 768]    # bert.bert.bert_embedding_lookup.embedding_table
+        , %para3 : Ref[Tensor(F32)][2, 768]    # bert.bert.bert_embedding_postprocessor.token_type_embedding.embedding_table
+        , %para4 : Ref[Tensor(F32)][512, 768]    # bert.bert.bert_embedding_postprocessor.full_position_embedding.embedding_table
+        , %para5 : Ref[Tensor(F32)][768]    # bert.bert.bert_embedding_postprocessor.layernorm.gamma
+        , %para6 : Ref[Tensor(F32)][768]    # bert.bert.bert_embedding_postprocessor.layernorm.beta
+        , %para7 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.0.attention.attention.query_layer.weight
+        , %para8 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.attention.attention.query_layer.bias
+        , %para9 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.0.attention.attention.key_layer.weight
+        , %para10 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.attention.attention.key_layer.bias
+        , %para11 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.0.attention.attention.value_layer.weight
+        , %para12 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.attention.attention.value_layer.bias
+        , %para13 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.0.attention.output.dense.weight
+        , %para14 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.attention.output.dense.bias
+        , %para15 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.attention.output.layernorm.gamma
+        , %para16 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.attention.output.layernorm.beta
+        , %para17 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.0.intermediate.weight
+        , %para18 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.0.intermediate.bias
+        , %para19 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.0.output.dense.weight
+        , %para20 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.output.dense.bias
+        , %para21 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.output.layernorm.gamma
+        , %para22 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.0.output.layernorm.beta
+        , %para23 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.1.attention.attention.query_layer.weight
+        , %para24 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.attention.attention.query_layer.bias
+        , %para25 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.1.attention.attention.key_layer.weight
+        , %para26 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.attention.attention.key_layer.bias
+        , %para27 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.1.attention.attention.value_layer.weight
+        , %para28 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.attention.attention.value_layer.bias
+        , %para29 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.1.attention.output.dense.weight
+        , %para30 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.attention.output.dense.bias
+        , %para31 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.attention.output.layernorm.gamma
+        , %para32 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.attention.output.layernorm.beta
+        , %para33 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.1.intermediate.weight
+        , %para34 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.1.intermediate.bias
+        , %para35 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.1.output.dense.weight
+        , %para36 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.output.dense.bias
+        , %para37 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.output.layernorm.gamma
+        , %para38 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.1.output.layernorm.beta
+        , %para39 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.2.attention.attention.query_layer.weight
+        , %para40 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.attention.attention.query_layer.bias
+        , %para41 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.2.attention.attention.key_layer.weight
+        , %para42 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.attention.attention.key_layer.bias
+        , %para43 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.2.attention.attention.value_layer.weight
+        , %para44 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.attention.attention.value_layer.bias
+        , %para45 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.2.attention.output.dense.weight
+        , %para46 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.attention.output.dense.bias
+        , %para47 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.attention.output.layernorm.gamma
+        , %para48 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.attention.output.layernorm.beta
+        , %para49 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.2.intermediate.weight
+        , %para50 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.2.intermediate.bias
+        , %para51 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.2.output.dense.weight
+        , %para52 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.output.dense.bias
+        , %para53 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.output.layernorm.gamma
+        , %para54 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.2.output.layernorm.beta
+        , %para55 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.3.attention.attention.query_layer.weight
+        , %para56 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.attention.attention.query_layer.bias
+        , %para57 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.3.attention.attention.key_layer.weight
+        , %para58 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.attention.attention.key_layer.bias
+        , %para59 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.3.attention.attention.value_layer.weight
+        , %para60 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.attention.attention.value_layer.bias
+        , %para61 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.3.attention.output.dense.weight
+        , %para62 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.attention.output.dense.bias
+        , %para63 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.attention.output.layernorm.gamma
+        , %para64 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.attention.output.layernorm.beta
+        , %para65 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.3.intermediate.weight
+        , %para66 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.3.intermediate.bias
+        , %para67 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.3.output.dense.weight
+        , %para68 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.output.dense.bias
+        , %para69 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.output.layernorm.gamma
+        , %para70 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.3.output.layernorm.beta
+        , %para71 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.4.attention.attention.query_layer.weight
+        , %para72 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.attention.attention.query_layer.bias
+        , %para73 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.4.attention.attention.key_layer.weight
+        , %para74 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.attention.attention.key_layer.bias
+        , %para75 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.4.attention.attention.value_layer.weight
+        , %para76 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.attention.attention.value_layer.bias
+        , %para77 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.4.attention.output.dense.weight
+        , %para78 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.attention.output.dense.bias
+        , %para79 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.attention.output.layernorm.gamma
+        , %para80 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.attention.output.layernorm.beta
+        , %para81 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.4.intermediate.weight
+        , %para82 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.4.intermediate.bias
+        , %para83 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.4.output.dense.weight
+        , %para84 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.output.dense.bias
+        , %para85 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.output.layernorm.gamma
+        , %para86 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.4.output.layernorm.beta
+        , %para87 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.5.attention.attention.query_layer.weight
+        , %para88 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.attention.attention.query_layer.bias
+        , %para89 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.5.attention.attention.key_layer.weight
+        , %para90 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.attention.attention.key_layer.bias
+        , %para91 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.5.attention.attention.value_layer.weight
+        , %para92 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.attention.attention.value_layer.bias
+        , %para93 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.5.attention.output.dense.weight
+        , %para94 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.attention.output.dense.bias
+        , %para95 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.attention.output.layernorm.gamma
+        , %para96 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.attention.output.layernorm.beta
+        , %para97 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.5.intermediate.weight
+        , %para98 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.5.intermediate.bias
+        , %para99 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.5.output.dense.weight
+        , %para100 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.output.dense.bias
+        , %para101 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.output.layernorm.gamma
+        , %para102 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.5.output.layernorm.beta
+        , %para103 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.6.attention.attention.query_layer.weight
+        , %para104 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.attention.attention.query_layer.bias
+        , %para105 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.6.attention.attention.key_layer.weight
+        , %para106 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.attention.attention.key_layer.bias
+        , %para107 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.6.attention.attention.value_layer.weight
+        , %para108 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.attention.attention.value_layer.bias
+        , %para109 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.6.attention.output.dense.weight
+        , %para110 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.attention.output.dense.bias
+        , %para111 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.attention.output.layernorm.gamma
+        , %para112 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.attention.output.layernorm.beta
+        , %para113 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.6.intermediate.weight
+        , %para114 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.6.intermediate.bias
+        , %para115 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.6.output.dense.weight
+        , %para116 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.output.dense.bias
+        , %para117 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.output.layernorm.gamma
+        , %para118 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.6.output.layernorm.beta
+        , %para119 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.7.attention.attention.query_layer.weight
+        , %para120 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.attention.attention.query_layer.bias
+        , %para121 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.7.attention.attention.key_layer.weight
+        , %para122 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.attention.attention.key_layer.bias
+        , %para123 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.7.attention.attention.value_layer.weight
+        , %para124 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.attention.attention.value_layer.bias
+        , %para125 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.7.attention.output.dense.weight
+        , %para126 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.attention.output.dense.bias
+        , %para127 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.attention.output.layernorm.gamma
+        , %para128 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.attention.output.layernorm.beta
+        , %para129 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.7.intermediate.weight
+        , %para130 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.7.intermediate.bias
+        , %para131 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.7.output.dense.weight
+        , %para132 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.output.dense.bias
+        , %para133 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.output.layernorm.gamma
+        , %para134 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.7.output.layernorm.beta
+        , %para135 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.8.attention.attention.query_layer.weight
+        , %para136 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.attention.attention.query_layer.bias
+        , %para137 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.8.attention.attention.key_layer.weight
+        , %para138 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.attention.attention.key_layer.bias
+        , %para139 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.8.attention.attention.value_layer.weight
+        , %para140 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.attention.attention.value_layer.bias
+        , %para141 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.8.attention.output.dense.weight
+        , %para142 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.attention.output.dense.bias
+        , %para143 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.attention.output.layernorm.gamma
+        , %para144 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.attention.output.layernorm.beta
+        , %para145 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.8.intermediate.weight
+        , %para146 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.8.intermediate.bias
+        , %para147 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.8.output.dense.weight
+        , %para148 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.output.dense.bias
+        , %para149 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.output.layernorm.gamma
+        , %para150 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.8.output.layernorm.beta
+        , %para151 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.9.attention.attention.query_layer.weight
+        , %para152 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.attention.attention.query_layer.bias
+        , %para153 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.9.attention.attention.key_layer.weight
+        , %para154 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.attention.attention.key_layer.bias
+        , %para155 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.9.attention.attention.value_layer.weight
+        , %para156 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.attention.attention.value_layer.bias
+        , %para157 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.9.attention.output.dense.weight
+        , %para158 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.attention.output.dense.bias
+        , %para159 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.attention.output.layernorm.gamma
+        , %para160 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.attention.output.layernorm.beta
+        , %para161 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.9.intermediate.weight
+        , %para162 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.9.intermediate.bias
+        , %para163 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.9.output.dense.weight
+        , %para164 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.output.dense.bias
+        , %para165 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.output.layernorm.gamma
+        , %para166 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.9.output.layernorm.beta
+        , %para167 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.10.attention.attention.query_layer.weight
+        , %para168 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.attention.attention.query_layer.bias
+        , %para169 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.10.attention.attention.key_layer.weight
+        , %para170 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.attention.attention.key_layer.bias
+        , %para171 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.10.attention.attention.value_layer.weight
+        , %para172 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.attention.attention.value_layer.bias
+        , %para173 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.10.attention.output.dense.weight
+        , %para174 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.attention.output.dense.bias
+        , %para175 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.attention.output.layernorm.gamma
+        , %para176 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.attention.output.layernorm.beta
+        , %para177 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.10.intermediate.weight
+        , %para178 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.10.intermediate.bias
+        , %para179 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.10.output.dense.weight
+        , %para180 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.output.dense.bias
+        , %para181 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.output.layernorm.gamma
+        , %para182 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.10.output.layernorm.beta
+        , %para183 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.11.attention.attention.query_layer.weight
+        , %para184 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.attention.attention.query_layer.bias
+        , %para185 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.11.attention.attention.key_layer.weight
+        , %para186 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.attention.attention.key_layer.bias
+        , %para187 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.11.attention.attention.value_layer.weight
+        , %para188 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.attention.attention.value_layer.bias
+        , %para189 : Ref[Tensor(F32)][768, 768]    # bert.bert.bert_encoder.layers.11.attention.output.dense.weight
+        , %para190 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.attention.output.dense.bias
+        , %para191 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.attention.output.layernorm.gamma
+        , %para192 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.attention.output.layernorm.beta
+        , %para193 : Ref[Tensor(F32)][3072, 768]    # bert.bert.bert_encoder.layers.11.intermediate.weight
+        , %para194 : Ref[Tensor(F32)][3072]    # bert.bert.bert_encoder.layers.11.intermediate.bias
+        , %para195 : Ref[Tensor(F32)][768, 3072]    # bert.bert.bert_encoder.layers.11.output.dense.weight
+        , %para196 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.output.dense.bias
+        , %para197 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.output.layernorm.gamma
+        , %para198 : Ref[Tensor(F32)][768]    # bert.bert.bert_encoder.layers.11.output.layernorm.beta
+        , %para199 : Ref[Tensor(F32)][768, 768]    # bert.bert.dense.weight
+        , %para200 : Ref[Tensor(F32)][768]    # bert.bert.dense.bias
+        , %para201 : Ref[Tensor(F32)][25, 768]    # bert.dense_1.weight
+        , %para202 : Ref[Tensor(F32)][25]    # bert.dense_1.bias
+        , %para203 : Ref[Tensor(F32)][1536, 768]    # bert.lstm.weight_ih_l0
+        , %para204 : Ref[Tensor(F32)][1536, 768]    # bert.lstm.weight_ih_l0_reverse
+        , %para205 : Ref[Tensor(F32)][1536, 384]    # bert.lstm.weight_hh_l0
+        , %para206 : Ref[Tensor(F32)][1536, 384]    # bert.lstm.weight_hh_l0_reverse
+        , %para207 : Ref[Tensor(F32)][1536]    # bert.lstm.bias_ih_l0
+        , %para208 : Ref[Tensor(F32)][1536]    # bert.lstm.bias_ih_l0_reverse
+        , %para209 : Ref[Tensor(F32)][1536]    # bert.lstm.bias_hh_l0
+        , %para210 : Ref[Tensor(F32)][1536]    # bert.lstm.bias_hh_l0_reverse
+        , %para211 : Ref[Tensor(F32)][25, 25]    # loss.transitions
+        , %para212 : Ref[Tensor(I32)][1]    # global_step
+        , %para213 : Ref[Tensor(I32)][]    # current_iterator_step
+        , %para214 : Ref[Tensor(I32)][]    # last_overflow_iterator_step
+        , %para215 : Ref[Tensor(F32)][21128, 768]    # lamb_m.bert.bert.bert_embedding_lookup.embedding_table
+        , %para216 : Ref[Tensor(F32)][2, 768]    # lamb_m.bert.bert.bert_embedding_postprocessor.token_type_embedding.embedding_table
+        , %para217 : Ref[Tensor(F32)][512, 768]    # lamb_m.bert.bert.bert_embedding_postprocessor.full_position_embedding.embedding_table
+        , %para218 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_embedding_postprocessor.layernorm.gamma
+        , %para219 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_embedding_postprocessor.layernorm.beta
+        , %para220 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.0.attention.attention.query_layer.weight
+        , %para221 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.0.attention.attention.query_layer.bias
+        , %para222 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.0.attention.attention.key_layer.weight
+        , %para223 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.0.attention.attention.key_layer.bias
+        , %para224 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.0.attention.attention.value_layer.weight
+        , %para225 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.0.attention.attention.value_layer.bias
+        , %para226 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.0.attention.output.dense.weight
+        , %para227 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.0.attention.output.dense.bias
+        , %para228 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.0.attention.output.layernorm.gamma
+        , %para229 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.0.attention.output.layernorm.beta
+        , %para230 : Ref[Tensor(F32)][3072, 768]    # lamb_m.bert.bert.bert_encoder.layers.0.intermediate.weight
+        , %para231 : Ref[Tensor(F32)][3072]    # lamb_m.bert.bert.bert_encoder.layers.0.intermediate.bias
+        , %para232 : Ref[Tensor(F32)][768, 3072]    # lamb_m.bert.bert.bert_encoder.layers.0.output.dense.weight
+        , %para233 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.0.output.dense.bias
+        , %para234 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.0.output.layernorm.gamma
+        , %para235 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.0.output.layernorm.beta
+        , %para236 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.1.attention.attention.query_layer.weight
+        , %para237 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.1.attention.attention.query_layer.bias
+        , %para238 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.1.attention.attention.key_layer.weight
+        , %para239 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.1.attention.attention.key_layer.bias
+        , %para240 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.1.attention.attention.value_layer.weight
+        , %para241 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.1.attention.attention.value_layer.bias
+        , %para242 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.1.attention.output.dense.weight
+        , %para243 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.1.attention.output.dense.bias
+        , %para244 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.1.attention.output.layernorm.gamma
+        , %para245 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.1.attention.output.layernorm.beta
+        , %para246 : Ref[Tensor(F32)][3072, 768]    # lamb_m.bert.bert.bert_encoder.layers.1.intermediate.weight
+        , %para247 : Ref[Tensor(F32)][3072]    # lamb_m.bert.bert.bert_encoder.layers.1.intermediate.bias
+        , %para248 : Ref[Tensor(F32)][768, 3072]    # lamb_m.bert.bert.bert_encoder.layers.1.output.dense.weight
+        , %para249 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.1.output.dense.bias
+        , %para250 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.1.output.layernorm.gamma
+        , %para251 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.1.output.layernorm.beta
+        , %para252 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.2.attention.attention.query_layer.weight
+        , %para253 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.2.attention.attention.query_layer.bias
+        , %para254 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.2.attention.attention.key_layer.weight
+        , %para255 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.2.attention.attention.key_layer.bias
+        , %para256 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.2.attention.attention.value_layer.weight
+        , %para257 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.2.attention.attention.value_layer.bias
+        , %para258 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.2.attention.output.dense.weight
+        , %para259 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.2.attention.output.dense.bias
+        , %para260 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.2.attention.output.layernorm.gamma
+        , %para261 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.2.attention.output.layernorm.beta
+        , %para262 : Ref[Tensor(F32)][3072, 768]    # lamb_m.bert.bert.bert_encoder.layers.2.intermediate.weight
+        , %para263 : Ref[Tensor(F32)][3072]    # lamb_m.bert.bert.bert_encoder.layers.2.intermediate.bias
+        , %para264 : Ref[Tensor(F32)][768, 3072]    # lamb_m.bert.bert.bert_encoder.layers.2.output.dense.weight
+        , %para265 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.2.output.dense.bias
+        , %para266 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.2.output.layernorm.gamma
+        , %para267 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.2.output.layernorm.beta
+        , %para268 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.3.attention.attention.query_layer.weight
+        , %para269 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.3.attention.attention.query_layer.bias
+        , %para270 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.3.attention.attention.key_layer.weight
+        , %para271 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.3.attention.attention.key_layer.bias
+        , %para272 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.3.attention.attention.value_layer.weight
+        , %para273 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.3.attention.attention.value_layer.bias
+        , %para274 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.3.attention.output.dense.weight
+        , %para275 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.3.attention.output.dense.bias
+        , %para276 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.3.attention.output.layernorm.gamma
+        , %para277 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.3.attention.output.layernorm.beta
+        , %para278 : Ref[Tensor(F32)][3072, 768]    # lamb_m.bert.bert.bert_encoder.layers.3.intermediate.weight
+        , %para279 : Ref[Tensor(F32)][3072]    # lamb_m.bert.bert.bert_encoder.layers.3.intermediate.bias
+        , %para280 : Ref[Tensor(F32)][768, 3072]    # lamb_m.bert.bert.bert_encoder.layers.3.output.dense.weight
+        , %para281 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.3.output.dense.bias
+        , %para282 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.3.output.layernorm.gamma
+        , %para283 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.3.output.layernorm.beta
+        , %para284 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.4.attention.attention.query_layer.weight
+        , %para285 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.4.attention.attention.query_layer.bias
+        , %para286 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.4.attention.attention.key_layer.weight
+        , %para287 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.4.attention.attention.key_layer.bias
+        , %para288 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.4.attention.attention.value_layer.weight
+        , %para289 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.4.attention.attention.value_layer.bias
+        , %para290 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.4.attention.output.dense.weight
+        , %para291 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.4.attention.output.dense.bias
+        , %para292 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.4.attention.output.layernorm.gamma
+        , %para293 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.4.attention.output.layernorm.beta
+        , %para294 : Ref[Tensor(F32)][3072, 768]    # lamb_m.bert.bert.bert_encoder.layers.4.intermediate.weight
+        , %para295 : Ref[Tensor(F32)][3072]    # lamb_m.bert.bert.bert_encoder.layers.4.intermediate.bias
+        , %para296 : Ref[Tensor(F32)][768, 3072]    # lamb_m.bert.bert.bert_encoder.layers.4.output.dense.weight
+        , %para297 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.4.output.dense.bias
+        , %para298 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.4.output.layernorm.gamma
+        , %para299 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.4.output.layernorm.beta
+        , %para300 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.5.attention.attention.query_layer.weight
+        , %para301 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.5.attention.attention.query_layer.bias
+        , %para302 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.5.attention.attention.key_layer.weight
+        , %para303 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.5.attention.attention.key_layer.bias
+        , %para304 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.5.attention.attention.value_layer.weight
+        , %para305 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.5.attention.attention.value_layer.bias
+        , %para306 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.5.attention.output.dense.weight
+        , %para307 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.5.attention.output.dense.bias
+        , %para308 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.5.attention.output.layernorm.gamma
+        , %para309 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.5.attention.output.layernorm.beta
+        , %para310 : Ref[Tensor(F32)][3072, 768]    # lamb_m.bert.bert.bert_encoder.layers.5.intermediate.weight
+        , %para311 : Ref[Tensor(F32)][3072]    # lamb_m.bert.bert.bert_encoder.layers.5.intermediate.bias
+        , %para312 : Ref[Tensor(F32)][768, 3072]    # lamb_m.bert.bert.bert_encoder.layers.5.output.dense.weight
+        , %para313 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.5.output.dense.bias
+        , %para314 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.5.output.layernorm.gamma
+        , %para315 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.5.output.layernorm.beta
+        , %para316 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.6.attention.attention.query_layer.weight
+        , %para317 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.6.attention.attention.query_layer.bias
+        , %para318 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.6.attention.attention.key_layer.weight
+        , %para319 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.6.attention.attention.key_layer.bias
+        , %para320 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.6.attention.attention.value_layer.weight
+        , %para321 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.6.attention.attention.value_layer.bias
+        , %para322 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.6.attention.output.dense.weight
+        , %para323 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.6.attention.output.dense.bias
+        , %para324 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.6.attention.output.layernorm.gamma
+        , %para325 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.6.attention.output.layernorm.beta
+        , %para326 : Ref[Tensor(F32)][3072, 768]    # lamb_m.bert.bert.bert_encoder.layers.6.intermediate.weight
+        , %para327 : Ref[Tensor(F32)][3072]    # lamb_m.bert.bert.bert_encoder.layers.6.intermediate.bias
+        , %para328 : Ref[Tensor(F32)][768, 3072]    # lamb_m.bert.bert.bert_encoder.layers.6.output.dense.weight
+        , %para329 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.6.output.dense.bias
+        , %para330 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.6.output.layernorm.gamma
+        , %para331 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.6.output.layernorm.beta
+        , %para332 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.7.attention.attention.query_layer.weight
+        , %para333 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.7.attention.attention.query_layer.bias
+        , %para334 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.7.attention.attention.key_layer.weight
+        , %para335 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.7.attention.attention.key_layer.bias
+        , %para336 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.7.attention.attention.value_layer.weight
+        , %para337 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.7.attention.attention.value_layer.bias
+        , %para338 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.7.attention.output.dense.weight
+        , %para339 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.7.attention.output.dense.bias
+        , %para340 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.7.attention.output.layernorm.gamma
+        , %para341 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.7.attention.output.layernorm.beta
+        , %para342 : Ref[Tensor(F32)][3072, 768]    # lamb_m.bert.bert.bert_encoder.layers.7.intermediate.weight
+        , %para343 : Ref[Tensor(F32)][3072]    # lamb_m.bert.bert.bert_encoder.layers.7.intermediate.bias
+        , %para344 : Ref[Tensor(F32)][768, 3072]    # lamb_m.bert.bert.bert_encoder.layers.7.output.dense.weight
+        , %para345 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.7.output.dense.bias
+        , %para346 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.7.output.layernorm.gamma
+        , %para347 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.7.output.layernorm.beta
+        , %para348 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.8.attention.attention.query_layer.weight
+        , %para349 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.8.attention.attention.query_layer.bias
+        , %para350 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.8.attention.attention.key_layer.weight
+        , %para351 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.8.attention.attention.key_layer.bias
+        , %para352 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.8.attention.attention.value_layer.weight
+        , %para353 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.8.attention.attention.value_layer.bias
+        , %para354 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.8.attention.output.dense.weight
+        , %para355 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.8.attention.output.dense.bias
+        , %para356 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.8.attention.output.layernorm.gamma
+        , %para357 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.8.attention.output.layernorm.beta
+        , %para358 : Ref[Tensor(F32)][3072, 768]    # lamb_m.bert.bert.bert_encoder.layers.8.intermediate.weight
+        , %para359 : Ref[Tensor(F32)][3072]    # lamb_m.bert.bert.bert_encoder.layers.8.intermediate.bias
+        , %para360 : Ref[Tensor(F32)][768, 3072]    # lamb_m.bert.bert.bert_encoder.layers.8.output.dense.weight
+        , %para361 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.8.output.dense.bias
+        , %para362 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.8.output.layernorm.gamma
+        , %para363 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.8.output.layernorm.beta
+        , %para364 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.9.attention.attention.query_layer.weight
+        , %para365 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.9.attention.attention.query_layer.bias
+        , %para366 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.9.attention.attention.key_layer.weight
+        , %para367 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.9.attention.attention.key_layer.bias
+        , %para368 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.9.attention.attention.value_layer.weight
+        , %para369 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.9.attention.attention.value_layer.bias
+        , %para370 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.9.attention.output.dense.weight
+        , %para371 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.9.attention.output.dense.bias
+        , %para372 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.9.attention.output.layernorm.gamma
+        , %para373 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.9.attention.output.layernorm.beta
+        , %para374 : Ref[Tensor(F32)][3072, 768]    # lamb_m.bert.bert.bert_encoder.layers.9.intermediate.weight
+        , %para375 : Ref[Tensor(F32)][3072]    # lamb_m.bert.bert.bert_encoder.layers.9.intermediate.bias
+        , %para376 : Ref[Tensor(F32)][768, 3072]    # lamb_m.bert.bert.bert_encoder.layers.9.output.dense.weight
+        , %para377 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.9.output.dense.bias
+        , %para378 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.9.output.layernorm.gamma
+        , %para379 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.9.output.layernorm.beta
+        , %para380 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.10.attention.attention.query_layer.weight
+        , %para381 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.10.attention.attention.query_layer.bias
+        , %para382 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.10.attention.attention.key_layer.weight
+        , %para383 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.10.attention.attention.key_layer.bias
+        , %para384 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.10.attention.attention.value_layer.weight
+        , %para385 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.10.attention.attention.value_layer.bias
+        , %para386 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.10.attention.output.dense.weight
+        , %para387 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.10.attention.output.dense.bias
+        , %para388 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.10.attention.output.layernorm.gamma
+        , %para389 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.10.attention.output.layernorm.beta
+        , %para390 : Ref[Tensor(F32)][3072, 768]    # lamb_m.bert.bert.bert_encoder.layers.10.intermediate.weight
+        , %para391 : Ref[Tensor(F32)][3072]    # lamb_m.bert.bert.bert_encoder.layers.10.intermediate.bias
+        , %para392 : Ref[Tensor(F32)][768, 3072]    # lamb_m.bert.bert.bert_encoder.layers.10.output.dense.weight
+        , %para393 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.10.output.dense.bias
+        , %para394 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.10.output.layernorm.gamma
+        , %para395 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.10.output.layernorm.beta
+        , %para396 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.11.attention.attention.query_layer.weight
+        , %para397 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.11.attention.attention.query_layer.bias
+        , %para398 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.11.attention.attention.key_layer.weight
+        , %para399 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.11.attention.attention.key_layer.bias
+        , %para400 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.11.attention.attention.value_layer.weight
+        , %para401 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.11.attention.attention.value_layer.bias
+        , %para402 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.bert_encoder.layers.11.attention.output.dense.weight
+        , %para403 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.11.attention.output.dense.bias
+        , %para404 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.11.attention.output.layernorm.gamma
+        , %para405 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.11.attention.output.layernorm.beta
+        , %para406 : Ref[Tensor(F32)][3072, 768]    # lamb_m.bert.bert.bert_encoder.layers.11.intermediate.weight
+        , %para407 : Ref[Tensor(F32)][3072]    # lamb_m.bert.bert.bert_encoder.layers.11.intermediate.bias
+        , %para408 : Ref[Tensor(F32)][768, 3072]    # lamb_m.bert.bert.bert_encoder.layers.11.output.dense.weight
+        , %para409 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.11.output.dense.bias
+        , %para410 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.11.output.layernorm.gamma
+        , %para411 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.bert_encoder.layers.11.output.layernorm.beta
+        , %para412 : Ref[Tensor(F32)][768, 768]    # lamb_m.bert.bert.dense.weight
+        , %para413 : Ref[Tensor(F32)][768]    # lamb_m.bert.bert.dense.bias
+        , %para414 : Ref[Tensor(F32)][25, 768]    # lamb_m.bert.dense_1.weight
+        , %para415 : Ref[Tensor(F32)][25]    # lamb_m.bert.dense_1.bias
+        , %para416 : Ref[Tensor(F32)][1536, 768]    # lamb_m.bert.lstm.weight_ih_l0
+        , %para417 : Ref[Tensor(F32)][1536, 768]    # lamb_m.bert.lstm.weight_ih_l0_reverse
+        , %para418 : Ref[Tensor(F32)][1536, 384]    # lamb_m.bert.lstm.weight_hh_l0
+        , %para419 : Ref[Tensor(F32)][1536, 384]    # lamb_m.bert.lstm.weight_hh_l0_reverse
+        , %para420 : Ref[Tensor(F32)][1536]    # lamb_m.bert.lstm.bias_ih_l0
+        , %para421 : Ref[Tensor(F32)][1536]    # lamb_m.bert.lstm.bias_ih_l0_reverse
+        , %para422 : Ref[Tensor(F32)][1536]    # lamb_m.bert.lstm.bias_hh_l0
+        , %para423 : Ref[Tensor(F32)][1536]    # lamb_m.bert.lstm.bias_hh_l0_reverse
+        , %para424 : Ref[Tensor(F32)][25, 25]    # lamb_m.loss.transitions
+        , %para425 : Ref[Tensor(F32)][21128, 768]    # lamb_v.bert.bert.bert_embedding_lookup.embedding_table
+        , %para426 : Ref[Tensor(F32)][2, 768]    # lamb_v.bert.bert.bert_embedding_postprocessor.token_type_embedding.embedding_table
+        , %para427 : Ref[Tensor(F32)][512, 768]    # lamb_v.bert.bert.bert_embedding_postprocessor.full_position_embedding.embedding_table
+        , %para428 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_embedding_postprocessor.layernorm.gamma
+        , %para429 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_embedding_postprocessor.layernorm.beta
+        , %para430 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.0.attention.attention.query_layer.weight
+        , %para431 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.0.attention.attention.query_layer.bias
+        , %para432 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.0.attention.attention.key_layer.weight
+        , %para433 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.0.attention.attention.key_layer.bias
+        , %para434 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.0.attention.attention.value_layer.weight
+        , %para435 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.0.attention.attention.value_layer.bias
+        , %para436 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.0.attention.output.dense.weight
+        , %para437 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.0.attention.output.dense.bias
+        , %para438 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.0.attention.output.layernorm.gamma
+        , %para439 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.0.attention.output.layernorm.beta
+        , %para440 : Ref[Tensor(F32)][3072, 768]    # lamb_v.bert.bert.bert_encoder.layers.0.intermediate.weight
+        , %para441 : Ref[Tensor(F32)][3072]    # lamb_v.bert.bert.bert_encoder.layers.0.intermediate.bias
+        , %para442 : Ref[Tensor(F32)][768, 3072]    # lamb_v.bert.bert.bert_encoder.layers.0.output.dense.weight
+        , %para443 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.0.output.dense.bias
+        , %para444 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.0.output.layernorm.gamma
+        , %para445 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.0.output.layernorm.beta
+        , %para446 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.1.attention.attention.query_layer.weight
+        , %para447 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.1.attention.attention.query_layer.bias
+        , %para448 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.1.attention.attention.key_layer.weight
+        , %para449 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.1.attention.attention.key_layer.bias
+        , %para450 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.1.attention.attention.value_layer.weight
+        , %para451 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.1.attention.attention.value_layer.bias
+        , %para452 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.1.attention.output.dense.weight
+        , %para453 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.1.attention.output.dense.bias
+        , %para454 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.1.attention.output.layernorm.gamma
+        , %para455 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.1.attention.output.layernorm.beta
+        , %para456 : Ref[Tensor(F32)][3072, 768]    # lamb_v.bert.bert.bert_encoder.layers.1.intermediate.weight
+        , %para457 : Ref[Tensor(F32)][3072]    # lamb_v.bert.bert.bert_encoder.layers.1.intermediate.bias
+        , %para458 : Ref[Tensor(F32)][768, 3072]    # lamb_v.bert.bert.bert_encoder.layers.1.output.dense.weight
+        , %para459 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.1.output.dense.bias
+        , %para460 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.1.output.layernorm.gamma
+        , %para461 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.1.output.layernorm.beta
+        , %para462 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.2.attention.attention.query_layer.weight
+        , %para463 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.2.attention.attention.query_layer.bias
+        , %para464 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.2.attention.attention.key_layer.weight
+        , %para465 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.2.attention.attention.key_layer.bias
+        , %para466 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.2.attention.attention.value_layer.weight
+        , %para467 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.2.attention.attention.value_layer.bias
+        , %para468 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.2.attention.output.dense.weight
+        , %para469 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.2.attention.output.dense.bias
+        , %para470 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.2.attention.output.layernorm.gamma
+        , %para471 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.2.attention.output.layernorm.beta
+        , %para472 : Ref[Tensor(F32)][3072, 768]    # lamb_v.bert.bert.bert_encoder.layers.2.intermediate.weight
+        , %para473 : Ref[Tensor(F32)][3072]    # lamb_v.bert.bert.bert_encoder.layers.2.intermediate.bias
+        , %para474 : Ref[Tensor(F32)][768, 3072]    # lamb_v.bert.bert.bert_encoder.layers.2.output.dense.weight
+        , %para475 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.2.output.dense.bias
+        , %para476 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.2.output.layernorm.gamma
+        , %para477 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.2.output.layernorm.beta
+        , %para478 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.3.attention.attention.query_layer.weight
+        , %para479 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.3.attention.attention.query_layer.bias
+        , %para480 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.3.attention.attention.key_layer.weight
+        , %para481 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.3.attention.attention.key_layer.bias
+        , %para482 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.3.attention.attention.value_layer.weight
+        , %para483 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.3.attention.attention.value_layer.bias
+        , %para484 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.3.attention.output.dense.weight
+        , %para485 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.3.attention.output.dense.bias
+        , %para486 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.3.attention.output.layernorm.gamma
+        , %para487 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.3.attention.output.layernorm.beta
+        , %para488 : Ref[Tensor(F32)][3072, 768]    # lamb_v.bert.bert.bert_encoder.layers.3.intermediate.weight
+        , %para489 : Ref[Tensor(F32)][3072]    # lamb_v.bert.bert.bert_encoder.layers.3.intermediate.bias
+        , %para490 : Ref[Tensor(F32)][768, 3072]    # lamb_v.bert.bert.bert_encoder.layers.3.output.dense.weight
+        , %para491 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.3.output.dense.bias
+        , %para492 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.3.output.layernorm.gamma
+        , %para493 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.3.output.layernorm.beta
+        , %para494 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.4.attention.attention.query_layer.weight
+        , %para495 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.4.attention.attention.query_layer.bias
+        , %para496 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.4.attention.attention.key_layer.weight
+        , %para497 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.4.attention.attention.key_layer.bias
+        , %para498 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.4.attention.attention.value_layer.weight
+        , %para499 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.4.attention.attention.value_layer.bias
+        , %para500 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.4.attention.output.dense.weight
+        , %para501 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.4.attention.output.dense.bias
+        , %para502 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.4.attention.output.layernorm.gamma
+        , %para503 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.4.attention.output.layernorm.beta
+        , %para504 : Ref[Tensor(F32)][3072, 768]    # lamb_v.bert.bert.bert_encoder.layers.4.intermediate.weight
+        , %para505 : Ref[Tensor(F32)][3072]    # lamb_v.bert.bert.bert_encoder.layers.4.intermediate.bias
+        , %para506 : Ref[Tensor(F32)][768, 3072]    # lamb_v.bert.bert.bert_encoder.layers.4.output.dense.weight
+        , %para507 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.4.output.dense.bias
+        , %para508 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.4.output.layernorm.gamma
+        , %para509 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.4.output.layernorm.beta
+        , %para510 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.5.attention.attention.query_layer.weight
+        , %para511 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.5.attention.attention.query_layer.bias
+        , %para512 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.5.attention.attention.key_layer.weight
+        , %para513 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.5.attention.attention.key_layer.bias
+        , %para514 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.5.attention.attention.value_layer.weight
+        , %para515 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.5.attention.attention.value_layer.bias
+        , %para516 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.5.attention.output.dense.weight
+        , %para517 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.5.attention.output.dense.bias
+        , %para518 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.5.attention.output.layernorm.gamma
+        , %para519 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.5.attention.output.layernorm.beta
+        , %para520 : Ref[Tensor(F32)][3072, 768]    # lamb_v.bert.bert.bert_encoder.layers.5.intermediate.weight
+        , %para521 : Ref[Tensor(F32)][3072]    # lamb_v.bert.bert.bert_encoder.layers.5.intermediate.bias
+        , %para522 : Ref[Tensor(F32)][768, 3072]    # lamb_v.bert.bert.bert_encoder.layers.5.output.dense.weight
+        , %para523 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.5.output.dense.bias
+        , %para524 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.5.output.layernorm.gamma
+        , %para525 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.5.output.layernorm.beta
+        , %para526 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.6.attention.attention.query_layer.weight
+        , %para527 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.6.attention.attention.query_layer.bias
+        , %para528 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.6.attention.attention.key_layer.weight
+        , %para529 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.6.attention.attention.key_layer.bias
+        , %para530 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.6.attention.attention.value_layer.weight
+        , %para531 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.6.attention.attention.value_layer.bias
+        , %para532 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.6.attention.output.dense.weight
+        , %para533 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.6.attention.output.dense.bias
+        , %para534 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.6.attention.output.layernorm.gamma
+        , %para535 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.6.attention.output.layernorm.beta
+        , %para536 : Ref[Tensor(F32)][3072, 768]    # lamb_v.bert.bert.bert_encoder.layers.6.intermediate.weight
+        , %para537 : Ref[Tensor(F32)][3072]    # lamb_v.bert.bert.bert_encoder.layers.6.intermediate.bias
+        , %para538 : Ref[Tensor(F32)][768, 3072]    # lamb_v.bert.bert.bert_encoder.layers.6.output.dense.weight
+        , %para539 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.6.output.dense.bias
+        , %para540 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.6.output.layernorm.gamma
+        , %para541 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.6.output.layernorm.beta
+        , %para542 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.7.attention.attention.query_layer.weight
+        , %para543 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.7.attention.attention.query_layer.bias
+        , %para544 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.7.attention.attention.key_layer.weight
+        , %para545 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.7.attention.attention.key_layer.bias
+        , %para546 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.7.attention.attention.value_layer.weight
+        , %para547 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.7.attention.attention.value_layer.bias
+        , %para548 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.7.attention.output.dense.weight
+        , %para549 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.7.attention.output.dense.bias
+        , %para550 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.7.attention.output.layernorm.gamma
+        , %para551 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.7.attention.output.layernorm.beta
+        , %para552 : Ref[Tensor(F32)][3072, 768]    # lamb_v.bert.bert.bert_encoder.layers.7.intermediate.weight
+        , %para553 : Ref[Tensor(F32)][3072]    # lamb_v.bert.bert.bert_encoder.layers.7.intermediate.bias
+        , %para554 : Ref[Tensor(F32)][768, 3072]    # lamb_v.bert.bert.bert_encoder.layers.7.output.dense.weight
+        , %para555 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.7.output.dense.bias
+        , %para556 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.7.output.layernorm.gamma
+        , %para557 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.7.output.layernorm.beta
+        , %para558 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.8.attention.attention.query_layer.weight
+        , %para559 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.8.attention.attention.query_layer.bias
+        , %para560 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.8.attention.attention.key_layer.weight
+        , %para561 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.8.attention.attention.key_layer.bias
+        , %para562 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.8.attention.attention.value_layer.weight
+        , %para563 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.8.attention.attention.value_layer.bias
+        , %para564 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.8.attention.output.dense.weight
+        , %para565 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.8.attention.output.dense.bias
+        , %para566 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.8.attention.output.layernorm.gamma
+        , %para567 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.8.attention.output.layernorm.beta
+        , %para568 : Ref[Tensor(F32)][3072, 768]    # lamb_v.bert.bert.bert_encoder.layers.8.intermediate.weight
+        , %para569 : Ref[Tensor(F32)][3072]    # lamb_v.bert.bert.bert_encoder.layers.8.intermediate.bias
+        , %para570 : Ref[Tensor(F32)][768, 3072]    # lamb_v.bert.bert.bert_encoder.layers.8.output.dense.weight
+        , %para571 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.8.output.dense.bias
+        , %para572 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.8.output.layernorm.gamma
+        , %para573 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.8.output.layernorm.beta
+        , %para574 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.9.attention.attention.query_layer.weight
+        , %para575 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.9.attention.attention.query_layer.bias
+        , %para576 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.9.attention.attention.key_layer.weight
+        , %para577 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.9.attention.attention.key_layer.bias
+        , %para578 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.9.attention.attention.value_layer.weight
+        , %para579 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.9.attention.attention.value_layer.bias
+        , %para580 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.9.attention.output.dense.weight
+        , %para581 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.9.attention.output.dense.bias
+        , %para582 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.9.attention.output.layernorm.gamma
+        , %para583 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.9.attention.output.layernorm.beta
+        , %para584 : Ref[Tensor(F32)][3072, 768]    # lamb_v.bert.bert.bert_encoder.layers.9.intermediate.weight
+        , %para585 : Ref[Tensor(F32)][3072]    # lamb_v.bert.bert.bert_encoder.layers.9.intermediate.bias
+        , %para586 : Ref[Tensor(F32)][768, 3072]    # lamb_v.bert.bert.bert_encoder.layers.9.output.dense.weight
+        , %para587 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.9.output.dense.bias
+        , %para588 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.9.output.layernorm.gamma
+        , %para589 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.9.output.layernorm.beta
+        , %para590 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.10.attention.attention.query_layer.weight
+        , %para591 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.10.attention.attention.query_layer.bias
+        , %para592 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.10.attention.attention.key_layer.weight
+        , %para593 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.10.attention.attention.key_layer.bias
+        , %para594 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.10.attention.attention.value_layer.weight
+        , %para595 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.10.attention.attention.value_layer.bias
+        , %para596 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.10.attention.output.dense.weight
+        , %para597 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.10.attention.output.dense.bias
+        , %para598 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.10.attention.output.layernorm.gamma
+        , %para599 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.10.attention.output.layernorm.beta
+        , %para600 : Ref[Tensor(F32)][3072, 768]    # lamb_v.bert.bert.bert_encoder.layers.10.intermediate.weight
+        , %para601 : Ref[Tensor(F32)][3072]    # lamb_v.bert.bert.bert_encoder.layers.10.intermediate.bias
+        , %para602 : Ref[Tensor(F32)][768, 3072]    # lamb_v.bert.bert.bert_encoder.layers.10.output.dense.weight
+        , %para603 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.10.output.dense.bias
+        , %para604 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.10.output.layernorm.gamma
+        , %para605 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.10.output.layernorm.beta
+        , %para606 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.11.attention.attention.query_layer.weight
+        , %para607 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.11.attention.attention.query_layer.bias
+        , %para608 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.11.attention.attention.key_layer.weight
+        , %para609 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.11.attention.attention.key_layer.bias
+        , %para610 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.11.attention.attention.value_layer.weight
+        , %para611 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.11.attention.attention.value_layer.bias
+        , %para612 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.bert_encoder.layers.11.attention.output.dense.weight
+        , %para613 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.11.attention.output.dense.bias
+        , %para614 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.11.attention.output.layernorm.gamma
+        , %para615 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.11.attention.output.layernorm.beta
+        , %para616 : Ref[Tensor(F32)][3072, 768]    # lamb_v.bert.bert.bert_encoder.layers.11.intermediate.weight
+        , %para617 : Ref[Tensor(F32)][3072]    # lamb_v.bert.bert.bert_encoder.layers.11.intermediate.bias
+        , %para618 : Ref[Tensor(F32)][768, 3072]    # lamb_v.bert.bert.bert_encoder.layers.11.output.dense.weight
+        , %para619 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.11.output.dense.bias
+        , %para620 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.11.output.layernorm.gamma
+        , %para621 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.bert_encoder.layers.11.output.layernorm.beta
+        , %para622 : Ref[Tensor(F32)][768, 768]    # lamb_v.bert.bert.dense.weight
+        , %para623 : Ref[Tensor(F32)][768]    # lamb_v.bert.bert.dense.bias
+        , %para624 : Ref[Tensor(F32)][25, 768]    # lamb_v.bert.dense_1.weight
+        , %para625 : Ref[Tensor(F32)][25]    # lamb_v.bert.dense_1.bias
+        , %para626 : Ref[Tensor(F32)][1536, 768]    # lamb_v.bert.lstm.weight_ih_l0
+        , %para627 : Ref[Tensor(F32)][1536, 768]    # lamb_v.bert.lstm.weight_ih_l0_reverse
+        , %para628 : Ref[Tensor(F32)][1536, 384]    # lamb_v.bert.lstm.weight_hh_l0
+        , %para629 : Ref[Tensor(F32)][1536, 384]    # lamb_v.bert.lstm.weight_hh_l0_reverse
+        , %para630 : Ref[Tensor(F32)][1536]    # lamb_v.bert.lstm.bias_ih_l0
+        , %para631 : Ref[Tensor(F32)][1536]    # lamb_v.bert.lstm.bias_ih_l0_reverse
+        , %para632 : Ref[Tensor(F32)][1536]    # lamb_v.bert.lstm.bias_hh_l0
+        , %para633 : Ref[Tensor(F32)][1536]    # lamb_v.bert.lstm.bias_hh_l0_reverse
+        , %para634 : Ref[Tensor(F32)][25, 25]    # lamb_v.loss.transitions
+    ) {
+
+#------------------------> 0
+    %1 = FuncGraph::fg_3()    # fg_3=Default.3 #scope: Default
+#[CNode]10
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
+      # In file /home/songjh/.local/lib/python3.8/site-packages/mindspore/train/dataset_helper.py:107/        return self.network(*outputs)/#[CNode]11
+}
+# order:
+#   1: @Default_wrapper.1:[CNode]10{[0]: ValueNode<FuncGraph> Default.3}
+#   2: @Default_wrapper.1:[CNode]11{[0]: ValueNode<Primitive> Return, [1]: [CNode]10}
+
+
+# [No.2] Default.3
+# In file /home/songjh/.local/lib/python3.8/site-packages/mindspore/train/dataset_helper.py:105/    def construct(self):/
+funcgraph fg_3[fg_1](
+) {
+    %1 : Tuple[Tensor(I32)*5]TupleShape((8, 128), (8, 128), (8, 128), (8, 128), (8)) = DoSignaturePrimitive::S-Prim-GetNext{prim_type=1}[output_num=I64(5), shapes=[[I64(8), I64(128)], [I64(8), I64(128)], [I64(8), I64(128)], [I64(8), I64(128)], [I64(8)]], shared_name="d158ed9e-71d7-11ef-84d0-a13fdda7f051", types=[I32, I32, I32, I32, I32]]() #scope: Default
+      # In file /home/songjh/.local/lib/python3.8/site-packages/mindspore/train/dataset_helper.py:106/        outputs = self.get_next()/#outputs
+
+#------------------------> 1
+    %2 = UnpackCall::unpack_call(FuncGraph::fg_12, %1)    #(FuncNoShape, Tuple[Tensor(I32)*5]TupleShape((8, 128), (8, 128), (8, 128), (8, 128), (8)))    # fg_12=BertFinetuneCell.12 #scope: Default
+      # In file /home/songjh/.local/lib/python3.8/site-packages/mindspore/train/dataset_helper.py:107/        return self.network(*outputs)/#[CNode]13
+    Primitive::Return{prim_type=1}(%2)    #(Undefined) #scope: Default
+      # In file /home/songjh/.local/lib/python3.8/site-packages/mindspore/train/dataset_helper.py:107/        return self.network(*outputs)/#[CNode]14
+}
+# order:
+#   1: @Default.3:outputs{[0]: ValueNode<DoSignaturePrimitive> S-Prim-GetNext}
+#   2: @Default.3:[CNode]13{[0]: ValueNode<UnpackCall> unpack_call.15, [1]: ValueNode<FuncGraph> BertFinetuneCell.12, [2]: outputs}
+#   3: @Default.3:[CNode]14{[0]: ValueNode<Primitive> Return, [1]: [CNode]13}
+
+
+# [No.3] UnpackCall.4
+
+funcgraph fg_4(
+        %para635 : FuncNoShape    # 5
+        , %para636 : Tuple[Tensor(I32)*5]TupleShape((8, 128), (8, 128), (8, 128), (8, 128), (8))    # 6
+    ) {
+    %1 : Tensor(I32)[8, 128] = Primitive::TupleGetItem{prim_type=1}(%para636, I64(0))    #(Tuple[Tensor(I32)*5]TupleShape((8, 128), (8, 128), (8, 128), (8, 128), (8)), I64NoShape) #scope: Default
+#16
+    %2 : Tensor(I32)[8, 128] = Primitive::TupleGetItem{prim_type=1}(%para636, I64(1))    #(Tuple[Tensor(I32)*5]TupleShape((8, 128), (8, 128), (8, 128), (8, 128), (8)), I64NoShape) #scope: Default
+#17
+    %3 : Tensor(I32)[8, 128] = Primitive::TupleGetItem{prim_type=1}(%para636, I64(2))    #(Tuple[Tensor(I32)*5]TupleShape((8, 128), (8, 128), (8, 128), (8, 128), (8)), I64NoShape) #scope: Default
+#18
+    %4 : Tensor(I32)[8, 128] = Primitive::TupleGetItem{prim_type=1}(%para636, I64(3))    #(Tuple[Tensor(I32)*5]TupleShape((8, 128), (8, 128), (8, 128), (8, 128), (8)), I64NoShape) #scope: Default
+#19
+    %5 : Tensor(I32)[8] = Primitive::TupleGetItem{prim_type=1}(%para636, I64(4))    #(Tuple[Tensor(I32)*5]TupleShape((8, 128), (8, 128), (8, 128), (8, 128), (8)), I64NoShape) #scope: Default
+#20
+
+#------------------------> 2
+    %6 = %para635(%1, %2, %3, %4, %5)    #(Tensor(I32)[8, 128], Tensor(I32)[8, 128], Tensor(I32)[8, 128], Tensor(I32)[8, 128], Tensor(I32)[8]) #scope: Default
+#21
+    Primitive::Return{prim_type=1}(%6)    #(Undefined) #scope: Default
+#22
+}
+# order:
+#   1: @UnpackCall.4:21{[0]: 5, [1]: 16, [2]: 17, [3]: 18, [4]: 19, [5]: 20}
+#   2: @UnpackCall.4:22{[0]: ValueNode<Primitive> Return, [1]: 21}
+
+
+# [No.4] BertFinetuneCell.7
+# In file /home/songjh/bert_1.9/src/bert_for_finetune.py:72/    def construct(self,/
+funcgraph fg_7[fg_1](
+        %para637 : Tensor(I32)[8, 128]    # фinput_ids
+        , %para638 : Tensor(I32)[8, 128]    # фinput_mask
+        , %para639 : Tensor(I32)[8, 128]    # фtoken_type_id
+        , %para640 : Tensor(I32)[8, 128]    # фlabel_ids
+        , %para641 : Tensor(I32)[8]    # фreal_seq_length
+    ) {
+    %1 : BoolNoShape = DoSignaturePrimitive::S-Prim-is_{prim_type=1}(None, None)    #(NoneTypeNoShape, NoneTypeNoShape) #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:88/        if sens is None:/#[CNode]23
+    %2 : BoolNoShape = FuncGraph::fg_24(%1)    #(BoolNoShape)    # fg_24=bool_.24 #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:88/        if sens is None:/#[CNode]25
+    %3 : FuncNoShape = Primitive::Switch{prim_type=1}(%2, FuncGraph::fg_26, FuncGraph::fg_27)    #(BoolNoShape, FuncNoShape, FuncNoShape)    # fg_26=✓BertFinetuneCell.26, fg_27=✗BertFinetuneCell.27 #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:88/        if sens is None:/#[CNode]28
+    %4 : Ref[Tensor(F32)][] = %3() #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:88/        if sens is None:/#[CNode]29
+
+#------------------------> 3
+    %5 = FuncGraph::fg_8(%4)    #(Ref[Tensor(F32)][])    # fg_8=↓BertFinetuneCell.8 #scope: Default
+      # In file /home/songjh/.local/lib/python3.8/site-packages/mindspore/train/dataset_helper.py:107/        return self.network(*outputs)/#[CNode]30
+    Primitive::Return{prim_type=1}(%5)    #(Undefined) #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:88/        if sens is None:/#[CNode]31
+}
+# order:
+#   1: @BertFinetuneCell.7:фloss{[0]: ValueNode<FuncGraph> BertNER.2, [1]: фinput_ids, [2]: фinput_mask, [3]: фtoken_type_id, [4]: фlabel_ids, [5]: фreal_seq_length}
+#   2: @BertFinetuneCell.7:[CNode]23{[0]: ValueNode<DoSignaturePrimitive> S-Prim-is_, [1]: ValueNode<None> None, [2]: ValueNode<None> None}
+#   3: @BertFinetuneCell.7:[CNode]25{[0]: ValueNode<FuncGraph> bool_.24, [1]: [CNode]23}
+#   4: @BertFinetuneCell.7:[CNode]28{[0]: ValueNode<Primitive> Switch, [1]: [CNode]25, [2]: ValueNode<FuncGraph> ✓BertFinetuneCell.26, [3]: ValueNode<FuncGraph> ✗BertFinetuneCell.27}
+#   5: @BertFinetuneCell.7:[CNode]29{[0]: [CNode]28}
+#   6: @BertFinetuneCell.7:[CNode]30{[0]: ValueNode<FuncGraph> ↓BertFinetuneCell.8, [1]: [CNode]29}
+#   7: @BertFinetuneCell.7:[CNode]31{[0]: ValueNode<Primitive> Return, [1]: [CNode]30}
+
+
+# [No.5] ↓BertFinetuneCell.8
+# In file /home/songjh/bert_1.9/src/bert_for_finetune.py:88/        if sens is None:/
+funcgraph fg_8[fg_7](
+        %para642 : Ref[Tensor(F32)][]    # фscaling_sens
+    ) {
+    %1 : BoolNoShape = FuncGraph::fg_24(Bool(0))    #(BoolNoShape)    # fg_24=bool_.24 #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:107/        if self.reducer_flag:/#[CNode]32
+    %2 : FuncNoShape = Primitive::Switch{prim_type=1}(%1, FuncGraph::fg_33, FuncGraph::fg_9)    #(BoolNoShape, FuncNoShape, FuncNoShape)    # fg_33=✓↓BertFinetuneCell.33, fg_9=✗↓BertFinetuneCell.9 #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:107/        if self.reducer_flag:/#[CNode]34
+
+#------------------------> 4
+    %3 = %2() #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:107/        if self.reducer_flag:/#[CNode]35
+    %4 = FuncGraph::fg_36(%3)    #(Undefined)    # fg_36=↓↓BertFinetuneCell.36 #scope: Default
+      # In file /home/songjh/.local/lib/python3.8/site-packages/mindspore/train/dataset_helper.py:107/        return self.network(*outputs)/#[CNode]37
+    Primitive::Return{prim_type=1}(%4)    #(Undefined) #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:107/        if self.reducer_flag:/#[CNode]38
+}
+# order:
+#   1: @↓BertFinetuneCell.8:[CNode]39{[0]: ValueNode<FuncGraph> start_overflow_check.40, [1]: фloss, [2]: фscaling_sens}
+#   2: @↓BertFinetuneCell.8:фstatus{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]39, [2]: ValueNode<Int64Imm> 0}
+#   3: @↓BertFinetuneCell.8:scaling_sens{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]39, [2]: ValueNode<Int64Imm> 1}
+#   4: @↓BertFinetuneCell.8:[CNode]41{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Cast, [1]: scaling_sens, [2]: ValueNode<Float> Float32}
+#   5: @↓BertFinetuneCell.8:grads{[0]: ValueNode<UnpackGraphPrimitive> UnpackGraph, [1]: ValueNode<FuncGraph> BertNER.2, [2]: фinput_ids, [3]: фinput_mask, [4]: фtoken_type_id, [5]: фlabel_ids, [6]: фreal_seq_length, [7]: [CNode]41}
+#   6: @↓BertFinetuneCell.8:grads{[0]: ValueNode<DoSignaturePrimitive> S-Prim-grad, [1]: grads, [2]: [CNode]42}
+#   7: @↓BertFinetuneCell.8:grads{[0]: grads, [1]: фinput_ids, [2]: фinput_mask, [3]: фtoken_type_id, [4]: фlabel_ids, [5]: фreal_seq_length, [6]: [CNode]41}
+#   8: @↓BertFinetuneCell.8:[CNode]43{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Partial, [1]: ValueNode<DoSignaturePrimitive> S-Prim-grad_scale, [2]: scaling_sens}
+#   9: @↓BertFinetuneCell.8:grads{[0]: ValueNode<DoSignaturePrimitive> S-Prim-hyper_map, [1]: [CNode]43, [2]: grads}
+#  10: @↓BertFinetuneCell.8:[CNode]44{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Partial, [1]: ValueNode<DoSignaturePrimitive> S-Prim-clip_grad, [2]: ValueNode<Int64Imm> 1, [3]: ValueNode<FP32Imm> 1.000000}
+#  11: @↓BertFinetuneCell.8:grads{[0]: ValueNode<DoSignaturePrimitive> S-Prim-hyper_map, [1]: [CNode]44, [2]: grads}
+#  12: @↓BertFinetuneCell.8:[CNode]32{[0]: ValueNode<FuncGraph> bool_.24, [1]: ValueNode<BoolImm> false}
+#  13: @↓BertFinetuneCell.8:[CNode]34{[0]: ValueNode<Primitive> Switch, [1]: [CNode]32, [2]: ValueNode<FuncGraph> ✓↓BertFinetuneCell.33, [3]: ValueNode<FuncGraph> ✗↓BertFinetuneCell.9}
+#  14: @↓BertFinetuneCell.8:[CNode]35{[0]: [CNode]34}
+#  15: @↓BertFinetuneCell.8:[CNode]37{[0]: ValueNode<FuncGraph> ↓↓BertFinetuneCell.36, [1]: [CNode]35}
+#  16: @↓BertFinetuneCell.8:[CNode]38{[0]: ValueNode<Primitive> Return, [1]: [CNode]37}
+
+
+# [No.6] ✗↓BertFinetuneCell.9
+# In file /home/songjh/bert_1.9/src/bert_for_finetune.py:107/        if self.reducer_flag:/
+funcgraph fg_9[fg_8](
+) {
+    %1 = $(↓BertFinetuneCell.8):DoSignaturePrimitive::S-Prim-Partial{prim_type=1}[side_effect_propagate=I64(1)](DoSignaturePrimitive::S-Prim-clip_grad{prim_type=1}, I64(1), F32(1))    #(FuncNoShape, I64NoShape, F32NoShape) #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:105/        grads = self.hyper_map(F.partial(clip_grad, GRADIENT_CLIP_TYPE, GRADIENT_CLIP_VALUE), grads)/#[CNode]44
+
+#------------------------> 5
+    %2 = $(BertFinetuneCell.7):FuncGraph::fg_2(%para637, %para638, %para639, %para640, %para641)    #(Tensor(I32)[8, 128], Tensor(I32)[8, 128], Tensor(I32)[8, 128], Tensor(I32)[8, 128], Tensor(I32)[8])    # fg_2=BertNER.2 #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:113/        return (loss, cond)/#фloss
+    %3 = $(↓BertFinetuneCell.8):FuncGraph::fg_40(%2, %para642)    #(Undefined, Undefined)    # fg_40=start_overflow_check.40 #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:93/        status, scaling_sens = self.start_overflow_check(loss, scaling_sens)/#[CNode]39
+    %4 = $(↓BertFinetuneCell.8):DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%3, I64(1))    #(Undefined, Undefined) #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:93/        status, scaling_sens = self.start_overflow_check(loss, scaling_sens)/#scaling_sens
+    %5 = $(↓BertFinetuneCell.8):DoSignaturePrimitive::S-Prim-Partial{prim_type=1}[side_effect_propagate=I64(1)](DoSignaturePrimitive::S-Prim-grad_scale{prim_type=1}, %4)    #(Undefined, Undefined) #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:104/        grads = self.hyper_map(F.partial(grad_scale, scaling_sens), grads)/#[CNode]43
+    %6 = $(↓BertFinetuneCell.8):DoSignaturePrimitive::S-Prim-Cast{prim_type=1}[output_names=["output"], input_names=["x", "dst_type"]](%4, F32)    #(Undefined, Undefined) #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:101/                                                 self.cast(scaling_sens,/#[CNode]41
+    %7 = $(↓BertFinetuneCell.8):UnpackGraphPrimitive::UnpackGraph{prim_type=1}(FuncGraph::fg_2, %para637, %para638, %para639, %para640, %para641, %6)    #(Undefined, Tensor(I32)[8, 128], Tensor(I32)[8, 128], Tensor(I32)[8, 128], Tensor(I32)[8, 128], Tensor(I32)[8], Undefined)    # fg_2=BertNER.2 #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:96/        grads = self.grad(self.network, weights)(input_ids,/#grads
+    %8 = $(BertFinetuneCell.7):Primitive::MakeTuple{prim_type=1}(%para2, %para3, %para4, %para5, %para6, %para7, %para8, %para9, %para10, %para11, %para12, %para13, %para14, %para15, %para16, %para17, %para18, %para19, %para20, %para21, %para22, %para23, %para24, %para25, %para26, %para27, %para28, %para29, %para30, %para31, %para32, %para33, %para34, %para35, %para36, %para37, %para38, %para39, %para40, %para41, %para42, %para43, %para44, %para45, %para46, %para47, %para48, %para49, %para50, %para51, %para52, %para53, %para54, %para55, %para56, %para57, %para58, %para59, %para60, %para61, %para62, %para63, %para64, %para65, %para66, %para67, %para68, %para69, %para70, %para71, %para72, %para73, %para74, %para75, %para76, %para77, %para78, %para79, %para80, %para81, %para82, %para83, %para84, %para85, %para86, %para87, %para88, %para89, %para90, %para91, %para92, %para93, %para94, %para95, %para96, %para97, %para98, %para99, %para100, %para101, %para102, %para103, %para104, %para105, %para106, %para107, %para108, %para109, %para110, %para111, %para112, %para113, %para114, %para115, %para116, %para117, %para118, %para119, %para120, %para121, %para122, %para123, %para124, %para125, %para126, %para127, %para128, %para129, %para130, %para131, %para132, %para133, %para134, %para135, %para136, %para137, %para138, %para139, %para140, %para141, %para142, %para143, %para144, %para145, %para146, %para147, %para148, %para149, %para150, %para151, %para152, %para153, %para154, %para155, %para156, %para157, %para158, %para159, %para160, %para161, %para162, %para163, %para164, %para165, %para166, %para167, %para168, %para169, %para170, %para171, %para172, %para173, %para174, %para175, %para176, %para177, %para178, %para179, %para180, %para181, %para182, %para183, %para184, %para185, %para186, %para187, %para188, %para189, %para190, %para191, %para192, %para193, %para194, %para195, %para196, %para197, %para198, %para199, %para200, %para201, %para202, %para203, %para204, %para205, %para206, %para207, %para208, %para209, %para210, %para211)    #(Ref[Tensor(F32)][21128, 768], Ref[Tensor(F32)][2, 768], Ref[Tensor(F32)][512, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][3072, 768], Ref[Tensor(F32)][3072], Ref[Tensor(F32)][768, 3072], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][3072, 768], Ref[Tensor(F32)][3072], Ref[Tensor(F32)][768, 3072], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][3072, 768], Ref[Tensor(F32)][3072], Ref[Tensor(F32)][768, 3072], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][3072, 768], Ref[Tensor(F32)][3072], Ref[Tensor(F32)][768, 3072], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][3072, 768], Ref[Tensor(F32)][3072], Ref[Tensor(F32)][768, 3072], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][3072, 768], Ref[Tensor(F32)][3072], Ref[Tensor(F32)][768, 3072], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][3072, 768], Ref[Tensor(F32)][3072], Ref[Tensor(F32)][768, 3072], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][3072, 768], Ref[Tensor(F32)][3072], Ref[Tensor(F32)][768, 3072], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][3072, 768], Ref[Tensor(F32)][3072], Ref[Tensor(F32)][768, 3072], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][3072, 768], Ref[Tensor(F32)][3072], Ref[Tensor(F32)][768, 3072], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][3072, 768], Ref[Tensor(F32)][3072], Ref[Tensor(F32)][768, 3072], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][3072, 768], Ref[Tensor(F32)][3072], Ref[Tensor(F32)][768, 3072], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][768, 768], Ref[Tensor(F32)][768], Ref[Tensor(F32)][25, 768], Ref[Tensor(F32)][25], Ref[Tensor(F32)][1536, 768], Ref[Tensor(F32)][1536, 768], Ref[Tensor(F32)][1536, 384], Ref[Tensor(F32)][1536, 384], Ref[Tensor(F32)][1536], Ref[Tensor(F32)][1536], Ref[Tensor(F32)][1536], Ref[Tensor(F32)][1536], Ref[Tensor(F32)][25, 25]) #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:96/        grads = self.grad(self.network, weights)(input_ids,/#[CNode]42
+    %9 = $(↓BertFinetuneCell.8):DoSignaturePrimitive::S-Prim-grad{prim_type=1}(%7, %8)    #(Undefined, Undefined) #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:96/        grads = self.grad(self.network, weights)(input_ids,/#grads
+    %10 = $(↓BertFinetuneCell.8):%9(%para637, %para638, %para639, %para640, %para641, %6)    #(Tensor(I32)[8, 128], Tensor(I32)[8, 128], Tensor(I32)[8, 128], Tensor(I32)[8, 128], Tensor(I32)[8], Undefined) #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:96/        grads = self.grad(self.network, weights)(input_ids,/#grads
+    %11 = $(↓BertFinetuneCell.8):DoSignaturePrimitive::S-Prim-hyper_map{prim_type=1}(%5, %10)    #(Undefined, Undefined) #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:104/        grads = self.hyper_map(F.partial(grad_scale, scaling_sens), grads)/#grads
+    %12 = $(↓BertFinetuneCell.8):DoSignaturePrimitive::S-Prim-hyper_map{prim_type=1}(%1, %11)    #(Undefined, Undefined) #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:105/        grads = self.hyper_map(F.partial(clip_grad, GRADIENT_CLIP_TYPE, GRADIENT_CLIP_VALUE), grads)/#grads
+    Primitive::Return{prim_type=1}(%12)    #(Undefined) #scope: Default/network-BertFinetuneCell
+      # In file /home/songjh/bert_1.9/src/bert_for_finetune.py:107/        if self.reducer_flag:/#[CNode]45
+}
+# order:
+#   1: @✗↓BertFinetuneCell.9:[CNode]45{[0]: ValueNode<Primitive> Return, [1]: grads}
+
+
+#===============================================================================
+# num of function graphs in stack: 6
