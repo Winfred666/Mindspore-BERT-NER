@@ -73,11 +73,11 @@ https://mindnlp.cqu.ai/supported_models/
 
 基础思路是训练三个模型，以在对话中抽取样本，三个模型都是基于 Bert ：
 
-1. 对话连贯分析，用于分割对话中的话题。使用的模型是 DuantiDCE，分析上下句是否连贯。
+1. 对话连贯分析，用于分割对话中的话题。使用的模型是 QuantiDCE，分析上下句是否连贯。
 
 注意此处的任务并非分析语义是否相似（语义相似数据集一半十分严格，不适合分析对话连贯性），而是分析句子之间是否可能有逻辑连贯性。
 
-由于 DuantiDCE 使用 pytorch ，转为 mindspore 框架时，Loss 部分代码编写有困难，因此保持在 pytorch 上进行中文语料的训练，最后转换模型权重 Checkpoint 为 mindspore 版本，以进行结果的预测。为了使用相同的配置， 单独安装 transformers 以使用 bert-base-uncased 或 bert-base-chinese 对应的 AutoTokenizer 。
+由于 QuantiDCE 使用 pytorch ，转为 mindspore 框架时，Loss 部分代码编写有困难，因此保持在 pytorch 上进行中文语料的训练，最后转换模型权重 Checkpoint 为 mindspore 版本，以进行结果的预测。为了使用相同的配置， 单独安装 transformers 以使用 bert-base-uncased 或 bert-base-chinese 对应的 AutoTokenizer 。
 
 > 根据输出信息，其实刚好够模型迁移：None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
 
@@ -112,7 +112,7 @@ R-BERT：https://github.com/monologg/R-BERT
 
 [中文语料库](https://github.com/codemayq/chinese-chatbot-corpus?tab=readme-ov-file) 中的数据集很全面，格式也很标准，但只有关于上下句的对话，适合训练 SQUAD，即聊天机器人，回答问题。 如果要作为评估对话连贯性的数据集，还需给每对问答打上连贯性分数。
 
-而[DuantiDCE 模型](https://github.com/James-Yip/QuantiDCE) 则完全适合这个任务，对于评价对话连贯性采用了更加细化的打分方法，只不过语言为英文。
+而[QuantiDCE 模型](https://github.com/James-Yip/QuantiDCE) 则完全适合这个任务，对于评价对话连贯性采用了更加细化的打分方法，只不过语言为英文。
 
 2. NER 模型数据集：
 
