@@ -1,0 +1,13 @@
+## 借助wxauto项目的可以通过电脑微信界面获取对话消息的程序
+
+one_test_ner_backend.py
+实现了从前端获取格式化文本，分解出其中的元素并标记位置
+
+one_test_quantiDCE_backend.py
+实现了从前端获取两段文本，比较之间的关联性并返回
+
+one_test_ner_txt_backend.py
+实现了从已有的对话文件（如：肖一鸣_chat_history.txt）中提取出对话，并对其进行ner文本元素识别，将得到的识别结果放在当前目录下的ner_results.json文件中
+
+getbywindows_backend.py
+实现了指定好友名字，获取跟其最近的对话内容并保存到txt文件中
