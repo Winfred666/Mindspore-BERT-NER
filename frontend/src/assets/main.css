@@ -1,0 +1,43 @@
+@import './base.css';
+
+/* Shared entity styles */
+.entity {
+    @apply px-2 py-1 rounded mx-1; /* padding and border-radius */
+
+}
+
+/* Person - Light Green */
+.entity-person {
+    background-color: #C8E6C9;
+    color: #2E7D32; /* Darker green for better contrast */
+}
+
+/* Location - Light Blue */
+.entity-location {
+    background-color: #B3E5FC;
+    color: #1565C0; /* Darker blue for readability */
+}
+
+/* Organization - Light Orange */
+.entity-organization {
+    background-color: #FFCC80;
+    color: #E65100; /* Darker orange for contrast */
+}
+
+/* Time - Light Lavender */
+.entity-time {
+    background-color: #E1BEE7;
+    color: #6A1B9A; /* Dark purple for readability */
+}
+
+/* Thing - Light Yellow */
+.entity-thing {
+    background-color: #FFF9C4;
+    color: #F57F17; /* Darker yellow-orange for visibility */
+}
+
+/* Metric - Light Blue */
+.entity-metric {
+    background-color: #BBDEFB;
+    color: #0D47A1; /* Dark blue for contrast */
+}

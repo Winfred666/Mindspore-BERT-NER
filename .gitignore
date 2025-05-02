@@ -6,8 +6,11 @@ data/mindrecord/*
 nohup.out
 
 ms_log/
+rank_0/
 akg_kernel_meta/
 *.log
+*.out
+*.onnx
 
 
 # Byte-compiled / optimized / DLL files
