@@ -1,584 +1,142 @@
 [
     {
         "id": 1,
-        "sender": "SYS",
-        "message": "2025年05月02日 14:40",
-        "entities": []
+        "sender": "Self",
+        "message": "[图片]",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 2,
-        "sender": "Self",
-        "message": "还有就是对话提取应该也可以搞出来",
-        "entities": []
+        "sender": "肖一鸣",
+        "message": "整挺好",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 3,
         "sender": "Self",
-        "message": "在电脑版微信上实现",
-        "entities": []
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 4,
-        "sender": "肖一鸣",
-        "message": "[[换行]{[换行]entity:\"organization\"[换行]range:[0,2][换行]},[换行]{[换行]...[换行]}]",
-        "entities": []
+        "sender": "SYS",
+        "message": "2025年05月02日 16:57",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 5,
         "sender": "Self",
-        "message": "差不多了解了",
-        "entities": []
+        "message": "肖sir",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 6,
-        "sender": "SYS",
-        "message": "2025年05月02日 14:54",
-        "entities": []
+        "sender": "Self",
+        "message": "刚刚有人打电话",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 7,
         "sender": "Self",
-        "message": "话说空格是必须的吗",
-        "entities": []
+        "message": "是千岛湖门票还是什么之类的",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 8,
-        "sender": "肖一鸣",
-        "message": "json 格式，空格是指？",
-        "entities": []
+        "sender": "Self",
+        "message": "你不会不小心帮我定了什么票吧[脸红]",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 9,
         "sender": "Self",
-        "message": "输入文本的",
-        "entities": []
+        "message": "test[换行]引用  的消息 : 感谢[强][强][换行]如果可以，在后端完成一些处理会更好，标明从第几个字符到第几个是什么形式，将一些 B O I （中间有 O）仍然识别为 B I I（只关注最后一个 I）",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 10,
-        "sender": "Self",
-        "message": "text的内容",
-        "entities": []
+        "sender": "SYS",
+        "message": "2025年05月02日 17:42",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 11,
-        "sender": "Self",
-        "message": "而且我们一开始的文本不应该是没有任何label的吗",
-        "entities": []
+        "sender": "肖一鸣",
+        "message": "我没有订票",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 12,
-        "sender": "肖一鸣",
-        "message": "对的，y 空格虽然也是 token，但你可以输入前删掉，我记得有处理脚本的",
-        "entities": []
+        "sender": "Self",
+        "message": "那奇怪了",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 13,
         "sender": "Self",
-        "message": "进行ner貌似强制要这个格式",
-        "entities": []
+        "message": "那没事，我自己查查看",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 14,
-        "sender": "Self",
-        "message": "我应该是要把没空格的文本变成有空格的",
-        "entities": []
+        "sender": "SYS",
+        "message": "2025年05月03日 11:47",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 15,
         "sender": "Self",
-        "message": "那它最开始是怎么ner的呢[换行]引用  的消息 : 而且我们一开始的文本不应该是没有任何label的吗",
-        "entities": []
+        "message": "肖老师，你们现在去哪里了",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 16,
-        "sender": "肖一鸣",
-        "message": "噢噢你说分割，那的确",
-        "entities": []
+        "sender": "SYS",
+        "message": "2025年05月03日 11:56",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 17,
         "sender": "肖一鸣",
-        "message": "那个是分割 token 的空格",
-        "entities": []
+        "message": "岳王庙",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 18,
         "sender": "Self",
-        "message": "[图片]",
-        "entities": []
+        "message": "OK，打算什么时候回学校呀",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 19,
-        "sender": "肖一鸣",
-        "message": "整挺好",
-        "entities": []
+        "sender": "SYS",
+        "message": "2025年05月03日 13:55",
+        "entities": [],
+        "related_messages": []
     },
     {
         "id": 20,
-        "sender": "Self",
-        "message": "[动画表情]",
-        "entities": []
-    },
-    {
-        "id": 21,
-        "sender": "SYS",
-        "message": "2025年05月02日 16:57",
-        "entities": []
-    },
-    {
-        "id": 22,
-        "sender": "Self",
-        "message": "肖sir",
-        "entities": []
-    },
-    {
-        "id": 23,
-        "sender": "Self",
-        "message": "刚刚有人打电话",
-        "entities": []
-    },
-    {
-        "id": 24,
-        "sender": "Self",
-        "message": "是千岛湖门票还是什么之类的",
-        "entities": []
-    },
-    {
-        "id": 25,
-        "sender": "Self",
-        "message": "你不会不小心帮我定了什么票吧[脸红]",
-        "entities": []
-    },
-    {
-        "id": 26,
-        "sender": "Self",
-        "message": "test[换行]引用  的消息 : 感谢[强][强][换行]如果可以，在后端完成一些处理会更好，标明从第几个字符到第几个是什么形式，将一些 B O I （中间有 O）仍然识别为 B I I（只关注最后一个 I）",
-        "entities": []
-    },
-    {
-        "id": 27,
-        "sender": "SYS",
-        "message": "2025年05月02日 17:42",
-        "entities": []
-    },
-    {
-        "id": 28,
-        "sender": "肖一鸣",
-        "message": "我没有订票",
-        "entities": []
-    },
-    {
-        "id": 29,
-        "sender": "Self",
-        "message": "那奇怪了",
-        "entities": []
-    },
-    {
-        "id": 30,
-        "sender": "Self",
-        "message": "那没事，我自己查查看",
-        "entities": []
-    },
-    {
-        "id": 31,
-        "sender": "SYS",
-        "message": "2025年05月03日 11:47",
-        "entities": []
-    },
-    {
-        "id": 32,
-        "sender": "Self",
-        "message": "肖老师，你们现在去哪里了",
-        "entities": []
-    },
-    {
-        "id": 33,
-        "sender": "SYS",
-        "message": "2025年05月03日 11:56",
-        "entities": []
-    },
-    {
-        "id": 34,
-        "sender": "肖一鸣",
-        "message": "岳王庙",
-        "entities": []
-    },
-    {
-        "id": 35,
-        "sender": "Self",
-        "message": "OK，打算什么时候回学校呀",
-        "entities": []
-    },
-    {
-        "id": 36,
-        "sender": "SYS",
-        "message": "2025年05月03日 13:55",
-        "entities": []
-    },
-    {
-        "id": 37,
         "sender": "肖一鸣",
         "message": "我们玩完晚上到玉泉可能",
-        "entities": []
-    },
-    {
-        "id": 38,
-        "sender": "Self",
-        "message": "[图片]",
-        "entities": []
-    },
-    {
-        "id": 39,
-        "sender": "肖一鸣",
-        "message": "整挺好",
-        "entities": []
-    },
-    {
-        "id": 40,
-        "sender": "Self",
-        "message": "[动画表情]",
-        "entities": []
-    },
-    {
-        "id": 41,
-        "sender": "SYS",
-        "message": "2025年05月02日 16:57",
-        "entities": []
-    },
-    {
-        "id": 42,
-        "sender": "Self",
-        "message": "肖sir",
-        "entities": []
-    },
-    {
-        "id": 43,
-        "sender": "Self",
-        "message": "刚刚有人打电话",
-        "entities": []
-    },
-    {
-        "id": 44,
-        "sender": "Self",
-        "message": "是千岛湖门票还是什么之类的",
-        "entities": []
-    },
-    {
-        "id": 45,
-        "sender": "Self",
-        "message": "你不会不小心帮我定了什么票吧[脸红]",
-        "entities": []
-    },
-    {
-        "id": 46,
-        "sender": "Self",
-        "message": "test[换行]引用  的消息 : 感谢[强][强][换行]如果可以，在后端完成一些处理会更好，标明从第几个字符到第几个是什么形式，将一些 B O I （中间有 O）仍然识别为 B I I（只关注最后一个 I）",
-        "entities": []
-    },
-    {
-        "id": 47,
-        "sender": "SYS",
-        "message": "2025年05月02日 17:42",
-        "entities": []
-    },
-    {
-        "id": 48,
-        "sender": "肖一鸣",
-        "message": "我没有订票",
-        "entities": []
-    },
-    {
-        "id": 49,
-        "sender": "Self",
-        "message": "那奇怪了",
-        "entities": []
-    },
-    {
-        "id": 50,
-        "sender": "Self",
-        "message": "那没事，我自己查查看",
-        "entities": []
-    },
-    {
-        "id": 51,
-        "sender": "SYS",
-        "message": "2025年05月03日 11:47",
-        "entities": []
-    },
-    {
-        "id": 52,
-        "sender": "Self",
-        "message": "肖老师，你们现在去哪里了",
-        "entities": []
-    },
-    {
-        "id": 53,
-        "sender": "SYS",
-        "message": "2025年05月03日 11:56",
-        "entities": []
-    },
-    {
-        "id": 54,
-        "sender": "肖一鸣",
-        "message": "岳王庙",
-        "entities": []
-    },
-    {
-        "id": 55,
-        "sender": "Self",
-        "message": "OK，打算什么时候回学校呀",
-        "entities": []
-    },
-    {
-        "id": 56,
-        "sender": "SYS",
-        "message": "2025年05月03日 13:55",
-        "entities": []
-    },
-    {
-        "id": 57,
-        "sender": "肖一鸣",
-        "message": "我们玩完晚上到玉泉可能",
-        "entities": []
-    },
-    {
-        "id": 58,
-        "sender": "Self",
-        "message": "[图片]",
-        "entities": []
-    },
-    {
-        "id": 59,
-        "sender": "肖一鸣",
-        "message": "整挺好",
-        "entities": []
-    },
-    {
-        "id": 60,
-        "sender": "Self",
-        "message": "[动画表情]",
-        "entities": []
-    },
-    {
-        "id": 61,
-        "sender": "SYS",
-        "message": "2025年05月02日 16:57",
-        "entities": []
-    },
-    {
-        "id": 62,
-        "sender": "Self",
-        "message": "肖sir",
-        "entities": []
-    },
-    {
-        "id": 63,
-        "sender": "Self",
-        "message": "刚刚有人打电话",
-        "entities": []
-    },
-    {
-        "id": 64,
-        "sender": "Self",
-        "message": "是千岛湖门票还是什么之类的",
-        "entities": []
-    },
-    {
-        "id": 65,
-        "sender": "Self",
-        "message": "你不会不小心帮我定了什么票吧[脸红]",
-        "entities": []
-    },
-    {
-        "id": 66,
-        "sender": "Self",
-        "message": "test[换行]引用  的消息 : 感谢[强][强][换行]如果可以，在后端完成一些处理会更好，标明从第几个字符到第几个是什么形式，将一些 B O I （中间有 O）仍然识别为 B I I（只关注最后一个 I）",
-        "entities": []
-    },
-    {
-        "id": 67,
-        "sender": "SYS",
-        "message": "2025年05月02日 17:42",
-        "entities": []
-    },
-    {
-        "id": 68,
-        "sender": "肖一鸣",
-        "message": "我没有订票",
-        "entities": []
-    },
-    {
-        "id": 69,
-        "sender": "Self",
-        "message": "那奇怪了",
-        "entities": []
-    },
-    {
-        "id": 70,
-        "sender": "Self",
-        "message": "那没事，我自己查查看",
-        "entities": []
-    },
-    {
-        "id": 71,
-        "sender": "SYS",
-        "message": "2025年05月03日 11:47",
-        "entities": []
-    },
-    {
-        "id": 72,
-        "sender": "Self",
-        "message": "肖老师，你们现在去哪里了",
-        "entities": []
-    },
-    {
-        "id": 73,
-        "sender": "SYS",
-        "message": "2025年05月03日 11:56",
-        "entities": []
-    },
-    {
-        "id": 74,
-        "sender": "肖一鸣",
-        "message": "岳王庙",
-        "entities": []
-    },
-    {
-        "id": 75,
-        "sender": "Self",
-        "message": "OK，打算什么时候回学校呀",
-        "entities": []
-    },
-    {
-        "id": 76,
-        "sender": "SYS",
-        "message": "2025年05月03日 13:55",
-        "entities": []
-    },
-    {
-        "id": 77,
-        "sender": "肖一鸣",
-        "message": "我们玩完晚上到玉泉可能",
-        "entities": []
-    },
-    {
-        "id": 78,
-        "sender": "Self",
-        "message": "[图片]",
-        "entities": []
-    },
-    {
-        "id": 79,
-        "sender": "肖一鸣",
-        "message": "整挺好",
-        "entities": []
-    },
-    {
-        "id": 80,
-        "sender": "Self",
-        "message": "[动画表情]",
-        "entities": []
-    },
-    {
-        "id": 81,
-        "sender": "SYS",
-        "message": "2025年05月02日 16:57",
-        "entities": []
-    },
-    {
-        "id": 82,
-        "sender": "Self",
-        "message": "肖sir",
-        "entities": []
-    },
-    {
-        "id": 83,
-        "sender": "Self",
-        "message": "刚刚有人打电话",
-        "entities": []
-    },
-    {
-        "id": 84,
-        "sender": "Self",
-        "message": "是千岛湖门票还是什么之类的",
-        "entities": []
-    },
-    {
-        "id": 85,
-        "sender": "Self",
-        "message": "你不会不小心帮我定了什么票吧[脸红]",
-        "entities": []
-    },
-    {
-        "id": 86,
-        "sender": "Self",
-        "message": "test[换行]引用  的消息 : 感谢[强][强][换行]如果可以，在后端完成一些处理会更好，标明从第几个字符到第几个是什么形式，将一些 B O I （中间有 O）仍然识别为 B I I（只关注最后一个 I）",
-        "entities": []
-    },
-    {
-        "id": 87,
-        "sender": "SYS",
-        "message": "2025年05月02日 17:42",
-        "entities": []
-    },
-    {
-        "id": 88,
-        "sender": "肖一鸣",
-        "message": "我没有订票",
-        "entities": []
-    },
-    {
-        "id": 89,
-        "sender": "Self",
-        "message": "那奇怪了",
-        "entities": []
-    },
-    {
-        "id": 90,
-        "sender": "Self",
-        "message": "那没事，我自己查查看",
-        "entities": []
-    },
-    {
-        "id": 91,
-        "sender": "SYS",
-        "message": "2025年05月03日 11:47",
-        "entities": []
-    },
-    {
-        "id": 92,
-        "sender": "Self",
-        "message": "肖老师，你们现在去哪里了",
-        "entities": []
-    },
-    {
-        "id": 93,
-        "sender": "SYS",
-        "message": "2025年05月03日 11:56",
-        "entities": []
-    },
-    {
-        "id": 94,
-        "sender": "肖一鸣",
-        "message": "岳王庙",
-        "entities": []
-    },
-    {
-        "id": 95,
-        "sender": "Self",
-        "message": "OK，打算什么时候回学校呀",
-        "entities": []
-    },
-    {
-        "id": 96,
-        "sender": "SYS",
-        "message": "2025年05月03日 13:55",
-        "entities": []
-    },
-    {
-        "id": 97,
-        "sender": "肖一鸣",
-        "message": "我们玩完晚上到玉泉可能",
-        "entities": []
+        "entities": [],
+        "related_messages": []
     }
 ]

@@ -180,7 +180,8 @@ def get_all_chats():
                     "id": len(chat_data) + len(new_chat_data) + 1,  # 为每条新消息生成一个唯一的id
                     "sender": sender,
                     "message": formatted_content,
-                    "entities": []
+                    "entities": [],
+                    "related_messages":[]
                 })
             
             # 将新消息添加到聊天数据中
