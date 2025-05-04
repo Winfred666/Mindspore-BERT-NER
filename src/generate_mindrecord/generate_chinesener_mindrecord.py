@@ -18,7 +18,7 @@ import os
 import codecs
 import pickle
 import numpy as np
-from mindspore.mindrecord import FileWriter
+# from mindspore.mindrecord import FileWriter
 
 # WARNING!!! if called by do_one_test, use src. else called by run_ner, delete src.
 import src.tokenization as tokenization
@@ -242,49 +242,49 @@ def convert_single_example(ex_index, example, label_list, max_seq_length, tokeni
     return feature
 
 
-def filed_based_convert_examples_to_features(
-        examples, label_list, max_seq_length, tokenizer, output_file, output_dir, mode=None):
-    """
-    convert examples to mindrecord format
-    """
-    # Add a column of real_seq_length, so that bi_lstm can be optimized !!
-    schema = {
-        "input_ids": {"type": "int32", "shape": [-1]},
-        "input_mask": {"type": "int32", "shape": [-1]},
-        "segment_ids": {"type": "int32", "shape": [-1]},
-        "label_ids": {"type": "int32", "shape": [-1]},
-        "real_seq_length":{"type": "int32", "shape":[1]}, # this is only one integer, but for standard type encapsulate it as a list.
-    }
+# def filed_based_convert_examples_to_features(
+#         examples, label_list, max_seq_length, tokenizer, output_file, output_dir, mode=None):
+#     """
+#     convert examples to mindrecord format
+#     """
+#     # Add a column of real_seq_length, so that bi_lstm can be optimized !!
+#     schema = {
+#         "input_ids": {"type": "int32", "shape": [-1]},
+#         "input_mask": {"type": "int32", "shape": [-1]},
+#         "segment_ids": {"type": "int32", "shape": [-1]},
+#         "label_ids": {"type": "int32", "shape": [-1]},
+#         "real_seq_length":{"type": "int32", "shape":[1]}, # this is only one integer, but for standard type encapsulate it as a list.
+#     }
     
-    writer = FileWriter(output_file, overwrite=True)
-    writer.add_schema(schema)
-    total_written = 0
+#     writer = FileWriter(output_file, overwrite=True)
+#     writer.add_schema(schema)
+#     total_written = 0
 
-    for (ex_index, example) in enumerate(examples):
-        all_data = []
-        # this is the REAL entry for convert raw_dataset into mindrecord. also call by do_one_test.py
+#     for (ex_index, example) in enumerate(examples):
+#         all_data = []
+#         # this is the REAL entry for convert raw_dataset into mindrecord. also call by do_one_test.py
         
-        feature = convert_single_example(ex_index, example, label_list, max_seq_length, tokenizer, output_dir, mode)
-        input_ids = np.array(feature.input_ids, dtype=np.int32)
-        input_mask = np.array(feature.input_mask, dtype=np.int32)
-        segment_ids = np.array(feature.segment_ids, dtype=np.int32)
-        label_ids = np.array(feature.label_ids, dtype=np.int32)
+#         feature = convert_single_example(ex_index, example, label_list, max_seq_length, tokenizer, output_dir, mode)
+#         input_ids = np.array(feature.input_ids, dtype=np.int32)
+#         input_mask = np.array(feature.input_mask, dtype=np.int32)
+#         segment_ids = np.array(feature.segment_ids, dtype=np.int32)
+#         label_ids = np.array(feature.label_ids, dtype=np.int32)
         
-        data = {'input_ids': input_ids,
-                "input_mask": input_mask,
-                "segment_ids": segment_ids,
-                "label_ids": label_ids,
-                "real_seq_length":np.array([len(example.text.split()) + 2],dtype=np.int32)
-        } # +2 is for <START> (no [CLR] [SEP]) <END>.
-        # print(len(example.text.split()) + 2)
+#         data = {'input_ids': input_ids,
+#                 "input_mask": input_mask,
+#                 "segment_ids": segment_ids,
+#                 "label_ids": label_ids,
+#                 "real_seq_length":np.array([len(example.text.split()) + 2],dtype=np.int32)
+#         } # +2 is for <START> (no [CLR] [SEP]) <END>.
+#         # print(len(example.text.split()) + 2)
 
-        all_data.append(data)
-        if all_data:
-            writer.write_raw_data(all_data)
-            total_written += 1
-    writer.commit()
-    # this is the final part.
-    print("Total instances is: ", total_written, flush=True)
+#         all_data.append(data)
+#         if all_data:
+#             writer.write_raw_data(all_data)
+#             total_written += 1
+#     writer.commit()
+#     # this is the final part.
+#     print("Total instances is: ", total_written, flush=True)
 
 def main(args):
     # check output dir exists
