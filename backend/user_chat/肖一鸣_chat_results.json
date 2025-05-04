@@ -138,5 +138,117 @@
         "message": "我们玩完晚上到玉泉可能",
         "entities": [],
         "related_messages": []
+    },
+    {
+        "id": 21,
+        "sender": "肖一鸣",
+        "message": "淦我觉得你让 AI 生成一点简单的对话就好，不要把我们这种高难度且泄名的对话传上去（）",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 22,
+        "sender": "Self",
+        "message": "sorry，我只是暂时用的",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 23,
+        "sender": "Self",
+        "message": "到时候展示肯定自己编",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 24,
+        "sender": "Self",
+        "message": "不然效果也不好",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 25,
+        "sender": "SYS",
+        "message": "2025年05月04日 20:28",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 26,
+        "sender": "肖一鸣",
+        "message": "后端怎么启动（并且同时启动两个模型的服务），可能我需要 readme 指引",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 27,
+        "sender": "Self",
+        "message": "Server的那个在服务器上",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 28,
+        "sender": "Self",
+        "message": "我调整一下",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 29,
+        "sender": "肖一鸣",
+        "message": "本地可以部署吗，我想方便开发（也方便直接演示）",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 30,
+        "sender": "肖一鸣",
+        "message": "语音通话 对方已取消",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 31,
+        "sender": "肖一鸣",
+        "message": "诶sorry 不小心点到了",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 32,
+        "sender": "肖一鸣",
+        "message": "你现在方便吗，要不打个电话协同下，",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 33,
+        "sender": "Self",
+        "message": "可以",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 34,
+        "sender": "肖一鸣",
+        "message": "语音通话 已在其它设备接听",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 35,
+        "sender": "SYS",
+        "message": "2025年05月04日 20:42",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 36,
+        "sender": "肖一鸣",
+        "message": "肖一鸣 邀请您参加腾讯会议[换行]会议主题：肖一鸣的快速会议[换行]会议时间：2025/05/04 20:42-21:42 (GMT+08:00) 中国标准时间 - 北京[换行][换行]点击链接直接加入会议：[换行]https://meeting.tencent.com/dm/nio7w7ozLFC3[换行][换行]#腾讯会议：195-437-595[换行][换行]复制该信息，打开手机腾讯会议即可参与",
+        "entities": [],
+        "related_messages": []
     }
 ]
