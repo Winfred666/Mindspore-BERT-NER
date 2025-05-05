@@ -1,0 +1,183 @@
+[
+    {
+        "id": 1,
+        "sender": "SYS",
+        "message": "2025年05月04日 23:51",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 2,
+        "sender": "肖一鸣",
+        "message": "[文件]",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 3,
+        "sender": "肖一鸣",
+        "message": "如果你想要原来那版的话",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 4,
+        "sender": "Self",
+        "message": "ok多谢了",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 5,
+        "sender": "肖一鸣",
+        "message": "不过你先前改起来困难，可能和我代码写得随意有关hh",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 6,
+        "sender": "SYS",
+        "message": "2025年05月05日 0:40",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 7,
+        "sender": "Self",
+        "message": "那个DCE的模型也可以换成onnx吗",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 8,
+        "sender": "Self",
+        "message": "它的onnx文件是哪一个",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 9,
+        "sender": "SYS",
+        "message": "2025年05月05日 0:49",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 10,
+        "sender": "Self",
+        "message": "ner的改好了",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 11,
+        "sender": "SYS",
+        "message": "2025年05月05日 2:34",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 12,
+        "sender": "Self",
+        "message": "成功在Windows环境推理了",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 13,
+        "sender": "Self",
+        "message": "现在就是不知道DCE的onnx文件在哪里",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 14,
+        "sender": "SYS",
+        "message": "2025年05月05日 4:07",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 15,
+        "sender": "Self",
+        "message": "docker好像有网络问题诶",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 16,
+        "sender": "SYS",
+        "message": "2025年05月05日 4:39",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 17,
+        "sender": "Self",
+        "message": "[图片]",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 18,
+        "sender": "Self",
+        "message": "容器化好像可以了",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 19,
+        "sender": "Self",
+        "message": "不过这个docker的网络我还是没搞明白",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 20,
+        "sender": "Self",
+        "message": "不过应该不影响部署后",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 21,
+        "sender": "SYS",
+        "message": "2025年05月05日 9:18",
+        "is_quotation": false,
+        "related_messages": [],
+        "referenced_message": null
+    },
+    {
+        "id": 22,
+        "sender": "肖一鸣",
+        "message": "data/songjh/ONNX/",
+        "is_quotation": true,
+        "related_messages": [
+            {
+                "id": 8,
+                "score": 1.0
+            }
+        ],
+        "referenced_message": "它的onnx文件是哪一个"
+    }
+]

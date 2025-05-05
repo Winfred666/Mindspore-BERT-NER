@@ -188,7 +188,7 @@ class BertNERModel(nn.Cell):
                 
         if with_lstm:
             self.lstm_hidden_size = config.hidden_size // 2
-            self.lstm = nn.LSTM(config.hidden_size, self.lstm_hidden_size, has_bias=True,
+            self.lstm = nn.LSTM(config.hidden_size, self.lstm_hidden_size, 1, has_bias=True,
              batch_first=True, bidirectional=True)
         
         self.dropout = nn.Dropout(1 - dropout_prob)
@@ -202,8 +202,7 @@ class BertNERModel(nn.Cell):
         # however the padding token is not recommanded to use, 
         # so need to explicit specify the actual length of sequence, 
         # so that Bi-LSTM will not gather state from empty list when doing back to forth
-        
-        # self.seq_length = ms.Tensor(self.seq_length,ms.int64)
+        # self.seq_length = ms.Tensor(config.seq_length,ms.int64)
 
     def construct(self, input_ids, input_mask, token_type_id, real_seq_length):
         """Return the final logits as the results of log_softmax."""
@@ -211,16 +210,15 @@ class BertNERModel(nn.Cell):
         seq = self.dropout(sequence_output)
 
         if self.with_lstm:
-            batch_size = input_ids.shape[0]
+            # batch_size = input_ids.shape[0]
             data_type = self.dtype
             hidden_size = self.lstm_hidden_size
             # 2 is for bidirectional.
             # provide h0 and c0 at both end, which is by default zero.
-            h0 = P.Zeros()((2, batch_size, hidden_size), data_type)
-            c0 = P.Zeros()((2, batch_size, hidden_size), data_type)
-            
+            h0 = P.Zeros()((2, 1, hidden_size), data_type)
+            c0 = P.Zeros()((2, 1, hidden_size), data_type)
             # here the seq:[batch_size , max_seq_length , embedding_hidden_dim]
-            seq, _ = self.lstm(seq, (h0,c0) , seq_length = real_seq_length)
+            seq, _ = self.lstm(seq, (h0,c0))
         
         seq = self.reshape(seq, self.shape)
         logits = self.dense_1(seq)

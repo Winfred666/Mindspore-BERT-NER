@@ -11,7 +11,7 @@ akg_kernel_meta/
 *.log
 *.out
 *.onnx
-
+*.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

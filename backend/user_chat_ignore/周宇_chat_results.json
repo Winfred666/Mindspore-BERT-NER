@@ -1,0 +1,1151 @@
+[
+    {
+        "id": 1,
+        "sender": "Self",
+        "message": "原味乐事，让我吃50%回扣就行，小黄车自己找",
+        "entities": []
+    },
+    {
+        "id": 2,
+        "sender": "周宇",
+        "message": "唧唧",
+        "entities": []
+    },
+    {
+        "id": 3,
+        "sender": "周宇",
+        "message": "ㄐㄧˉㄐㄧˉ",
+        "entities": []
+    },
+    {
+        "id": 4,
+        "sender": "SYS",
+        "message": "2025年05月02日 22:17",
+        "entities": []
+    },
+    {
+        "id": 5,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 6,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 7,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 8,
+        "sender": "SYS",
+        "message": "2025年05月02日 23:26",
+        "entities": []
+    },
+    {
+        "id": 9,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 10,
+        "sender": "SYS",
+        "message": "2025年05月03日 12:02",
+        "entities": []
+    },
+    {
+        "id": 11,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 12,
+        "sender": "SYS",
+        "message": "2025年05月03日 15:35",
+        "entities": []
+    },
+    {
+        "id": 13,
+        "sender": "Self",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 14,
+        "sender": "Self",
+        "message": "原味乐事，让我吃50%回扣就行，小黄车自己找",
+        "entities": []
+    },
+    {
+        "id": 15,
+        "sender": "周宇",
+        "message": "唧唧",
+        "entities": []
+    },
+    {
+        "id": 16,
+        "sender": "周宇",
+        "message": "ㄐㄧˉㄐㄧˉ",
+        "entities": []
+    },
+    {
+        "id": 17,
+        "sender": "SYS",
+        "message": "2025年05月02日 22:17",
+        "entities": []
+    },
+    {
+        "id": 18,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 19,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 20,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 21,
+        "sender": "SYS",
+        "message": "2025年05月02日 23:26",
+        "entities": []
+    },
+    {
+        "id": 22,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 23,
+        "sender": "SYS",
+        "message": "2025年05月03日 12:02",
+        "entities": []
+    },
+    {
+        "id": 24,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 25,
+        "sender": "SYS",
+        "message": "2025年05月03日 15:35",
+        "entities": []
+    },
+    {
+        "id": 26,
+        "sender": "Self",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 27,
+        "sender": "Self",
+        "message": "原味乐事，让我吃50%回扣就行，小黄车自己找",
+        "entities": []
+    },
+    {
+        "id": 28,
+        "sender": "周宇",
+        "message": "唧唧",
+        "entities": []
+    },
+    {
+        "id": 29,
+        "sender": "周宇",
+        "message": "ㄐㄧˉㄐㄧˉ",
+        "entities": []
+    },
+    {
+        "id": 30,
+        "sender": "SYS",
+        "message": "2025年05月02日 22:17",
+        "entities": []
+    },
+    {
+        "id": 31,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 32,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 33,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 34,
+        "sender": "SYS",
+        "message": "2025年05月02日 23:26",
+        "entities": []
+    },
+    {
+        "id": 35,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 36,
+        "sender": "SYS",
+        "message": "2025年05月03日 12:02",
+        "entities": []
+    },
+    {
+        "id": 37,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 38,
+        "sender": "SYS",
+        "message": "2025年05月03日 15:35",
+        "entities": []
+    },
+    {
+        "id": 39,
+        "sender": "Self",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 40,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 41,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 42,
+        "sender": "SYS",
+        "message": "2025年05月02日 23:26",
+        "entities": []
+    },
+    {
+        "id": 43,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 44,
+        "sender": "SYS",
+        "message": "2025年05月03日 12:02",
+        "entities": []
+    },
+    {
+        "id": 45,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 46,
+        "sender": "SYS",
+        "message": "2025年05月03日 15:35",
+        "entities": []
+    },
+    {
+        "id": 47,
+        "sender": "Self",
+        "message": "[动画表情]",
+        "entities": []
+    },
+    {
+        "id": 48,
+        "sender": "SYS",
+        "message": "2025年05月03日 16:44",
+        "entities": []
+    },
+    {
+        "id": 49,
+        "sender": "周宇",
+        "message": "想要了",
+        "entities": []
+    },
+    {
+        "id": 50,
+        "sender": "周宇",
+        "message": "疯了",
+        "entities": []
+    },
+    {
+        "id": 51,
+        "sender": "周宇",
+        "message": "太废物了这两天",
+        "entities": []
+    },
+    {
+        "id": 52,
+        "sender": "周宇",
+        "message": "口半天",
+        "entities": []
+    },
+    {
+        "id": 53,
+        "sender": "SYS",
+        "message": "2025年05月03日 17:15",
+        "entities": []
+    },
+    {
+        "id": 54,
+        "sender": "Self",
+        "message": "怎么回事",
+        "entities": []
+    },
+    {
+        "id": 55,
+        "sender": "Self",
+        "message": "又口了",
+        "entities": []
+    },
+    {
+        "id": 56,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 57,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 58,
+        "sender": "SYS",
+        "message": "2025年05月02日 23:26",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 59,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 60,
+        "sender": "SYS",
+        "message": "2025年05月03日 12:02",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 61,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 62,
+        "sender": "SYS",
+        "message": "2025年05月03日 15:35",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 63,
+        "sender": "Self",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 64,
+        "sender": "SYS",
+        "message": "2025年05月03日 16:44",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 65,
+        "sender": "周宇",
+        "message": "想要了",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 66,
+        "sender": "周宇",
+        "message": "疯了",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 67,
+        "sender": "周宇",
+        "message": "太废物了这两天",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 68,
+        "sender": "周宇",
+        "message": "口半天",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 69,
+        "sender": "SYS",
+        "message": "2025年05月03日 17:15",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 70,
+        "sender": "Self",
+        "message": "怎么回事",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 71,
+        "sender": "Self",
+        "message": "又口了",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 72,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 73,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 74,
+        "sender": "SYS",
+        "message": "2025年05月02日 23:26",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 75,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 76,
+        "sender": "SYS",
+        "message": "2025年05月03日 12:02",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 77,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 78,
+        "sender": "SYS",
+        "message": "2025年05月03日 15:35",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 79,
+        "sender": "Self",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 80,
+        "sender": "SYS",
+        "message": "2025年05月03日 16:44",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 81,
+        "sender": "周宇",
+        "message": "想要了",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 82,
+        "sender": "周宇",
+        "message": "疯了",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 83,
+        "sender": "周宇",
+        "message": "太废物了这两天",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 84,
+        "sender": "周宇",
+        "message": "口半天",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 85,
+        "sender": "SYS",
+        "message": "2025年05月03日 17:15",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 86,
+        "sender": "Self",
+        "message": "怎么回事",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 87,
+        "sender": "Self",
+        "message": "又口了",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 88,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 89,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 90,
+        "sender": "SYS",
+        "message": "2025年05月02日 23:26",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 91,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 92,
+        "sender": "SYS",
+        "message": "2025年05月03日 12:02",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 93,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 94,
+        "sender": "SYS",
+        "message": "2025年05月03日 15:35",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 95,
+        "sender": "Self",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 96,
+        "sender": "SYS",
+        "message": "2025年05月03日 16:44",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 97,
+        "sender": "周宇",
+        "message": "想要了",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 98,
+        "sender": "周宇",
+        "message": "疯了",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 99,
+        "sender": "周宇",
+        "message": "太废物了这两天",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 100,
+        "sender": "周宇",
+        "message": "口半天",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 101,
+        "sender": "SYS",
+        "message": "2025年05月03日 17:15",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 102,
+        "sender": "Self",
+        "message": "怎么回事",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 103,
+        "sender": "Self",
+        "message": "又口了",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 104,
+        "sender": "SYS",
+        "message": "2025年05月03日 22:54",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 105,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 106,
+        "sender": "SYS",
+        "message": "2025年05月03日 23:02",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 107,
+        "sender": "周宇",
+        "message": "人呢",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 108,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 109,
+        "sender": "SYS",
+        "message": "2025年05月03日 23:33",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 110,
+        "sender": "Self",
+        "message": "赶ddl去了",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 111,
+        "sender": "Self",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 112,
+        "sender": "周宇",
+        "message": "你这样显得我很fw",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 113,
+        "sender": "Self",
+        "message": "我才是飞舞",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 114,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 115,
+        "sender": "Self",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 116,
+        "sender": "SYS",
+        "message": "2025年05月04日 10:05",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 117,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 118,
+        "sender": "SYS",
+        "message": "2025年05月05日 8:12",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 119,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 120,
+        "sender": "周宇",
+        "message": "？",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 121,
+        "sender": "周宇",
+        "message": "你干的吗",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 122,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 123,
+        "sender": "Self",
+        "message": "抱歉，不小心抽了[衰]",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 124,
+        "sender": "周宇",
+        "message": "怎么五点不睡",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 125,
+        "sender": "周宇",
+        "message": "不好喵",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 126,
+        "sender": "周宇",
+        "message": "抽就抽了",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 127,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 128,
+        "sender": "周宇",
+        "message": "卷啥呢",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 129,
+        "sender": "SYS",
+        "message": "2025年05月05日 8:23",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 130,
+        "sender": "周宇",
+        "message": "[动画表情]",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 131,
+        "sender": "Self",
+        "message": "ddl",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 132,
+        "sender": "Self",
+        "message": "[动画表情]",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 133,
+        "sender": "Self",
+        "message": "睡了睡了",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 134,
+        "sender": "SYS",
+        "message": "2025年05月04日 23:12",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 135,
+        "sender": "肖一鸣",
+        "message": "并且比较快",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 136,
+        "sender": "Self",
+        "message": "原来那个版本的one_test_ner还在吗",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 137,
+        "sender": "肖一鸣",
+        "message": "原来的你可以回溯，但没必要",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 138,
+        "sender": "肖一鸣",
+        "message": "用 git checkout commit[换行]引用  的消息 : 原来的你可以回溯，但没必要",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 139,
+        "sender": "Self",
+        "message": "但是src里面还有一些东西跟mindspore有关[换行]引用  的消息 : 完全不依赖 mindspore 了",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 140,
+        "sender": "Self",
+        "message": "我在把src里面要用的东西搬出来的时候遇到了上面那个问题",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 141,
+        "sender": "肖一鸣",
+        "message": "你先参考一下现在的 one_test_ner[换行]引用  的消息 : 现在的 one_test_ner （服务器上的）",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 142,
+        "sender": "Self",
+        "message": "ok",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 143,
+        "sender": "SYS",
+        "message": "2025年05月04日 23:22",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 144,
+        "sender": "Self",
+        "message": "哦可以可以，不用了",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 145,
+        "sender": "Self",
+        "message": "from src.bert_for_finetune import BertNER",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 146,
+        "sender": "Self",
+        "message": "是这里开始的",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 147,
+        "sender": "Self",
+        "message": "你改完的版本没有了",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 148,
+        "sender": "SYS",
+        "message": "\"肖一鸣\" 撤回了一条消息",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 149,
+        "sender": "肖一鸣",
+        "message": "行，那你现在应该方便容器化了，记得ONNX/chineseNER.onnx 换成最新的，然后函数集中起来写个后端（现在one_test_ner仍然引用 mindspore 是因为模块化加载 __init__.py），我重新导出了带有 lstm 的一版，之前那版有误[换行]引用  的消息 : 你先参考一下现在的 one_test_ner",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 150,
+        "sender": "肖一鸣",
+        "message": "诶你明天容器化完了记得把 没用的文件夹/敏感数据json 从仓库中删掉，可用一个 dockerfile 构建起来（先不用 cudnn）",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 151,
+        "sender": "SYS",
+        "message": "2025年05月04日 23:51",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 152,
+        "sender": "肖一鸣",
+        "message": "[文件]",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 153,
+        "sender": "肖一鸣",
+        "message": "如果你想要原来那版的话",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 154,
+        "sender": "Self",
+        "message": "ok多谢了",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 155,
+        "sender": "肖一鸣",
+        "message": "不过你先前改起来困难，可能和我代码写得随意有关hh",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 156,
+        "sender": "SYS",
+        "message": "2025年05月05日 0:40",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 157,
+        "sender": "Self",
+        "message": "那个DCE的模型也可以换成onnx吗",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 158,
+        "sender": "Self",
+        "message": "它的onnx文件是哪一个",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 159,
+        "sender": "SYS",
+        "message": "2025年05月05日 0:49",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 160,
+        "sender": "Self",
+        "message": "ner的改好了",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 161,
+        "sender": "SYS",
+        "message": "2025年05月05日 2:34",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 162,
+        "sender": "Self",
+        "message": "成功在Windows环境推理了",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 163,
+        "sender": "Self",
+        "message": "现在就是不知道DCE的onnx文件在哪里",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 164,
+        "sender": "SYS",
+        "message": "2025年05月05日 4:07",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 165,
+        "sender": "Self",
+        "message": "docker好像有网络问题诶",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 166,
+        "sender": "SYS",
+        "message": "2025年05月05日 4:39",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 167,
+        "sender": "Self",
+        "message": "[图片]",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 168,
+        "sender": "Self",
+        "message": "容器化好像可以了",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 169,
+        "sender": "Self",
+        "message": "不过这个docker的网络我还是没搞明白",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 170,
+        "sender": "Self",
+        "message": "不过应该不影响部署后",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 171,
+        "sender": "SYS",
+        "message": "2025年05月05日 9:18",
+        "is_quotation": false,
+        "related_messages": []
+    },
+    {
+        "id": 172,
+        "sender": "肖一鸣",
+        "message": "data/songjh/ONNX/[换行]引用  的消息 : 它的onnx文件是哪一个",
+        "is_quotation": false,
+        "related_messages": []
+    }
+]
