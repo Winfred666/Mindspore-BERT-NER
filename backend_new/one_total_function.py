@@ -1,4 +1,4 @@
-from wxauto import *
+# from wxauto import *
 import time
 from flask import Flask, request, jsonify
 import os
@@ -14,7 +14,8 @@ import onnxruntime
 import collections
 
 app = Flask(__name__)
-wx = WeChat()  # 在应用启动时初始化微信对象
+
+# wx = WeChat()  # 在应用启动时初始化微信对象
 
 # 获取当前脚本所在的目录
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -183,109 +184,109 @@ def delete_file():
     else:
         return jsonify({"result": "No files deleted. All chat files are up to date with specified chats list"})
 
-@app.route('/get_all_chats', methods=['POST'])
-def get_all_chats():
-    """获取所有指定对话窗口的消息"""
-    try:
-        # 加载已指定的对话窗口名称
-        specified_chats = load_specified_chats()
-        if not specified_chats:
-            return jsonify({"result": "No specified chats"}), 200
+# @app.route('/get_all_chats', methods=['POST'])
+# def get_all_chats():
+#     """获取所有指定对话窗口的消息"""
+#     try:
+#         # 加载已指定的对话窗口名称
+#         specified_chats = load_specified_chats()
+#         if not specified_chats:
+#             return jsonify({"result": "No specified chats"}), 200
         
-        # 遍历每个指定的对话窗口
-        for name in specified_chats:
-            # 确保微信客户端有该聊天窗口
-            if not wx.ChatWith(name):
-                print(f"Chat window '{name}' not found")
-                continue
+#         # 遍历每个指定的对话窗口
+#         for name in specified_chats:
+#             # 确保微信客户端有该聊天窗口
+#             if not wx.ChatWith(name):
+#                 print(f"Chat window '{name}' not found")
+#                 continue
             
-            # 获取所有消息
-            msgs = wx.GetAllMessage(
-                savepic=False,  # 保存图片
-                savefile=False,  # 保存文件
-                savevoice=True   # 保存语音转文字内容
-            )
+#             # 获取所有消息
+#             msgs = wx.GetAllMessage(
+#                 savepic=False,  # 保存图片
+#                 savefile=False,  # 保存文件
+#                 savevoice=True   # 保存语音转文字内容
+#             )
             
-            # 准备文件路径
-            user_chat_path = os.path.join(current_dir, user_chat_dir.lstrip("/"))  # 确保路径正确
-            if not os.path.exists(user_chat_path):
-                os.makedirs(user_chat_path)
-            file_path = os.path.join(user_chat_path, f"{name}_chat_results.json")
+#             # 准备文件路径
+#             user_chat_path = os.path.join(current_dir, user_chat_dir.lstrip("/"))  # 确保路径正确
+#             if not os.path.exists(user_chat_path):
+#                 os.makedirs(user_chat_path)
+#             file_path = os.path.join(user_chat_path, f"{name}_chat_results.json")
             
-            # 加载现有聊天数据
-            chat_data = load_chat_data(file_path)
+#             # 加载现有聊天数据
+#             chat_data = load_chat_data(file_path)
             
-            # 比对新消息与现有消息的最后3条
-            if len(chat_data) >= 3:
-                existing_last_3 = [msg['message'] for msg in chat_data[-3:]]
+#             # 比对新消息与现有消息的最后3条
+#             if len(chat_data) >= 3:
+#                 existing_last_3 = [msg['message'] for msg in chat_data[-3:]]
                 
-                # 查找新消息中与现有最后3条相同的位置
-                for i in range(len(msgs) - 2):
-                    new_3 = [format_message(msg[1])[0] for msg in msgs[i:i+3]]
-                    if new_3 == existing_last_3:
-                        # 只保留新消息中从i+3开始的部分
-                        msgs = msgs[i+3:]
-                        break
+#                 # 查找新消息中与现有最后3条相同的位置
+#                 for i in range(len(msgs) - 2):
+#                     new_3 = [format_message(msg[1])[0] for msg in msgs[i:i+3]]
+#                     if new_3 == existing_last_3:
+#                         # 只保留新消息中从i+3开始的部分
+#                         msgs = msgs[i+3:]
+#                         break
             
-            # 处理新消息并追加到聊天数据中
-            new_chat_data = []
-            for msg in msgs:
-                sender = msg[0]
-                content = msg[1]
-                formatted_content, is_quotation, referenced_message = format_message(content)
+#             # 处理新消息并追加到聊天数据中
+#             new_chat_data = []
+#             for msg in msgs:
+#                 sender = msg[0]
+#                 content = msg[1]
+#                 formatted_content, is_quotation, referenced_message = format_message(content)
                 
-                # 如果是系统消息，尝试提取并格式化时间
-                if sender == 'SYS':
-                    # 尝试匹配时间格式
-                    time_match = re.search(r'(\d{4}年\d{1,2}月\d{1,2}日 \d{1,2}:\d{2})|'
-                                           r'(星期[一二三四五六天日] \d{1,2}:\d{2})|'
-                                           r'(昨天 \d{1,2}:\d{2})|'
-                                           r'(\d{1,2}:\d{2})', formatted_content)
-                    if time_match:
-                        # 提取时间部分并格式化
-                        time_str = time_match.group(0)
-                        formatted_time = format_time(time_str)
+#                 # 如果是系统消息，尝试提取并格式化时间
+#                 if sender == 'SYS':
+#                     # 尝试匹配时间格式
+#                     time_match = re.search(r'(\d{4}年\d{1,2}月\d{1,2}日 \d{1,2}:\d{2})|'
+#                                            r'(星期[一二三四五六天日] \d{1,2}:\d{2})|'
+#                                            r'(昨天 \d{1,2}:\d{2})|'
+#                                            r'(\d{1,2}:\d{2})', formatted_content)
+#                     if time_match:
+#                         # 提取时间部分并格式化
+#                         time_str = time_match.group(0)
+#                         formatted_time = format_time(time_str)
                         
-                        # 替换原消息中的时间部分
-                        formatted_content = re.sub(r'(\d{4}年\d{1,2}月\d{1,2}日 \d{1,2}:\d{2})|'
-                                                   r'(星期[一二三四五六天日] \d{1,2}:\d{2})|'
-                                                   r'(昨天 \d{1,2}:\d{2})|'
-                                                   r'(\d{1,2}:\d{2})', formatted_time, formatted_content)
+#                         # 替换原消息中的时间部分
+#                         formatted_content = re.sub(r'(\d{4}年\d{1,2}月\d{1,2}日 \d{1,2}:\d{2})|'
+#                                                    r'(星期[一二三四五六天日] \d{1,2}:\d{2})|'
+#                                                    r'(昨天 \d{1,2}:\d{2})|'
+#                                                    r'(\d{1,2}:\d{2})', formatted_time, formatted_content)
                 
-                new_chat_data.append({
-                    "id": len(chat_data) + len(new_chat_data) + 1,  # 为每条新消息生成一个唯一的id
-                    "sender": sender,
-                    "message": formatted_content,
-                    "entities": [],
-                    "is_quotation": is_quotation,  # 添加引用标记
-                    "related_messages": [],
-                    "referenced_message": referenced_message if is_quotation else None
-                })
+#                 new_chat_data.append({
+#                     "id": len(chat_data) + len(new_chat_data) + 1,  # 为每条新消息生成一个唯一的id
+#                     "sender": sender,
+#                     "message": formatted_content,
+#                     "entities": [],
+#                     "is_quotation": is_quotation,  # 添加引用标记
+#                     "related_messages": [],
+#                     "referenced_message": referenced_message if is_quotation else None
+#                 })
             
-            # 将新消息添加到聊天数据中
-            chat_data.extend(new_chat_data)
+#             # 将新消息添加到聊天数据中
+#             chat_data.extend(new_chat_data)
             
-            # 处理引用消息的 related_messages
-            for i, msg in enumerate(chat_data):
-                if msg.get("is_quotation", False):
-                    referenced_message = msg.get("referenced_message", "")
-                    if referenced_message:
-                        # 查找引用的消息
-                        for j, prev_msg in enumerate(chat_data[:i]):
-                            if prev_msg.get("message") == referenced_message:
-                                msg["related_messages"].append({
-                                    "id": prev_msg["id"],
-                                    "score": 1.0
-                                })
-                                break
+#             # 处理引用消息的 related_messages
+#             for i, msg in enumerate(chat_data):
+#                 if msg.get("is_quotation", False):
+#                     referenced_message = msg.get("referenced_message", "")
+#                     if referenced_message:
+#                         # 查找引用的消息
+#                         for j, prev_msg in enumerate(chat_data[:i]):
+#                             if prev_msg.get("message") == referenced_message:
+#                                 msg["related_messages"].append({
+#                                     "id": prev_msg["id"],
+#                                     "score": 1.0
+#                                 })
+#                                 break
             
-            # 保存聊天数据到文件
-            save_chat_data(file_path, chat_data)
+#             # 保存聊天数据到文件
+#             save_chat_data(file_path, chat_data)
         
-        return jsonify({"result": "All chats processed successfully"})
+#         return jsonify({"result": "All chats processed successfully"})
     
-    except Exception as e:
-        return jsonify({"error": f"Error processing chats: {str(e)}"}), 500
+#     except Exception as e:
+#         return jsonify({"error": f"Error processing chats: {str(e)}"}), 500
     
 
 
