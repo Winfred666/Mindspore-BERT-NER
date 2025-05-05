@@ -1,15 +1,23 @@
 [
     {
         "id": 1,
+<<<<<<< HEAD
         "sender": "SYS",
         "message": "2025年05月04日 23:51",
         "is_quotation": false,
         "related_messages": [],
         "referenced_message": null
+=======
+        "sender": "Self",
+        "message": "[图片]",
+        "entities": [],
+        "related_messages": []
+>>>>>>> 087df9b862dbec6ebcbadc80baa93b7dfe88a2a5
     },
     {
         "id": 2,
         "sender": "肖一鸣",
+<<<<<<< HEAD
         "message": "[文件]",
         "is_quotation": false,
         "related_messages": [],
@@ -46,18 +54,58 @@
         "is_quotation": false,
         "related_messages": [],
         "referenced_message": null
+=======
+        "message": "整挺好",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 3,
+        "sender": "Self",
+        "message": "[动画表情]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 4,
+        "sender": "SYS",
+        "message": "2025年05月02日 16:57",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 5,
+        "sender": "Self",
+        "message": "肖sir",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 6,
+        "sender": "Self",
+        "message": "刚刚有人打电话",
+        "entities": [],
+        "related_messages": []
+>>>>>>> 087df9b862dbec6ebcbadc80baa93b7dfe88a2a5
     },
     {
         "id": 7,
         "sender": "Self",
+<<<<<<< HEAD
         "message": "那个DCE的模型也可以换成onnx吗",
         "is_quotation": false,
         "related_messages": [],
         "referenced_message": null
+=======
+        "message": "是千岛湖门票还是什么之类的",
+        "entities": [],
+        "related_messages": []
+>>>>>>> 087df9b862dbec6ebcbadc80baa93b7dfe88a2a5
     },
     {
         "id": 8,
         "sender": "Self",
+<<<<<<< HEAD
         "message": "它的onnx文件是哪一个",
         "is_quotation": false,
         "related_messages": [],
@@ -86,42 +134,93 @@
         "is_quotation": false,
         "related_messages": [],
         "referenced_message": null
+=======
+        "message": "你不会不小心帮我定了什么票吧[脸红]",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 9,
+        "sender": "Self",
+        "message": "test[换行]引用  的消息 : 感谢[强][强][换行]如果可以，在后端完成一些处理会更好，标明从第几个字符到第几个是什么形式，将一些 B O I （中间有 O）仍然识别为 B I I（只关注最后一个 I）",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 10,
+        "sender": "SYS",
+        "message": "2025年05月02日 17:42",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 11,
+        "sender": "肖一鸣",
+        "message": "我没有订票",
+        "entities": [],
+        "related_messages": []
+>>>>>>> 087df9b862dbec6ebcbadc80baa93b7dfe88a2a5
     },
     {
         "id": 12,
         "sender": "Self",
+<<<<<<< HEAD
         "message": "成功在Windows环境推理了",
         "is_quotation": false,
         "related_messages": [],
         "referenced_message": null
+=======
+        "message": "那奇怪了",
+        "entities": [],
+        "related_messages": []
+>>>>>>> 087df9b862dbec6ebcbadc80baa93b7dfe88a2a5
     },
     {
         "id": 13,
         "sender": "Self",
+<<<<<<< HEAD
         "message": "现在就是不知道DCE的onnx文件在哪里",
         "is_quotation": false,
         "related_messages": [],
         "referenced_message": null
+=======
+        "message": "那没事，我自己查查看",
+        "entities": [],
+        "related_messages": []
+>>>>>>> 087df9b862dbec6ebcbadc80baa93b7dfe88a2a5
     },
     {
         "id": 14,
         "sender": "SYS",
+<<<<<<< HEAD
         "message": "2025年05月05日 4:07",
         "is_quotation": false,
         "related_messages": [],
         "referenced_message": null
+=======
+        "message": "2025年05月03日 11:47",
+        "entities": [],
+        "related_messages": []
+>>>>>>> 087df9b862dbec6ebcbadc80baa93b7dfe88a2a5
     },
     {
         "id": 15,
         "sender": "Self",
+<<<<<<< HEAD
         "message": "docker好像有网络问题诶",
         "is_quotation": false,
         "related_messages": [],
         "referenced_message": null
+=======
+        "message": "肖老师，你们现在去哪里了",
+        "entities": [],
+        "related_messages": []
+>>>>>>> 087df9b862dbec6ebcbadc80baa93b7dfe88a2a5
     },
     {
         "id": 16,
         "sender": "SYS",
+<<<<<<< HEAD
         "message": "2025年05月05日 4:39",
         "is_quotation": false,
         "related_messages": [],
@@ -134,10 +233,23 @@
         "is_quotation": false,
         "related_messages": [],
         "referenced_message": null
+=======
+        "message": "2025年05月03日 11:56",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 17,
+        "sender": "肖一鸣",
+        "message": "岳王庙",
+        "entities": [],
+        "related_messages": []
+>>>>>>> 087df9b862dbec6ebcbadc80baa93b7dfe88a2a5
     },
     {
         "id": 18,
         "sender": "Self",
+<<<<<<< HEAD
         "message": "容器化好像可以了",
         "is_quotation": false,
         "related_messages": [],
@@ -179,5 +291,136 @@
             }
         ],
         "referenced_message": "它的onnx文件是哪一个"
+=======
+        "message": "OK，打算什么时候回学校呀",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 19,
+        "sender": "SYS",
+        "message": "2025年05月03日 13:55",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 20,
+        "sender": "肖一鸣",
+        "message": "我们玩完晚上到玉泉可能",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 21,
+        "sender": "肖一鸣",
+        "message": "淦我觉得你让 AI 生成一点简单的对话就好，不要把我们这种高难度且泄名的对话传上去（）",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 22,
+        "sender": "Self",
+        "message": "sorry，我只是暂时用的",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 23,
+        "sender": "Self",
+        "message": "到时候展示肯定自己编",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 24,
+        "sender": "Self",
+        "message": "不然效果也不好",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 25,
+        "sender": "SYS",
+        "message": "2025年05月04日 20:28",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 26,
+        "sender": "肖一鸣",
+        "message": "后端怎么启动（并且同时启动两个模型的服务），可能我需要 readme 指引",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 27,
+        "sender": "Self",
+        "message": "Server的那个在服务器上",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 28,
+        "sender": "Self",
+        "message": "我调整一下",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 29,
+        "sender": "肖一鸣",
+        "message": "本地可以部署吗，我想方便开发（也方便直接演示）",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 30,
+        "sender": "肖一鸣",
+        "message": "语音通话 对方已取消",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 31,
+        "sender": "肖一鸣",
+        "message": "诶sorry 不小心点到了",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 32,
+        "sender": "肖一鸣",
+        "message": "你现在方便吗，要不打个电话协同下，",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 33,
+        "sender": "Self",
+        "message": "可以",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 34,
+        "sender": "肖一鸣",
+        "message": "语音通话 已在其它设备接听",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 35,
+        "sender": "SYS",
+        "message": "2025年05月04日 20:42",
+        "entities": [],
+        "related_messages": []
+    },
+    {
+        "id": 36,
+        "sender": "肖一鸣",
+        "message": "肖一鸣 邀请您参加腾讯会议[换行]会议主题：肖一鸣的快速会议[换行]会议时间：2025/05/04 20:42-21:42 (GMT+08:00) 中国标准时间 - 北京[换行][换行]点击链接直接加入会议：[换行]https://meeting.tencent.com/dm/nio7w7ozLFC3[换行][换行]#腾讯会议：195-437-595[换行][换行]复制该信息，打开手机腾讯会议即可参与",
+        "entities": [],
+        "related_messages": []
+>>>>>>> 087df9b862dbec6ebcbadc80baa93b7dfe88a2a5
     }
 ]

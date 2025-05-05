@@ -43,14 +43,28 @@ def vocab_to_dict_key_token(vocab_file):
     """Loads a vocab file into a dict, key is token."""
     vocab = collections.OrderedDict()
     index = 0
-    with open(vocab_file, "r") as reader:
-        while True:
-            token = convert_to_unicode(reader.readline())
-            if not token:
-                break
-            token = token.strip()
-            vocab[token] = index
-            index += 1
+    try:
+        with open(vocab_file, "r", encoding='utf-8') as reader:  # 指定utf-8编码
+            while True:
+                token = convert_to_unicode(reader.readline())
+                if not token:
+                    break
+                token = token.strip()
+                vocab[token] = index
+                index += 1
+    except UnicodeDecodeError:
+        print(f"无法使用utf-8编码解码文件: {vocab_file}")
+        try:
+            with open(vocab_file, "r", encoding='gb18030') as reader:  # 尝试gb18030编码
+                while True:
+                    token = convert_to_unicode(reader.readline())
+                    if not token:
+                        break
+                    token = token.strip()
+                    vocab[token] = index
+                    index += 1
+        except Exception as e:
+            print(f"读取文件时出错: {e}")
     return vocab
 
 
