@@ -1,4 +1,4 @@
-## Mindspore 1.9 BERT-LSTM-CRF 模型，NER实体识别任务 实践
+## Mindspore 1.9 BERT-LSTM-CRF 模型，NER 话题实体识别任务
 
 来自校企联合-NLP趣味项目
 
@@ -172,11 +172,22 @@ python one_test_ner.py
 
 由于 MINDIR 模型并不支持 CPU 部署，所以使用 ONNX。
 
-对于quantiDCE 模型，在 one_test_quantiDCE.py 中，已经自带了 导出为 ONNX 的 步骤。
+对于quantiDCE 模型，在 one_test_quantiDCE.py 中，已经自带了导出为 ONNX 的步骤。
 
 对于 ChineseNER 模型，运行下列命令输出 ONNX：
 
 ```bash
 bash scripts/export.sh
+```
+
+简易的基于 ONNX 的模型后端在 backend_new 文件夹中，可使用 docker 部署
+
+模型、token字典和 label_id 等数据文件可以通过：https://pan.quark.cn/s/48ffc7cc4b40#/list/share 下载
+
+将 dataneeded 文件夹放入 backend_new 文件夹，并构建镜像：
+
+```bash
+cd backend_new
+docker build -t mindspore_topicner:latest -f "./dockerfile" .
 ```
 
