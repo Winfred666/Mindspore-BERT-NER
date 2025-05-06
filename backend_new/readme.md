@@ -48,45 +48,77 @@ getbywindows_backend.py
     "result": "All chats processed successfully"
 }
 ```
-## POST /get_all_chats
+## POST /update_all_chats
 将specified_chats.json列表中所有名称对应的对话窗口更新并存储下来到user_chat文件夹
-保存的json文件：
+保存的单个json文件：
 ```
 [
-        {
-        "id": 20,
-        "sender": "Self",
-        "message": "不过应该不影响",
+    {
         "entities": [],
+        "id": 1,
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "message": "web 形式",
+        "referenced_message": null,
+        "related_after": [],
+        "related_before": [],
+        "sender": "肖一鸣",
+        "visible": true
     },
     {
-        "id": 21,
-        "sender": "SYS",
-        "message": "2025年05月05日 9:18",
         "entities": [],
+        "id": 2,
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
-    },
-    {
-        "id": 22,
-        "sender": "张三",
-        "message": "在这个位置",
-        "entities": [],
-        "is_quotation": true,
-        "related_messages": [
+        "message": "嗯。。说不定不冲突？",
+        "referenced_message": null,
+        "related_after": [
             {
-                "id": 8,
+                "id": 4,
                 "score": 1.0
             }
         ],
-        "referenced_message": "它的文件是哪一个"
+        "related_before": [],
+        "sender": "Self",
+        "visible": true
     }
 ]
 ```
+返回的后端消息“
+```
+[
+    {
+        "chat_data": [
+            (一个json文件的内容)
+        ],
+        "chat_name": "小明"
+    },
+    {
+        "chat_data": [
+            (第二个json的内容)
+        ],
+        "chat_name": "小红"
+    }
+]
+```
+## POST /get_chat_by_name
+发送一个对话窗口名称，返回一个对应json文件里的所有内容  
+发送消息：  
+```
+{
+  "name": "小明"
+}
+```
+返回消息：同/update_all_chats
+## POST /update_message_visibility
+发送名称、id和真假值，调整单段文本的可见性  
+发送消息：
+```
+{
+  "name": "小明",
+  "id": 2,
+  "visibility": false
+}
+```
+返回消息同/get_chat_by_name
 ## POST /delete_file
 根据specified_chats.json列表的更新删除已经从列表中被移除的名称对应的对话文件，和/get_all_chats 相反
 返回json消息：
@@ -166,39 +198,99 @@ getbywindows_backend.py
 ```
 [
     {
-        "id": 20,
+        "id": 14,
+        "sender": "肖一鸣",
+        "message": "那等你修好我再搞",
+        "entities": [],
+        "is_quotation": false,
+        "related_before": [],
+        "related_after": [],
+        "referenced_message": null,
+        "visible": true,
+        "topic_start": false,
+        "topic_quantity": 0,
+        "topic_Tightness": 0.0
+    },
+    {
+        "id": 15,
         "sender": "Self",
-        "message": "不过应该不影响部署后",
-        "entities": [
+        "message": "其实再加个端口获取所有json就行",
+        "entities": [],
+        "is_quotation": false,
+        "related_before": [
             {
-                "entity": "Time",
-                "range": [
-                    9,
-                    10
-                ]
+                "id": 11,
+                "score": 0.6478745937347412
+            },
+            {
+                "id": 10,
+                "score": 0.6008538603782654
+            },
+            {
+                "id": 4,
+                "score": 0.6010714769363403
+            },
+            {
+                "id": 1,
+                "score": 0.6109430193901062
             }
         ],
+        "related_after": [],
+        "referenced_message": null,
+        "visible": true,
+        "topic_start": false,
+        "topic_quantity": 0,
+        "topic_Tightness": 0.0
+    }
+]
+```
+## /analyze_topics
+分析所有消息，对于有后索引而没有前索引的消息，将其判定为一个话题的开始，设置其topic_start为真，并且在topic一栏记录其中该消息通过后索引关联到的消息以及后索引的后索引等等以此类推关联到的所有消息的总数topic_quantity，并且计算话题的紧密度topic_Tightness，紧密度的计算方式如下：
+假设判别关联性分数阈值为relatedscore，score(A,B)表示AB之间的关联性得分。那么一条分支链的紧密度为这条分支链开始端的score乘上后面所有分支的紧密度之和，到达链的最末端时紧密度为relatedscore。举例：假设目前话题的开始是A消息，只有A→B一条后索引链，那么topic_Tightness=score(A,B)*relatedscore。假设有A开始的topic有A→B，B→C，B→D，C→E，四条链，那么topic_Tightness=score(A,B)*(score(B,C)*score(C,E)*relatedscore+score(B,D)*relatedscore)
+保存回的json：
+```
+[
+    {
+        "id": 1,
+        "sender": "肖一鸣",
+        "message": "web 形式",
+        "entities": [],
         "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 15,
-                "score": 0.6482419967651367
-            },
-            {
-                "id": 18,
-                "score": 0.5906756520271301
-            },
-            {
-                "id": 19,
-                "score": 0.5752671360969543
-            },
+        "related_before": [],
+        "related_after": [
             {
                 "id": 5,
-                "score": 0.5286100506782532
+                "score": 0.7194541692733765
+            },
+            {
+                "id": 11,
+                "score": 0.6729263067245483
+            },
+            {
+                "id": 6,
+                "score": 0.6378445625305176
+            },
+            {
+                "id": 8,
+                "score": 0.6374056339263916
+            },
+            {
+                "id": 10,
+                "score": 0.6225969195365906
+            },
+            {
+                "id": 15,
+                "score": 0.6109430193901062
             }
         ],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true,
+        "topic_start": true,
+        "topic_quantity": 17,
+        "topic_Tightness": 3.312966773010656
     }
 ]
 ```
 
+## POST /clear_analyses
+将/perform_entity_recognition、/analyze_relationships和/analyze_topics所写入json的信息全部清除，只保留获取到的原始消息文件（可见性的修改仍保留）

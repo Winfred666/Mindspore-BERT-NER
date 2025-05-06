@@ -1,328 +1,122 @@
 [
     {
         "id": 1,
-        "sender": "SYS",
-        "message": "2025年05月05日 8:12",
-        "entities": [
-            {
-                "entity": "Time",
-                "range": [
-                    0,
-                    15
-                ]
-            }
-        ],
+        "sender": "周宇",
+        "message": "[动画表情]",
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 2,
         "sender": "周宇",
-        "message": "[动画表情]",
-        "entities": [],
+        "message": "卷啥呢",
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 3,
-        "sender": "周宇",
-        "message": "？",
-        "entities": [],
+        "sender": "SYS",
+        "message": "2025年05月05日 8:23",
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 4,
         "sender": "周宇",
-        "message": "你干的吗",
-        "entities": [
-            {
-                "entity": "Person",
-                "range": [
-                    0,
-                    1
-                ]
-            }
-        ],
+        "message": "[动画表情]",
         "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 3,
-                "score": 0.5896154642105103
-            }
-        ],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 5,
-        "sender": "周宇",
-        "message": "[动画表情]",
-        "entities": [],
+        "sender": "Self",
+        "message": "ddl",
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 6,
         "sender": "Self",
-        "message": "抱歉，不小心抽了[衰]",
-        "entities": [],
+        "message": "[动画表情]",
         "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 4,
-                "score": 0.5131990313529968
-            }
-        ],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 7,
-        "sender": "周宇",
-        "message": "怎么五点不睡",
-        "entities": [
-            {
-                "entity": "Time",
-                "range": [
-                    2,
-                    3
-                ]
-            }
-        ],
+        "sender": "Self",
+        "message": "睡了睡了",
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 8,
-        "sender": "周宇",
-        "message": "不好喵",
-        "entities": [],
+        "sender": "SYS",
+        "message": "2025年05月05日 20:25",
         "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 4,
-                "score": 0.7725820541381836
-            },
-            {
-                "id": 6,
-                "score": 0.7368028163909912
-            },
-            {
-                "id": 7,
-                "score": 0.7325683832168579
-            },
-            {
-                "id": 3,
-                "score": 0.6588565111160278
-            }
-        ],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 9,
         "sender": "周宇",
-        "message": "抽就抽了",
-        "entities": [
-            {
-                "entity": "Thing",
-                "range": [
-                    0,
-                    1
-                ]
-            }
-        ],
+        "message": "[动画表情]",
         "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 6,
-                "score": 0.6789783239364624
-            },
-            {
-                "id": 4,
-                "score": 0.6249027252197266
-            },
-            {
-                "id": 3,
-                "score": 0.5750250220298767
-            },
-            {
-                "id": 8,
-                "score": 0.5680557489395142
-            },
-            {
-                "id": 7,
-                "score": 0.5555416941642761
-            }
-        ],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 10,
-        "sender": "周宇",
+        "sender": "Self",
         "message": "[动画表情]",
-        "entities": [],
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 11,
-        "sender": "周宇",
-        "message": "卷啥呢",
-        "entities": [
-            {
-                "entity": "Thing",
-                "range": [
-                    0,
-                    1
-                ]
-            },
-            {
-                "entity": "Thing",
-                "range": [
-                    1,
-                    2
-                ]
-            }
-        ],
+        "sender": "SYS",
+        "message": "2025年05月06日 9:24",
         "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 9,
-                "score": 0.630325436592102
-            },
-            {
-                "id": 6,
-                "score": 0.6076188087463379
-            },
-            {
-                "id": 4,
-                "score": 0.593015730381012
-            },
-            {
-                "id": 8,
-                "score": 0.5656638741493225
-            },
-            {
-                "id": 7,
-                "score": 0.5637714266777039
-            }
-        ],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 12,
-        "sender": "SYS",
-        "message": "2025年05月05日 8:23",
-        "entities": [
-            {
-                "entity": "Time",
-                "range": [
-                    0,
-                    15
-                ]
-            }
-        ],
+        "sender": "周宇",
+        "message": "还在寮夏怎么办",
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 13,
         "sender": "周宇",
         "message": "[动画表情]",
-        "entities": [],
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 14,
-        "sender": "Self",
-        "message": "ddl",
-        "entities": [
-            {
-                "entity": "Person",
-                "range": [
-                    0,
-                    3
-                ]
-            }
-        ],
+        "sender": "SYS",
+        "message": "2025年05月06日 21:19",
         "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 11,
-                "score": 0.6234830021858215
-            },
-            {
-                "id": 9,
-                "score": 0.6086993217468262
-            },
-            {
-                "id": 6,
-                "score": 0.5853480696678162
-            },
-            {
-                "id": 7,
-                "score": 0.5614559650421143
-            },
-            {
-                "id": 4,
-                "score": 0.5461927652359009
-            }
-        ],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 15,
         "sender": "Self",
-        "message": "[动画表情]",
-        "entities": [],
+        "message": "纳尼",
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
-    },
-    {
-        "id": 16,
-        "sender": "Self",
-        "message": "睡了睡了",
-        "entities": [
-            {
-                "entity": "Time",
-                "range": [
-                    0,
-                    1
-                ]
-            }
-        ],
-        "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 8,
-                "score": 0.6251492500305176
-            },
-            {
-                "id": 7,
-                "score": 0.6148253679275513
-            },
-            {
-                "id": 9,
-                "score": 0.5983042120933533
-            },
-            {
-                "id": 11,
-                "score": 0.5573557615280151
-            },
-            {
-                "id": 14,
-                "score": 0.5451356768608093
-            }
-        ],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     }
 ]

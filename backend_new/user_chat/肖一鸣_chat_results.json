@@ -1,531 +1,122 @@
 [
     {
         "id": 1,
-        "sender": "SYS",
-        "message": "2025年05月04日 23:51",
-        "entities": [
-            {
-                "entity": "Time",
-                "range": [
-                    0,
-                    16
-                ]
-            }
-        ],
+        "sender": "肖一鸣",
+        "message": "web 形式",
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 2,
-        "sender": "肖一鸣",
-        "message": "[文件]",
-        "entities": [
-            {
-                "entity": "Thing",
-                "range": [
-                    1,
-                    3
-                ]
-            }
-        ],
+        "sender": "Self",
+        "message": "嗯。。说不定不冲突？",
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 3,
-        "sender": "肖一鸣",
-        "message": "如果你想要原来那版的话",
-        "entities": [
-            {
-                "entity": "Person",
-                "range": [
-                    2,
-                    3
-                ]
-            }
-        ],
+        "sender": "Self",
+        "message": "它会自己唤醒微信窗口",
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 4,
-        "sender": "Self",
-        "message": "ok多谢了",
-        "entities": [],
-        "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 3,
-                "score": 0.7379667162895203
-            },
-            {
-                "id": 2,
-                "score": 0.619774580001831
-            }
-        ],
-        "referenced_message": null
+        "sender": "肖一鸣",
+        "message": "不是python QT 或 NET  exe 形式，这才不冲突",
+        "is_quotation": true,
+        "referenced_message": "嗯。。说不定不冲突？",
+        "visible": true
     },
     {
         "id": 5,
         "sender": "肖一鸣",
-        "message": "不过你先前改起来困难，可能和我代码写得随意有关hh",
-        "entities": [
-            {
-                "entity": "Person",
-                "range": [
-                    2,
-                    3
-                ]
-            },
-            {
-                "entity": "Time",
-                "range": [
-                    3,
-                    5
-                ]
-            },
-            {
-                "entity": "Person",
-                "range": [
-                    14,
-                    15
-                ]
-            },
-            {
-                "entity": "Thing",
-                "range": [
-                    15,
-                    17
-                ]
-            },
-            {
-                "entity": "Thing",
-                "range": [
-                    23,
-                    25
-                ]
-            }
-        ],
+        "message": "意思是不是桌面端应用（当然我也不会写桌面端应用）",
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 6,
-        "sender": "SYS",
-        "message": "2025年05月05日 0:40",
-        "entities": [
-            {
-                "entity": "Time",
-                "range": [
-                    0,
-                    15
-                ]
-            }
-        ],
-        "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "sender": "Self",
+        "message": "做成这种就没法交互了吗",
+        "is_quotation": true,
+        "referenced_message": "那这样你还需要一个前端吗，毕竟你这个应用也挺好的，但与前端不太兼容，除非前端只作为可视化显示器展示像 肖一鸣_chat_results.json 的结果",
+        "visible": true
     },
     {
         "id": 7,
         "sender": "Self",
-        "message": "那个DCE的模型也可以换成onnx吗",
-        "entities": [
-            {
-                "entity": "Person",
-                "range": [
-                    2,
-                    3
-                ]
-            },
-            {
-                "entity": "Thing",
-                "range": [
-                    6,
-                    8
-                ]
-            }
-        ],
+        "message": "就是做成可视化显示器的话",
         "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 3,
-                "score": 0.5779109001159668
-            },
-            {
-                "id": 5,
-                "score": 0.5431641936302185
-            },
-            {
-                "id": 2,
-                "score": 0.5025672912597656
-            }
-        ],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 8,
         "sender": "Self",
-        "message": "它的onnx文件是哪一个",
-        "entities": [
-            {
-                "entity": "Thing",
-                "range": [
-                    0,
-                    1
-                ]
-            }
-        ],
+        "message": "前端就只有显示功能了吗",
         "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 7,
-                "score": 0.646576464176178
-            },
-            {
-                "id": 2,
-                "score": 0.5634474158287048
-            },
-            {
-                "id": 3,
-                "score": 0.5417556762695312
-            }
-        ],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 9,
-        "sender": "SYS",
-        "message": "2025年05月05日 0:49",
-        "entities": [
-            {
-                "entity": "Time",
-                "range": [
-                    0,
-                    15
-                ]
-            }
-        ],
-        "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "sender": "肖一鸣",
+        "message": "嗯，除非你写完全由 req 和 res body 就能传输所有数据的接口",
+        "is_quotation": true,
+        "referenced_message": "任务如下：[换行][换行]1. 根据相关高分将对话分割成 thread（建议写简单些的算法，就前五个对话中找，如果有高分的就与最高分并入同一个 thread，如果没高分的就新开thread）。[换行][换行]2. 前端无法直接在发送 body 中添加/删除指定 id 的对话，像这些端口本地跑跑还行，但前端用不了的；或许可以新写一个后端（）[换行]",
+        "visible": true
     },
     {
         "id": 10,
-        "sender": "Self",
-        "message": "ner的改好了",
-        "entities": [
-            {
-                "entity": "Person",
-                "range": [
-                    0,
-                    3
-                ]
-            }
-        ],
-        "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 7,
-                "score": 0.5910006761550903
-            },
-            {
-                "id": 5,
-                "score": 0.5720938444137573
-            },
-            {
-                "id": 3,
-                "score": 0.5709420442581177
-            }
-        ],
-        "referenced_message": null
+        "sender": "肖一鸣",
+        "message": "意思是不从微信获取数据，只从 req body 获取数据；保存的 json 也顺便返回到 res body 中，而不是只返回一个 message",
+        "is_quotation": true,
+        "referenced_message": "嗯，除非你写完全由 req 和 res body 就能传输所有数据的接口",
+        "visible": true
     },
     {
         "id": 11,
-        "sender": "SYS",
-        "message": "2025年05月05日 2:34",
-        "entities": [
-            {
-                "entity": "Time",
-                "range": [
-                    0,
-                    15
-                ]
-            }
-        ],
+        "sender": "Self",
+        "message": "那每次都返回所有json是不是就可以了",
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 12,
-        "sender": "Self",
-        "message": "成功在Windows环境推理了",
-        "entities": [
-            {
-                "entity": "Location",
-                "range": [
-                    3,
-                    12
-                ]
-            }
-        ],
+        "sender": "肖一鸣",
+        "message": "对的",
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 13,
         "sender": "Self",
-        "message": "现在就是不知道DCE的onnx文件在哪里",
-        "entities": [
-            {
-                "entity": "Time",
-                "range": [
-                    0,
-                    2
-                ]
-            },
-            {
-                "entity": "Thing",
-                "range": [
-                    11,
-                    17
-                ]
-            }
-        ],
+        "message": "应该可以",
         "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 7,
-                "score": 0.5736178159713745
-            },
-            {
-                "id": 8,
-                "score": 0.5655273199081421
-            }
-        ],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 14,
-        "sender": "SYS",
-        "message": "2025年05月05日 4:07",
-        "entities": [
-            {
-                "entity": "Time",
-                "range": [
-                    0,
-                    15
-                ]
-            }
-        ],
+        "sender": "肖一鸣",
+        "message": "那等你修好我再搞",
         "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
+        "referenced_message": null,
+        "visible": true
     },
     {
         "id": 15,
         "sender": "Self",
-        "message": "docker好像有网络问题诶",
-        "entities": [
-            {
-                "entity": "Thing",
-                "range": [
-                    9,
-                    11
-                ]
-            }
-        ],
+        "message": "其实再加个端口获取所有json就行",
         "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 10,
-                "score": 0.5164607763290405
-            },
-            {
-                "id": 13,
-                "score": 0.5107671022415161
-            }
-        ],
-        "referenced_message": null
-    },
-    {
-        "id": 16,
-        "sender": "SYS",
-        "message": "2025年05月05日 4:39",
-        "entities": [
-            {
-                "entity": "Time",
-                "range": [
-                    0,
-                    15
-                ]
-            }
-        ],
-        "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
-    },
-    {
-        "id": 17,
-        "sender": "Self",
-        "message": "[图片]",
-        "entities": [],
-        "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
-    },
-    {
-        "id": 18,
-        "sender": "Self",
-        "message": "容器化好像可以了",
-        "entities": [
-            {
-                "entity": "Thing",
-                "range": [
-                    0,
-                    2
-                ]
-            }
-        ],
-        "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 7,
-                "score": 0.594441294670105
-            },
-            {
-                "id": 10,
-                "score": 0.5811634063720703
-            },
-            {
-                "id": 15,
-                "score": 0.5742884874343872
-            },
-            {
-                "id": 3,
-                "score": 0.5455837249755859
-            }
-        ],
-        "referenced_message": null
-    },
-    {
-        "id": 19,
-        "sender": "Self",
-        "message": "不过这个docker的网络我还是没搞明白",
-        "entities": [
-            {
-                "entity": "Person",
-                "range": [
-                    4,
-                    5
-                ]
-            },
-            {
-                "entity": "Person",
-                "range": [
-                    13,
-                    14
-                ]
-            }
-        ],
-        "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 18,
-                "score": 0.6411735415458679
-            },
-            {
-                "id": 15,
-                "score": 0.5626026391983032
-            },
-            {
-                "id": 13,
-                "score": 0.5475112795829773
-            },
-            {
-                "id": 8,
-                "score": 0.502825140953064
-            }
-        ],
-        "referenced_message": null
-    },
-    {
-        "id": 20,
-        "sender": "Self",
-        "message": "不过应该不影响部署后",
-        "entities": [
-            {
-                "entity": "Time",
-                "range": [
-                    9,
-                    10
-                ]
-            }
-        ],
-        "is_quotation": false,
-        "related_messages": [
-            {
-                "id": 15,
-                "score": 0.6482419967651367
-            },
-            {
-                "id": 18,
-                "score": 0.5906756520271301
-            },
-            {
-                "id": 19,
-                "score": 0.5752671360969543
-            },
-            {
-                "id": 5,
-                "score": 0.5286100506782532
-            }
-        ],
-        "referenced_message": null
-    },
-    {
-        "id": 21,
-        "sender": "SYS",
-        "message": "2025年05月05日 9:18",
-        "entities": [
-            {
-                "entity": "Time",
-                "range": [
-                    0,
-                    15
-                ]
-            }
-        ],
-        "is_quotation": false,
-        "related_messages": [],
-        "referenced_message": null
-    },
-    {
-        "id": 22,
-        "sender": "肖一鸣",
-        "message": "data/songjh/ONNX/",
-        "entities": [
-            {
-                "entity": "Thing",
-                "range": [
-                    0,
-                    17
-                ]
-            }
-        ],
-        "is_quotation": true,
-        "related_messages": [
-            {
-                "id": 8,
-                "score": 1.0
-            }
-        ],
-        "referenced_message": "它的onnx文件是哪一个"
+        "referenced_message": null,
+        "visible": true
     }
 ]

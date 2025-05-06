@@ -1,4 +1,4 @@
-# from wxauto import *
+from wxauto import *
 import time
 from flask import Flask, request, jsonify
 import os
@@ -15,7 +15,7 @@ import collections
 
 app = Flask(__name__)
 
-# wx = WeChat()  # 在应用启动时初始化微信对象
+wx = WeChat()  # 在应用启动时初始化微信对象
 
 # 获取当前脚本所在的目录
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -184,109 +184,205 @@ def delete_file():
     else:
         return jsonify({"result": "No files deleted. All chat files are up to date with specified chats list"})
 
-# @app.route('/get_all_chats', methods=['POST'])
-# def get_all_chats():
-#     """获取所有指定对话窗口的消息"""
-#     try:
-#         # 加载已指定的对话窗口名称
-#         specified_chats = load_specified_chats()
-#         if not specified_chats:
-#             return jsonify({"result": "No specified chats"}), 200
+@app.route('/update_all_chats', methods=['POST'])
+def update_all_chats():
+    """获取所有指定对话窗口的消息并更新引用关系"""
+    try:
+        # 加载已指定的对话窗口名称
+        specified_chats = load_specified_chats()
+        if not specified_chats:
+            return jsonify({"result": "No specified chats"}), 200
         
-#         # 遍历每个指定的对话窗口
-#         for name in specified_chats:
-#             # 确保微信客户端有该聊天窗口
-#             if not wx.ChatWith(name):
-#                 print(f"Chat window '{name}' not found")
-#                 continue
+        # 遍历每个指定的对话窗口
+        all_chat_data = []  # 用于收集所有聊天数据
+        for name in specified_chats:
+            # 确保微信客户端有该聊天窗口
+            if not wx.ChatWith(name):
+                print(f"Chat window '{name}' not found")
+                continue
             
-#             # 获取所有消息
-#             msgs = wx.GetAllMessage(
-#                 savepic=False,  # 保存图片
-#                 savefile=False,  # 保存文件
-#                 savevoice=True   # 保存语音转文字内容
-#             )
+            # 获取所有消息
+            msgs = wx.GetAllMessage(
+                savepic=False,  # 保存图片
+                savefile=False,  # 保存文件
+                savevoice=True   # 保存语音转文字内容
+            )
             
-#             # 准备文件路径
-#             user_chat_path = os.path.join(current_dir, user_chat_dir.lstrip("/"))  # 确保路径正确
-#             if not os.path.exists(user_chat_path):
-#                 os.makedirs(user_chat_path)
-#             file_path = os.path.join(user_chat_path, f"{name}_chat_results.json")
+            # 准备文件路径
+            user_chat_path = os.path.join(current_dir, user_chat_dir.lstrip("/"))  # 确保路径正确
+            if not os.path.exists(user_chat_path):
+                os.makedirs(user_chat_path)
+            file_path = os.path.join(user_chat_path, f"{name}_chat_results.json")
             
-#             # 加载现有聊天数据
-#             chat_data = load_chat_data(file_path)
+            # 加载现有聊天数据
+            chat_data = load_chat_data(file_path)
             
-#             # 比对新消息与现有消息的最后3条
-#             if len(chat_data) >= 3:
-#                 existing_last_3 = [msg['message'] for msg in chat_data[-3:]]
+            # 比对新消息与现有消息的最后3条
+            if len(chat_data) >= 3:
+                existing_last_3 = [msg['message'] for msg in chat_data[-3:]]
                 
-#                 # 查找新消息中与现有最后3条相同的位置
-#                 for i in range(len(msgs) - 2):
-#                     new_3 = [format_message(msg[1])[0] for msg in msgs[i:i+3]]
-#                     if new_3 == existing_last_3:
-#                         # 只保留新消息中从i+3开始的部分
-#                         msgs = msgs[i+3:]
-#                         break
+                # 查找新消息中与现有最后3条相同的位置
+                for i in range(len(msgs) - 2):
+                    new_3 = [format_message(msg[1])[0] for msg in msgs[i:i+3]]
+                    if new_3 == existing_last_3:
+                        # 只保留新消息中从i+3开始的部分
+                        msgs = msgs[i+3:]
+                        break
             
-#             # 处理新消息并追加到聊天数据中
-#             new_chat_data = []
-#             for msg in msgs:
-#                 sender = msg[0]
-#                 content = msg[1]
-#                 formatted_content, is_quotation, referenced_message = format_message(content)
+            # 处理新消息并追加到聊天数据中
+            new_chat_data = []
+            for msg in msgs:
+                sender = msg[0]
+                content = msg[1]
+                formatted_content, is_quotation, referenced_message = format_message(content)
                 
-#                 # 如果是系统消息，尝试提取并格式化时间
-#                 if sender == 'SYS':
-#                     # 尝试匹配时间格式
-#                     time_match = re.search(r'(\d{4}年\d{1,2}月\d{1,2}日 \d{1,2}:\d{2})|'
-#                                            r'(星期[一二三四五六天日] \d{1,2}:\d{2})|'
-#                                            r'(昨天 \d{1,2}:\d{2})|'
-#                                            r'(\d{1,2}:\d{2})', formatted_content)
-#                     if time_match:
-#                         # 提取时间部分并格式化
-#                         time_str = time_match.group(0)
-#                         formatted_time = format_time(time_str)
+                # 如果是系统消息，尝试提取并格式化时间
+                if sender == 'SYS':
+                    # 尝试匹配时间格式
+                    time_match = re.search(r'(\d{4}年\d{1,2}月\d{1,2}日 \d{1,2}:\d{2})|'
+                                           r'(星期[一二三四五六天日] \d{1,2}:\d{2})|'
+                                           r'(昨天 \d{1,2}:\d{2})|'
+                                           r'(\d{1,2}:\d{2})', formatted_content)
+                    if time_match:
+                        # 提取时间部分并格式化
+                        time_str = time_match.group(0)
+                        formatted_time = format_time(time_str)
                         
-#                         # 替换原消息中的时间部分
-#                         formatted_content = re.sub(r'(\d{4}年\d{1,2}月\d{1,2}日 \d{1,2}:\d{2})|'
-#                                                    r'(星期[一二三四五六天日] \d{1,2}:\d{2})|'
-#                                                    r'(昨天 \d{1,2}:\d{2})|'
-#                                                    r'(\d{1,2}:\d{2})', formatted_time, formatted_content)
+                        # 替换原消息中的时间部分
+                        formatted_content = re.sub(r'(\d{4}年\d{1,2}月\d{1,2}日 \d{1,2}:\d{2})|'
+                                                   r'(星期[一二三四五六天日] \d{1,2}:\d{2})|'
+                                                   r'(昨天 \d{1,2}:\d{2})|'
+                                                   r'(\d{1,2}:\d{2})', formatted_time, formatted_content)
                 
-#                 new_chat_data.append({
-#                     "id": len(chat_data) + len(new_chat_data) + 1,  # 为每条新消息生成一个唯一的id
-#                     "sender": sender,
-#                     "message": formatted_content,
-#                     "entities": [],
-#                     "is_quotation": is_quotation,  # 添加引用标记
-#                     "related_messages": [],
-#                     "referenced_message": referenced_message if is_quotation else None
-#                 })
+                new_chat_data.append({
+                    "id": len(chat_data) + len(new_chat_data) + 1,  # 为每条新消息生成一个唯一的id
+                    "sender": sender,
+                    "message": formatted_content,
+                    "entities": [],
+                    "is_quotation": is_quotation,  # 添加引用标记
+                    "related_before": [],          # 添加 related_before 字段
+                    "related_after": [],           # 添加 related_after 字段
+                    "referenced_message": referenced_message if is_quotation else None,
+                    "visible": True                # 新增可见性属性，默认为True
+                })
             
-#             # 将新消息添加到聊天数据中
-#             chat_data.extend(new_chat_data)
+            # 将新消息添加到聊天数据中
+            chat_data.extend(new_chat_data)
             
-#             # 处理引用消息的 related_messages
-#             for i, msg in enumerate(chat_data):
-#                 if msg.get("is_quotation", False):
-#                     referenced_message = msg.get("referenced_message", "")
-#                     if referenced_message:
-#                         # 查找引用的消息
-#                         for j, prev_msg in enumerate(chat_data[:i]):
-#                             if prev_msg.get("message") == referenced_message:
-#                                 msg["related_messages"].append({
-#                                     "id": prev_msg["id"],
-#                                     "score": 1.0
-#                                 })
-#                                 break
+            # 处理引用消息的 related_before 和 related_after
+            for i, msg in enumerate(chat_data):
+                if msg.get("is_quotation", False):
+                    referenced_message = msg.get("referenced_message", "")
+                    if referenced_message:
+                        # 查找引用的消息（related_before）
+                        for j in range(i):
+                            if chat_data[j].get("message") == referenced_message:
+                                msg["related_before"].append({
+                                    "id": chat_data[j]["id"],
+                                    "score": 1.0
+                                })
+                                # 同时更新被引用消息的 related_after
+                                if "related_after" in chat_data[j]:
+                                    chat_data[j]["related_after"].append({
+                                        "id": msg["id"],
+                                        "score": 1.0
+                                    })
+                                else:
+                                    chat_data[j]["related_after"] = [{
+                                        "id": msg["id"],
+                                        "score": 1.0
+                                    }]
+                                break
             
-#             # 保存聊天数据到文件
-#             save_chat_data(file_path, chat_data)
+            # 保存聊天数据到文件
+            save_chat_data(file_path, chat_data)
+            
+            # 将当前聊天窗口的数据添加到 all_chat_data
+            all_chat_data.append({
+                "chat_name": name,
+                "chat_data": chat_data
+            })
         
-#         return jsonify({"result": "All chats processed successfully"})
+        # 返回所有聊天数据作为 HTTP 响应
+        return jsonify(all_chat_data), 200
     
-#     except Exception as e:
-#         return jsonify({"error": f"Error processing chats: {str(e)}"}), 500
+    except Exception as e:
+        return jsonify({"error": f"Error processing chats: {str(e)}"}), 500
+
+
+@app.route('/update_message_visibility', methods=['POST'])
+def update_message_visibility():
+    """更新指定消息的可见性"""
+    try:
+        data = request.json
+        if not data or 'name' not in data or 'id' not in data or 'visibility' not in data:
+            return jsonify({"error": "Invalid input format"}), 400
+        
+        name = data['name']
+        msg_id = data['id']
+        visibility = data['visibility']
+        
+        if not isinstance(visibility, bool):
+            return jsonify({"error": "Invalid visibility value. Must be true or false."}), 400
+        
+        user_chat_path = os.path.join(current_dir, user_chat_dir.lstrip("/"))
+        if not os.path.exists(user_chat_path):
+            return jsonify({"result": f"No chat found for {name}"}), 404
+        
+        file_path = os.path.join(user_chat_path, f"{name}_chat_results.json")
+        if not os.path.exists(file_path):
+            return jsonify({"result": f"No chat found for {name}"}), 404
+        
+        with open(file_path, 'r', encoding='utf-8') as f:
+            chat_data = json.load(f)
+        
+        # 更新指定消息的可见性
+        updated = False
+        for msg in chat_data:
+            if msg.get("id") == msg_id:
+                msg["visible"] = visibility
+                updated = True
+                break
+        
+        if not updated:
+            return jsonify({"result": f"Message with id {msg_id} not found"}), 404
+        
+        # 保存更新后的聊天数据
+        save_chat_data(file_path, chat_data)
+        
+        # 返回更新后的所有聊天数据
+        with open(file_path, 'r', encoding='utf-8') as f:
+            updated_chat_data = json.load(f)
+        
+        return jsonify(updated_chat_data), 200
+    
+    except Exception as e:
+        return jsonify({"error": f"Error updating message visibility: {str(e)}"}), 500
+    
+@app.route('/get_chat_by_name', methods=['POST'])
+def get_chat_by_name():
+    """根据对话窗口名称获取聊天记录"""
+    try:
+        data = request.json
+        if not data or 'name' not in data:
+            return jsonify({"error": "Invalid input format"}), 400
+        
+        name = data['name']
+        user_chat_path = os.path.join(current_dir, user_chat_dir.lstrip("/"))
+        if not os.path.exists(user_chat_path):
+            return jsonify({"result": f"No chat found for {name}"}), 404
+        
+        file_path = os.path.join(user_chat_path, f"{name}_chat_results.json")
+        if not os.path.exists(file_path):
+            return jsonify({"result": f"No chat found for {name}"}), 404
+        
+        with open(file_path, 'r', encoding='utf-8') as f:
+            chat_data = json.load(f)
+        
+        return jsonify(chat_data), 200
+    
+    except Exception as e:
+        return jsonify({"error": f"Error retrieving chat: {str(e)}"}), 500
     
 
 
@@ -531,7 +627,7 @@ tokenizer_pth = os.path.join(dataneeded_dir, 'models--google-bert--bert-base-chi
 
 onnx_session = None
 tokenizer = None
-relatedscore = 0.5
+relatedscore = 0.6
 maxcpmparetimes = 100
 maxrelationcount = 5
 
@@ -585,42 +681,57 @@ def save_chat_data(file_path, chat_data):
         json.dump(chat_data, f, ensure_ascii=False, indent=4)
 
 def analyze_message_relationships(file_path):
+    """分析对话文件的消息关联性，并更新相关消息"""
     try:
         chat_data = load_chat_data(file_path)
         if not chat_data:
             return False
 
+
+        # 为每条消息初始化相关消息列表
+        for msg in chat_data:
+            if "related_before" not in msg:
+                msg["related_before"] = []
+            if "related_after" not in msg:
+                msg["related_after"] = []
+
+        # 创建一个字典来存储向后的关联关系
+        related_after_dict = {}
+
+        # 遍历每个消息，分析向前的相关性并记录向后的关联关系
         for i, msg in enumerate(chat_data):
             # 跳过 SYS 发送者、"[图片]" 或 "[动画表情]" 消息
             if msg.get("sender") == "SYS" or msg.get("message") in ["[图片]", "[动画表情]"]:
                 continue
 
-            if "related_messages" in msg and msg["related_messages"]:
+            if msg.get("sender") == "SYS" or msg.get("message") in ["[图片]", "[动画表情]"]:
                 continue
-
-            if "related_messages" not in msg:
-                msg["related_messages"] = []
 
             count = 0
             found = 0
             j = i - 1
 
             while j >= 0 and count < maxcpmparetimes and found < maxrelationcount:
-                if "message" not in chat_data[j]:
-                    j -= 1
-                    count += 1
-                    continue
-
-                # 跳过 SYS 发送者、"[图片]" 或 "[动画表情]" 消息
                 if chat_data[j].get("sender") == "SYS" or chat_data[j].get("message") in ["[图片]", "[动画表情]"]:
                     j -= 1
                     count += 1
                     continue
 
                 score = analyze_text_relationship(chat_data[j]["message"], msg["message"])
-                if score > relatedscore:  
-                    msg["related_messages"].append({
-                        "id": chat_data[j]["id"],
+                if score > relatedscore:
+                    # 检查是否已存在该相关消息
+                    id_exists_before = any(rel_msg["id"] == chat_data[j]["id"] for rel_msg in msg["related_before"])
+                    if not id_exists_before:
+                        msg["related_before"].append({
+                            "id": chat_data[j]["id"],
+                            "score": score
+                        })
+
+                    # 记录向后的关联关系
+                    if chat_data[j]["id"] not in related_after_dict:
+                        related_after_dict[chat_data[j]["id"]] = []
+                    related_after_dict[chat_data[j]["id"]].append({
+                        "id": msg["id"],
                         "score": score
                     })
                     found += 1
@@ -628,7 +739,16 @@ def analyze_message_relationships(file_path):
                 count += 1
                 j -= 1
 
-            msg["related_messages"].sort(key=lambda x: x["score"], reverse=True)
+        # 更新向后的相关消息
+        for msg in chat_data:
+            if msg["id"] in related_after_dict:
+                # 过滤掉已存在的相关消息
+                existing_related_after = []
+                for rel_msg in related_after_dict[msg["id"]]:
+                    if not any(r["id"] == rel_msg["id"] for r in msg["related_after"]):
+                        existing_related_after.append(rel_msg)
+                msg["related_after"] = existing_related_after
+                msg["related_after"].sort(key=lambda x: x["score"], reverse=True)
 
         save_chat_data(file_path, chat_data)
         return True
@@ -654,9 +774,143 @@ def analyze_relationships():
     
     except Exception as e:
         return jsonify({"error": f"Error analyzing message relationships: {str(e)}"}), 500
+
+
+
+def calculate_topic_tightness(chat_data, msg_id, relatedscore):
+    """递归计算话题的紧密度和消息数量"""
+    msg = next((m for m in chat_data if m["id"] == msg_id), None)
+    if not msg:
+        return 0, 0
+
+    # 如果没有 related_after，紧密度为 relatedscore，消息数量为 1
+    if not msg["related_after"]:
+        return relatedscore, 1
+
+    total_tightness = 0
+    total_quantity = 0
+
+    for rel_after in msg["related_after"]:
+        after_id = rel_after["id"]
+        score = rel_after["score"]
+
+        # 递归计算子链的紧密度和数量
+        child_tightness, child_quantity = calculate_topic_tightness(chat_data, after_id, relatedscore)
+
+        # 累加子链的紧密度和数量
+        total_tightness += score * child_tightness
+        total_quantity += child_quantity
+
+    return total_tightness, total_quantity
+
+
+def analyze_topics(file_path):
+    """分析所有消息，确定话题开始并计算紧密度和消息数量"""
+    try:
+        chat_data = load_chat_data(file_path)
+        if not chat_data:
+            return False
+
+        relatedscore = 0.5  # 相关性阈值
+
+        for msg in chat_data:
+            # 初始化 topic 相关字段
+            if "topic_start" not in msg:
+                msg["topic_start"] = False
+            if "topic_quantity" not in msg:
+                msg["topic_quantity"] = 0
+            if "topic_Tightness" not in msg:
+                msg["topic_Tightness"] = 0.0
+
+        # 遍历所有消息，确定话题开始并计算紧密度和数量
+        for msg in chat_data:
+            # 如果有 related_after 但没有 related_before，则标记为话题开始
+            if msg["related_after"] and not msg["related_before"]:
+                msg["topic_start"] = True
+
+                # 计算紧密度和消息数量
+                tightness, quantity = calculate_topic_tightness(chat_data, msg["id"], relatedscore)
+                msg["topic_Tightness"] = tightness
+                msg["topic_quantity"] = quantity
+
+        save_chat_data(file_path, chat_data)
+        return True
+    except Exception as e:
+        print(f"分析话题时出错: {str(e)}")
+        return False
+
+
+@app.route('/analyze_topics', methods=['POST'])
+def analyze_topics_route():
+    try:
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        user_chat_path = os.path.join(current_dir, user_chat_dir)
+        
+        if not os.path.exists(user_chat_path):
+            return jsonify({"result": "No chat files found"}), 200
+        
+        for file_name in os.listdir(user_chat_path):
+            if file_name.endswith("_chat_results.json"):
+                file_path = os.path.join(user_chat_path, file_name)
+                analyze_topics(file_path)
+        
+        return jsonify({"result": "Topics analyzed successfully"})
     
+    except Exception as e:
+        return jsonify({"error": f"Error analyzing topics: {str(e)}"}), 500
 
 
+def clear_analyses(file_path):
+    """清除消息中的实体识别、相关性和话题分析信息"""
+    try:
+        chat_data = load_chat_data(file_path)
+        if not chat_data:
+            return False
+
+        for msg in chat_data:
+            # 清除实体识别信息
+            if "entities" in msg:
+                del msg["entities"]
+
+            # 清除相关性分析信息
+            if "related_before" in msg:
+                del msg["related_before"]
+            if "related_after" in msg:
+                del msg["related_after"]
+
+            # 清除话题分析信息
+            if "topic_start" in msg:
+                del msg["topic_start"]
+            if "topic_quantity" in msg:
+                del msg["topic_quantity"]
+            if "topic_Tightness" in msg:
+                del msg["topic_Tightness"]
+
+        save_chat_data(file_path, chat_data)
+        return True
+    except Exception as e:
+        print(f"清除分析信息时出错: {str(e)}")
+        return False
+
+@app.route('/clear_analyses', methods=['POST'])
+def clear_analyses_route():
+    try:
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        user_chat_path = os.path.join(current_dir, user_chat_dir)
+        
+        if not os.path.exists(user_chat_path):
+            return jsonify({"result": "No chat files found"}), 200
+        
+        for file_name in os.listdir(user_chat_path):
+            if file_name.endswith("_chat_results.json"):
+                file_path = os.path.join(user_chat_path, file_name)
+                clear_analyses(file_path)
+        
+        return jsonify({"result": "Analyses cleared successfully"})
+    
+    except Exception as e:
+        return jsonify({"error": f"Error clearing analyses: {str(e)}"}), 500
+    
 
 if __name__ == '__main__':
     # 初始化实体识别相关组件
