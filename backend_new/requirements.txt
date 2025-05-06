@@ -1,0 +1,8 @@
+Flask==3.0.3
+numpy==2.1.1
+onnx==1.17.0
+onnxruntime==1.21.0
+pyyaml
+transformers==4.51.3
+# pywin32==310
+# wxauto
