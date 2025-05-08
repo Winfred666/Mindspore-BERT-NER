@@ -1,16 +1,33 @@
 <template>
   <div class="flex flex-col gap-5">
     <NInput placeholder="输入微信联系人，回车提取对话到后端" @change="uploadDialog" class="w-1/2" />
-    <NDropdown trigger="hover" :options="personOptions" @select="getDialog">
-      <NButton>载入对话</NButton>
-    </NDropdown>
+    <NList class=" w-full p-4">
+      <NListItem v-for="(item, index) in personOptions" :key="`person_${index}`">
+        <div class=" flex flex-row justify-between items-center gap-4">
+          <div @click="getDialog(item.key)" class=" grow cursor-pointer p-2 hover:bg-gray-200 transition-colors">
+            {{ item.label }}
+          </div>
+          <NButton strong secondary circle type="error" @click="deleteDialog(item.key)">
+            <template #icon>
+              <NIcon><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  x="0px" y="0px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+                  <g>
+                    <path d="M128,405.429C128,428.846,147.198,448,170.667,448h170.667C364.802,448,384,428.846,384,405.429V160H128V405.429z M416,96
+		h-80l-26.785-32H202.786L176,96H96v32h320V96z"></path>
+                  </g>
+                </svg></NIcon>
+            </template>
+          </NButton>
+        </div>
+      </NListItem>
+    </NList>
     <n-button type="error" size="large" @click="showModalRef = true">清空对话</n-button>
   </div>
   <!-- add a global spin, display loading content-->
-  <div v-show="isLoadingDialog" class="absolute inset-0 bg-black/40 z-50 flex justify-center items-center">
+  <div v-show="isLoadingDialog" class="absolute inset-0 bg-black/50 z-50 flex justify-center items-center">
     <div class=" flex flex-col gap-6 justify-center">
       <NSpin size="large" />
-      <div>{{ currentLoadingDialog }}</div>
+      <div class=" text-white">{{ currentLoadingDialog }}</div>
     </div>
   </div>
   <n-modal v-model:show="showModalRef" :mask-closable="false" preset="dialog" title="确认要清空所有对话？" content=""
@@ -18,7 +35,7 @@
 </template>
 
 <script setup>
-import { NButton, NDropdown, NInput, NModal, NSpin, useMessage } from "naive-ui";
+import { NButton, NIcon, NInput, NList, NListItem, NModal, NSpin, useMessage } from "naive-ui";
 import { useDialogStore } from "@/stores/dialog";
 import { useThreadStore } from '../stores/result';
 import { useNERStore } from "../stores/result";
@@ -33,6 +50,32 @@ const dialogStore = useDialogStore();
 const threadStore = useThreadStore();
 const nerStore = useNERStore();
 
+const deleteDialog = async (key) => {
+  // delete dialog from backend
+  isLoadingDialog.value = true
+  currentLoadingDialog.value = '正在删除联系人...'
+  const backend_url = import.meta.env.VITE_BACKEND_URL
+  const post_config = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name: key })
+  }
+  fetch(backend_url + "/delete_chat", post_config).then((res) => {
+    if (res.status == 200) {
+      return renewPersonOptions()
+    } else throw new Error(res.statusText)
+  }).then(() => {
+    message.success('删除联系人成功！')
+  }).catch((err) => {
+    console.error(err)
+    message.error(err.toString())
+  }).finally(() => {
+    isLoadingDialog.value = false
+  })
+}
+
 const renewPersonOptions = async () => {
   // get all contact person options from backend
   return fetch(import.meta.env.VITE_BACKEND_URL + "/view_chats").then((res) => {
@@ -40,19 +83,29 @@ const renewPersonOptions = async () => {
       return res.json()
     else throw new Error(res.statusText)
   }).then((data) => {
+    if (data == null || data.chats == null) {
+      personOptions.value = []
+      throw new Error('获取联系人失败')
+    }
     personOptions.value = data.chats.map((item) => {
       return {
         label: item,
         key: item
       }
     })
-    message.success('获取联系人成功！')
   }).catch((err) => {
+    console.error(err)
     message.error(err.toString())
   })
 }
 
-onMounted(renewPersonOptions)
+onMounted(() => {
+  isLoadingDialog.value = true
+  currentLoadingDialog.value = '正在获取联系人列表...'
+  renewPersonOptions().finally(() => {
+    isLoadingDialog.value = false
+  })
+})
 
 const clearAll = () => {
   dialogStore.clear();
@@ -73,27 +126,36 @@ const onPositiveClick = () => {
 const message = useMessage()
 
 const uploadDialog = async (name) => {
-  if(name == null || name == '') {
+  if (name == null || name == '') {
     message.warning('请输入联系人')
     return
   }
   isLoadingDialog.value = true
-  currentLoadingDialog.value = '正在从微信提取对话...'
-  fetch(import.meta.env.VITE_BACKEND_URL + "/add_chat", {
+  currentLoadingDialog.value = '正在上传联系人名称'
+  const backend_url = import.meta.env.VITE_BACKEND_URL
+  const post_config = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ name })
-  }).then((res) => {
+  }
+
+  fetch(backend_url + "/add_chat", post_config).then((res) => {
+    if (res.status == 200) {
+      currentLoadingDialog.value = '正在从微信客户端提取对话，鼠标跳动是正常现象...'
+      return fetch(backend_url + "/update_all_chats", post_config)
+    }
+    else throw new Error(res.statusText)
+  }).then(res => {
     if (res.status == 200)
       return res.json()
     else throw new Error(res.statusText)
   }).then((data) => {
-    message.success(data.result)
+    message.success('载入联系人成功')
     renewPersonOptions()
   }).catch((err) => {
-    console.log(err)
+    console.error(err)
     message.error(err.toString())
   }).finally(() => {
     isLoadingDialog.value = false
@@ -105,23 +167,42 @@ const getDialog = async (key) => {
   currentLoadingDialog.value = '正在做NER实体提取..'
   const backend_url = import.meta.env.VITE_BACKEND_URL
   const post_config = { method: 'POST', headers: { 'Content-Type': 'application/json' } }
-  fetch(backend_url + "/perform_entity_recognition", post_config
-  ).then(res => {
-    if (res.status == 200) {
-      currentLoadingDialog.value = '正在分析对话相关性..'
-      return fetch(backend_url + "/analyze_relationships", post_config)
-    } else throw new Error("NER 失败:" + res.statusText)
-  }).then(res => {
-    if (res.status == 200) {
-      currentLoadingDialog.value = '正在获取对话..'
-      return fetch(backend_url + "/get_chat_by_name", {...post_config,
-        body: JSON.stringify({ name: key })
-      })
-    } else throw new Error("相关性分析失败：" + res.statusText)
+  fetch(backend_url + "/get_chat_by_name", {
+    ...post_config,
+    body: JSON.stringify({ name: key })
   }).then(res => {
     if (res.status == 200) {
       return res.json()
     } else throw new Error(res.statusText)
+  }).then(data => {
+    if (data && data.length > 0 && 
+      data[0].entities && data[0].topic_start) {
+      // if not have data[0].entities, then do ner
+      return data
+    } else return fetch(backend_url + "/perform_entity_recognition", post_config
+    ).then(res => {
+      if (res.status == 200) {
+        currentLoadingDialog.value = '正在分析对话相关性..'
+        return fetch(backend_url + "/analyze_relationships", post_config)
+      } else throw new Error("NER 失败:" + res.statusText)
+    }).then(res => {
+      if (res.status == 200) {
+        currentLoadingDialog.value = "正在抽取话题.."
+        return fetch(backend_url + "/analyze_topics", post_config)
+      } else throw new Error("相关性分析失败：" + res.statusText)
+    }).then(res =>{
+      if(res.status == 200){
+      currentLoadingDialog.value = '正在获取对话..'
+        return fetch(backend_url + "/get_chat_by_name", {
+          ...post_config,
+          body: JSON.stringify({ name: key })
+        })
+      } else throw new Error("话题提取失败：" + res.statusText)
+    }).then(res => {
+      if (res.status == 200) {
+        return res.json()
+      } else throw new Error(res.statusText)
+    })
   }).then(data => {
     if (data) {
       clearAll()
@@ -171,7 +252,7 @@ const getDialog = async (key) => {
       message.success('获取对话成功！')
     }
   }).catch((err) => {
-    console.log(err)
+    console.error(err)
     message.error(err.toString())
   }).finally(() => {
     isLoadingDialog.value = false

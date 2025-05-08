@@ -191,6 +191,7 @@ cd backend_new
 conda create -n mindsporeNER python=3.11
 conda activate mindsporeNER
 pip install -r requirements.txt
+cd backend_new
 python one_total_function.py
 ```
 

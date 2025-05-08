@@ -1,0 +1,413 @@
+[
+    {
+        "id": 1,
+        "sender": "阿丽山",
+        "message": "你还有其他开支，日常用品或喜欢的衣服，鞋子等[偷笑]",
+        "entities": [
+            {
+                "entity": "Person",
+                "range": [
+                    0,
+                    1
+                ]
+            },
+            {
+                "entity": "Thing",
+                "range": [
+                    8,
+                    9
+                ]
+            },
+            {
+                "entity": "Thing",
+                "range": [
+                    16,
+                    18
+                ]
+            },
+            {
+                "entity": "Thing",
+                "range": [
+                    19,
+                    21
+                ]
+            }
+        ],
+        "is_quotation": false,
+        "related_before": [],
+        "related_after": [],
+        "referenced_message": null,
+        "visible": true,
+        "topic_start": false,
+        "topic_quantity": 0,
+        "topic_Tightness": 0.0,
+        "topic_message_ids": []
+    },
+    {
+        "id": 2,
+        "sender": "阿丽山",
+        "message": "对了，你有没有看到一张建行的银行卡？我过年带回老家好象带过来了，找不到不知道放哪了，忘记了[捂脸]",
+        "entities": [
+            {
+                "entity": "Person",
+                "range": [
+                    3,
+                    4
+                ]
+            },
+            {
+                "entity": "Organization",
+                "range": [
+                    11,
+                    13
+                ]
+            },
+            {
+                "entity": "Thing",
+                "range": [
+                    14,
+                    17
+                ]
+            },
+            {
+                "entity": "Person",
+                "range": [
+                    18,
+                    19
+                ]
+            },
+            {
+                "entity": "Time",
+                "range": [
+                    19,
+                    21
+                ]
+            },
+            {
+                "entity": "Location",
+                "range": [
+                    23,
+                    25
+                ]
+            },
+            {
+                "entity": "Thing",
+                "range": [
+                    39,
+                    40
+                ]
+            }
+        ],
+        "is_quotation": false,
+        "related_before": [],
+        "related_after": [
+            {
+                "id": 5,
+                "score": 0.6162502765655518
+            }
+        ],
+        "referenced_message": null,
+        "visible": true,
+        "topic_start": true,
+        "topic_quantity": 0,
+        "topic_Tightness": 0.0,
+        "topic_message_ids": [
+            2,
+            5
+        ]
+    },
+    {
+        "id": 3,
+        "sender": "SYS",
+        "message": "2025年05月11日 15:16",
+        "entities": [],
+        "is_quotation": false,
+        "related_before": [],
+        "related_after": [],
+        "referenced_message": null,
+        "visible": true,
+        "topic_start": false,
+        "topic_quantity": 0,
+        "topic_Tightness": 0.0,
+        "topic_message_ids": []
+    },
+    {
+        "id": 4,
+        "sender": "SYS",
+        "message": "你撤回了一条消息",
+        "entities": [
+            {
+                "entity": "Person",
+                "range": [
+                    0,
+                    1
+                ]
+            },
+            {
+                "entity": "Thing",
+                "range": [
+                    6,
+                    8
+                ]
+            }
+        ],
+        "is_quotation": false,
+        "related_before": [],
+        "related_after": [],
+        "referenced_message": null,
+        "visible": true,
+        "topic_start": false,
+        "topic_quantity": 0,
+        "topic_Tightness": 0.0,
+        "topic_message_ids": []
+    },
+    {
+        "id": 5,
+        "sender": "Self",
+        "message": "没有，我这里只有浙大中行的实体卡，但我支付宝有中行建行和东莞银行",
+        "entities": [
+            {
+                "entity": "Person",
+                "range": [
+                    3,
+                    4
+                ]
+            },
+            {
+                "entity": "Location",
+                "range": [
+                    4,
+                    6
+                ]
+            },
+            {
+                "entity": "Organization",
+                "range": [
+                    8,
+                    12
+                ]
+            },
+            {
+                "entity": "Thing",
+                "range": [
+                    13,
+                    16
+                ]
+            },
+            {
+                "entity": "Person",
+                "range": [
+                    18,
+                    19
+                ]
+            },
+            {
+                "entity": "Thing",
+                "range": [
+                    19,
+                    22
+                ]
+            },
+            {
+                "entity": "Organization",
+                "range": [
+                    23,
+                    27
+                ]
+            },
+            {
+                "entity": "Organization",
+                "range": [
+                    28,
+                    32
+                ]
+            }
+        ],
+        "is_quotation": false,
+        "related_before": [
+            {
+                "id": 2,
+                "score": 0.6162502765655518
+            }
+        ],
+        "related_after": [],
+        "referenced_message": null,
+        "visible": true,
+        "topic_start": false,
+        "topic_quantity": 0,
+        "topic_Tightness": 0.0,
+        "topic_message_ids": []
+    },
+    {
+        "id": 6,
+        "sender": "SYS",
+        "message": "2025年05月11日 15:54",
+        "entities": [],
+        "is_quotation": false,
+        "related_before": [],
+        "related_after": [],
+        "referenced_message": null,
+        "visible": true,
+        "topic_start": false,
+        "topic_quantity": 0,
+        "topic_Tightness": 0.0,
+        "topic_message_ids": []
+    },
+    {
+        "id": 7,
+        "sender": "阿丽山",
+        "message": "好，没事，找不到我就去银行补张卡",
+        "entities": [
+            {
+                "entity": "Person",
+                "range": [
+                    8,
+                    9
+                ]
+            },
+            {
+                "entity": "Organization",
+                "range": [
+                    11,
+                    12
+                ]
+            }
+        ],
+        "is_quotation": false,
+        "related_before": [],
+        "related_after": [],
+        "referenced_message": null,
+        "visible": true,
+        "topic_start": false,
+        "topic_quantity": 0,
+        "topic_Tightness": 0.0,
+        "topic_message_ids": []
+    },
+    {
+        "id": 8,
+        "sender": "SYS",
+        "message": "2025年05月07日 18:54",
+        "entities": [],
+        "is_quotation": false,
+        "related_before": [],
+        "related_after": [],
+        "referenced_message": null,
+        "visible": true,
+        "topic_start": false,
+        "topic_quantity": 0,
+        "topic_Tightness": 0.0,
+        "topic_message_ids": []
+    },
+    {
+        "id": 9,
+        "sender": "Self",
+        "message": "[图片]",
+        "entities": [],
+        "is_quotation": false,
+        "related_before": [],
+        "related_after": [],
+        "referenced_message": null,
+        "visible": true,
+        "topic_start": false,
+        "topic_quantity": 0,
+        "topic_Tightness": 0.0,
+        "topic_message_ids": []
+    },
+    {
+        "id": 10,
+        "sender": "Self",
+        "message": "千张大骨砂锅",
+        "entities": [
+            {
+                "entity": "Metric",
+                "range": [
+                    0,
+                    2
+                ]
+            }
+        ],
+        "is_quotation": false,
+        "related_before": [],
+        "related_after": [],
+        "referenced_message": null,
+        "visible": true,
+        "topic_start": false,
+        "topic_quantity": 0,
+        "topic_Tightness": 0.0,
+        "topic_message_ids": []
+    },
+    {
+        "id": 11,
+        "sender": "SYS",
+        "message": "2025年05月07日 19:07",
+        "entities": [],
+        "is_quotation": false,
+        "related_before": [],
+        "related_after": [],
+        "referenced_message": null,
+        "visible": true,
+        "topic_start": false,
+        "topic_quantity": 0,
+        "topic_Tightness": 0.0,
+        "topic_message_ids": []
+    },
+    {
+        "id": 12,
+        "sender": "阿丽山",
+        "message": "大杂烩[偷笑]",
+        "entities": [
+            {
+                "entity": "Thing",
+                "range": [
+                    0,
+                    1
+                ]
+            }
+        ],
+        "is_quotation": false,
+        "related_before": [],
+        "related_after": [
+            {
+                "id": 13,
+                "score": 0.679059624671936
+            }
+        ],
+        "referenced_message": null,
+        "visible": true,
+        "topic_start": true,
+        "topic_quantity": 0,
+        "topic_Tightness": 0.0,
+        "topic_message_ids": [
+            12,
+            13
+        ]
+    },
+    {
+        "id": 13,
+        "sender": "阿丽山",
+        "message": "味道如何",
+        "entities": [
+            {
+                "entity": "Thing",
+                "range": [
+                    0,
+                    2
+                ]
+            }
+        ],
+        "is_quotation": false,
+        "related_before": [
+            {
+                "id": 12,
+                "score": 0.679059624671936
+            }
+        ],
+        "related_after": [],
+        "referenced_message": null,
+        "visible": true,
+        "topic_start": false,
+        "topic_quantity": 0,
+        "topic_Tightness": 0.0,
+        "topic_message_ids": []
+    }
+]
