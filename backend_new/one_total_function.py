@@ -15,7 +15,20 @@ import collections
 
 app = Flask(__name__)
 
-wx = WeChat()  # 在应用启动时初始化微信对象
+# wx = WeChat()  # 在应用启动时初始化微信对象
+
+max_retries = 3
+retry_delay = 2  # 重试间隔，单位为秒
+
+for _ in range(max_retries):
+    try:
+        wx = WeChat()
+        break
+    except pywintypes.error as e:
+        print(f"Error initializing WeChat: {e}")
+        time.sleep(retry_delay)
+else:
+    print("Failed to initialize WeChat after multiple retries.")
 
 # 获取当前脚本所在的目录
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -776,33 +789,21 @@ def analyze_relationships():
         return jsonify({"error": f"Error analyzing message relationships: {str(e)}"}), 500
 
 
-
 def calculate_topic_tightness(chat_data, msg_id, relatedscore):
     """递归计算话题的紧密度和消息数量"""
     msg = next((m for m in chat_data if m["id"] == msg_id), None)
     if not msg:
-        return 0, 0
-
-    # 如果没有 related_after，紧密度为 relatedscore，消息数量为 1
-    if not msg["related_after"]:
         return relatedscore, 1
 
     total_tightness = 0
     total_quantity = 0
 
-    for rel_after in msg["related_after"]:
-        after_id = rel_after["id"]
-        score = rel_after["score"]
-
-        # 递归计算子链的紧密度和数量
-        child_tightness, child_quantity = calculate_topic_tightness(chat_data, after_id, relatedscore)
-
-        # 累加子链的紧密度和数量
-        total_tightness += score * child_tightness
+    for rel_after in msg.get("related_after", []):
+        child_tightness, child_quantity = calculate_topic_tightness(chat_data, rel_after["id"], relatedscore)
+        total_tightness += rel_after["score"] * child_tightness
         total_quantity += child_quantity
 
     return total_tightness, total_quantity
-
 
 def analyze_topics(file_path):
     """分析所有消息，确定话题开始并计算紧密度和消息数量"""
@@ -813,19 +814,17 @@ def analyze_topics(file_path):
 
         relatedscore = 0.5  # 相关性阈值
 
+        # 初始化所有消息的 topic 相关字段
         for msg in chat_data:
-            # 初始化 topic 相关字段
-            if "topic_start" not in msg:
-                msg["topic_start"] = False
-            if "topic_quantity" not in msg:
-                msg["topic_quantity"] = 0
-            if "topic_Tightness" not in msg:
-                msg["topic_Tightness"] = 0.0
+            msg["topic_start"] = False
+            msg["topic_quantity"] = 0
+            msg["topic_Tightness"] = 0.0
+            msg["topic_message_ids"] = []  # 新增字段，用于存储话题下所有消息ID
 
         # 遍历所有消息，确定话题开始并计算紧密度和数量
         for msg in chat_data:
             # 如果有 related_after 但没有 related_before，则标记为话题开始
-            if msg["related_after"] and not msg["related_before"]:
+            if msg.get("related_after") and not msg.get("related_before"):
                 msg["topic_start"] = True
 
                 # 计算紧密度和消息数量
@@ -833,12 +832,27 @@ def analyze_topics(file_path):
                 msg["topic_Tightness"] = tightness
                 msg["topic_quantity"] = quantity
 
+                # 收集话题下的所有消息ID
+                collected_ids = set()  # 使用集合来避免重复
+                collect_topic_messages(chat_data, msg["id"], collected_ids)
+                msg["topic_message_ids"] = list(collected_ids)  # 转换为列表
+
         save_chat_data(file_path, chat_data)
         return True
     except Exception as e:
         print(f"分析话题时出错: {str(e)}")
         return False
 
+def collect_topic_messages(chat_data, msg_id, collected_ids):
+    """递归收集话题下的所有消息ID"""
+    msg = next((m for m in chat_data if m["id"] == msg_id), None)
+    if not msg:
+        return
+
+    collected_ids.add(msg["id"])  # 使用集合的 add 方法避免重复
+
+    for rel_after in msg.get("related_after", []):
+        collect_topic_messages(chat_data, rel_after["id"], collected_ids)
 
 @app.route('/analyze_topics', methods=['POST'])
 def analyze_topics_route():
@@ -885,6 +899,8 @@ def clear_analyses(file_path):
                 del msg["topic_quantity"]
             if "topic_Tightness" in msg:
                 del msg["topic_Tightness"]
+            if "topic_message_ids" in msg:
+                del msg["topic_message_ids"]
 
         save_chat_data(file_path, chat_data)
         return True
@@ -910,6 +926,129 @@ def clear_analyses_route():
     
     except Exception as e:
         return jsonify({"error": f"Error clearing analyses: {str(e)}"}), 500
+    
+
+def update_topic_visibility(file_path, target_id, visible):
+    """更新指定话题及其关联消息的可见性"""
+    try:
+        chat_data = load_chat_data(file_path)
+        if not chat_data:
+            return False
+
+        target_msg = None
+        for msg in chat_data:
+            if msg.get("id") == target_id:
+                target_msg = msg
+                break
+
+        if not target_msg:
+            return False
+
+        if not target_msg.get("topic_start"):
+            return False
+
+        # 收集话题下的所有消息ID
+        collected_ids = set()
+        collected_ids.add(target_id)
+        for rel_after in target_msg.get("related_after", []):
+            def collect_messages(msg_id):
+                msg = next((m for m in chat_data if m["id"] == msg_id), None)
+                if msg:
+                    collected_ids.add(msg_id)
+                    for rel in msg.get("related_after", []):
+                        collect_messages(rel["id"])
+            collect_messages(target_id)
+
+        # 更新可见性
+        for msg in chat_data:
+            if msg["id"] in collected_ids:
+                msg["visible"] = visible
+            # else:
+            #     msg["visible"] = False
+
+        save_chat_data(file_path, chat_data)
+        return True
+    except Exception as e:
+        print(f"更新话题可见性时出错: {str(e)}")
+        return False
+
+
+def update_all_messages_visible(file_path, visible):
+    """更新指定对话窗口中所有消息的可见性"""
+    try:
+        chat_data = load_chat_data(file_path)
+        if not chat_data:
+            return False
+
+        for msg in chat_data:
+            msg["visible"] = visible
+
+        save_chat_data(file_path, chat_data)
+        return True
+    except Exception as e:
+        print(f"更新所有消息可见性时出错: {str(e)}")
+        return False
+
+
+@app.route('/update_topic_visibility', methods=['POST'])
+def update_topic_visibility_route():
+    """更新指定话题及其关联消息的可见性"""
+    try:
+        data = request.json
+        if not data or 'name' not in data or 'id' not in data:
+            return jsonify({"error": "Invalid input format"}), 400
+
+        name = data['name']
+        msg_id = data['id']
+        visible = data.get('visible', True)
+
+        user_chat_path = os.path.join(current_dir, user_chat_dir.lstrip("/"))
+        if not os.path.exists(user_chat_path):
+            return jsonify({"result": f"No chat found for {name}"}), 404
+
+        file_path = os.path.join(user_chat_path, f"{name}_chat_results.json")
+        if not os.path.exists(file_path):
+            return jsonify({"result": f"No chat found for {name}"}), 404
+
+        success = update_topic_visibility(file_path, msg_id, visible)
+        if not success:
+            return jsonify({"result": f"Failed to update visibility for topic starting at id {msg_id}"}), 500
+
+        updated_chat_data = load_chat_data(file_path)
+        return jsonify(updated_chat_data), 200
+
+    except Exception as e:
+        return jsonify({"error": f"Error updating topic visibility: {str(e)}"}), 500
+
+
+@app.route('/update_all_visible', methods=['POST'])
+def update_all_visible_route():
+    """更新指定对话窗口中所有消息的可见性"""
+    try:
+        data = request.json
+        if not data or 'name' not in data:
+            return jsonify({"error": "Invalid input format"}), 400
+
+        name = data['name']
+        visible = data.get('visible', True)
+
+        user_chat_path = os.path.join(current_dir, user_chat_dir.lstrip("/"))
+        if not os.path.exists(user_chat_path):
+            return jsonify({"result": f"No chat found for {name}"}), 404
+
+        file_path = os.path.join(user_chat_path, f"{name}_chat_results.json")
+        if not os.path.exists(file_path):
+            return jsonify({"result": f"No chat found for {name}"}), 404
+
+        success = update_all_messages_visible(file_path, visible)
+        if not success:
+            return jsonify({"result": f"Failed to update visibility for all messages in chat {name}"}), 500
+
+        updated_chat_data = load_chat_data(file_path)
+        return jsonify(updated_chat_data), 200
+
+    except Exception as e:
+        return jsonify({"error": f"Error updating all messages visibility: {str(e)}"}), 500
     
 
 if __name__ == '__main__':

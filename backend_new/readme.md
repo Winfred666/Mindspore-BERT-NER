@@ -294,3 +294,24 @@ getbywindows_backend.py
 
 ## POST /clear_analyses
 将/perform_entity_recognition、/analyze_relationships和/analyze_topics所写入json的信息全部清除，只保留获取到的原始消息文件（可见性的修改仍保留）
+
+
+## POST /update_topic_visibility
+指定一个消息窗口和id，如果这个消息是一个topic的开始，将这个topic下的所有消息的可见性进行改变
+发送消息：
+```
+{
+    "name": "小明",
+    "id": 5,
+    "visible": true
+}
+```
+
+## POST /update_all_visible
+指定一个聊天窗口，将其所有的消息的可见性都进行改变
+```
+{
+    "name": "肖一鸣",
+    "visible": true
+}
+```
