@@ -17,7 +17,7 @@ function getRandomVividColor() {
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
 
-const avatarColorMap = {}
+let avatarColorMap = {}
 
 // clear color map, means a new dialog is created
 export const clearColorMap = () => {
