@@ -1,6 +1,7 @@
 from wxauto import *
 import time
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import os
 import json
 import datetime
@@ -14,6 +15,7 @@ import onnxruntime
 import collections
 
 app = Flask(__name__)
+CORS(app)
 
 # wx = WeChat()  # 在应用启动时初始化微信对象
 

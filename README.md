@@ -191,3 +191,9 @@ cd backend_new
 docker build -t mindspore_topicner:latest -f "./dockerfile" .
 ```
 
+前端在 frontend 中，可以快速调试
+
+```bash
+npm i
+npm run dev
+```

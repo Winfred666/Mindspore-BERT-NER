@@ -17,12 +17,24 @@ WORKDIR /app
 # 复制当前目录下的所有文件到工作目录
 COPY . .
 
+
+
 # 安装依赖
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # 暴露容器的 5000 端口
 EXPOSE 5000
+EXPOSE 80
+
+# 安装 Nginx 作为静态文件服务器
+RUN apt-get update && apt-get install -y nginx
+
+# 配置 Nginx 以服务前端静态文件
+RUN rm /etc/nginx/sites-enabled/default
+COPY dataneeded/nginx.conf /etc/nginx/sites-enabled/default
+
+
 
 # 在容器启动时运行的命令
 CMD ["python", "one_total_function.py"]

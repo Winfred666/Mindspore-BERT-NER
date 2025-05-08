@@ -63,7 +63,10 @@ export const useThreadStore = defineStore("thread", () => {
         thread.NERs.push(ner)
         return true
     }
-    return {all_threads, getThread, addThread, clear, addMessageToThread, addNERToThread}
+    const setNewThreads = (newThreads) => {
+        all_threads.value = newThreads
+    }
+    return {all_threads, getThread, addThread, clear, addMessageToThread, addNERToThread,setNewThreads}
 })
 
 export const useNERStore = defineStore("NER", () => {
@@ -71,11 +74,14 @@ export const useNERStore = defineStore("NER", () => {
     const addNER = (ner) => {
         all_NERs.value.push(ner)
     }
+    const setNewNers = (newNers) => {
+        all_NERs.value = newNers
+    }
     const getNERsByMessageID = (messageID) => {
         return all_NERs.value.filter(ner => ner.messageID === messageID)
     }
     const clear = () => {
         all_NERs.value = []
     }
-    return {all_NERs, addNER, clear, getNERsByMessageID}
+    return {all_NERs, addNER, clear, getNERsByMessageID,setNewNers}
 })

@@ -17,7 +17,7 @@ import MyChat from './MyChat.vue';
 import Analysis from './Analysis.vue';
 
 import ClearButton from './ClearButton.vue';
-import DisplayTag from './displayTag.vue';
+import DisplayTag from './DisplayTag.vue';
 </script>
 
 <style scoped></style>

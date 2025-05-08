@@ -6,3 +6,4 @@ pyyaml
 transformers==4.51.3
 # pywin32==310
 # wxauto
+flask_cors
