@@ -1,12 +1,12 @@
-## Mindspore 1.9 BERT-LSTM-CRF 模型，NER 话题实体识别任务
+# Mindspore 1.9 BERT-LSTM-CRF 模型，NER 话题实体识别任务
 
 来自校企联合-NLP趣味项目
 
 整个项目来自 https://github.com/mindspore-ai/models/blob/r1.9/official/nlp/bert/README_CN.md，并有所精简，删除了 SQUAD 任务的 bert 训练脚本，以及在 Ascend 和 Model_arts 平台训练的脚本。
 
-### 准备工作
+## 1. 准备工作
 
-#### mindspore-gpu 1.9 配置：
+### 1.1 mindspore-gpu 1.9 配置：
 
 mindspore 的环境配置比较麻烦，可以参考以下步骤：
 
@@ -43,7 +43,7 @@ pip install decorator
 python3 -c "import mindspore;mindspore.set_context(device_target='GPU');mindspore.run_check()"
 ```
 
-#### mindspore-hub 配置：
+### 1.2 mindspore-hub 配置：
 
 之前 mindspore 安装 1.9 版本，只是因为 mindspore-hub 最高只支持 1.9
 
@@ -61,7 +61,7 @@ https://gitee.com/mindspore/hub/tree/master/mshub_res/assets/mindspore/1.9
 
 之后便可以按照框架指示加载 bert 预训练/已微调模型权重。
 
-#### 关于 mindnlp：
+### 1.3 关于 mindnlp：
 
 更方便的 NLP 套件，支持 mindspore 2.2 和 hugging face 数据集，但使用时发现权重载入由于命名问题会失败，如 Transformer，encoder layer的LayerNorm 参数，weight 和 bias 被写成 alpha 和 gamma。
 
@@ -69,7 +69,7 @@ https://gitee.com/mindspore/hub/tree/master/mshub_res/assets/mindspore/1.9
 https://mindnlp.cqu.ai/supported_models/
 可知，在微调 LLM 大模型时可能比较方便。
 
-### 运行：
+## 2. 运行：
 
 基础思路是训练三个模型，以在对话中抽取样本，三个模型都是基于 Bert ：
 
@@ -99,7 +99,7 @@ R-BERT：https://github.com/monologg/R-BERT
 
 由于时间关系，最后并没有实现第三部分。
 
-#### 准备数据集
+### 2.1 准备数据集
 
 在 src/generate_mindrecord 中，利用 generate_chinesener_mindrecord.bash ，可以将 指定位置的 BIO 类型的标注数据集（ 三个文件改名为 example.train, example.dev, example.test ）转化为 mindrecord 类型的数据集，并存储在指定位置中。这里的 dev 相当于 validation set 。
 
@@ -129,7 +129,7 @@ https://github.com/lancopku/Chinese-Literature-NER-RE-Dataset/tree/master?tab=re
 [Chinese_literature](https://github.com/lancopku/Chinese-Literature-NER-RE-Dataset/tree/master?tab=readme-ov-file) 还附带了一份关系抽取的数据集，刚好可以配套 NER 使用。
 
 
-#### 微调模型
+### 2.2 微调模型
 
 1. QuantiDCE
 
@@ -168,7 +168,7 @@ python one_test_ner.py
 但需要注意，可识别的实体 Label 限定于 label_list.txt， 如果要进行其他类别的分类，在载入预训练模型时，需要去除BERT 之后 BiLSTM-Dense1-CRF 这些 classification layer 的权重，以重新训练最后一层。
 
 
-#### 导出和部署
+### 2.3 导出和部署
 
 由于 MINDIR 模型并不支持 CPU 部署，所以使用 ONNX。
 
@@ -184,11 +184,14 @@ bash scripts/export.sh
 
 模型、token字典和 label_id 等数据文件可以通过：https://pan.quark.cn/s/48ffc7cc4b40#/list/share 下载
 
-将 dataneeded 文件夹放入 backend_new 文件夹，并构建镜像：
+将 dataneeded 文件夹放在 `/backend_new/dataneeded`。由于需要微信客户端，暂不支持 docker 部署，通过以下命令可以在本地调试，端口 5000
 
 ```bash
 cd backend_new
-docker build -t mindspore_topicner:latest -f "./dockerfile" .
+conda create -n mindsporeNER python=3.11
+conda activate mindsporeNER
+pip install -r requirements.txt
+python one_total_function.py
 ```
 
 前端在 frontend 中，可以快速调试
@@ -197,3 +200,5 @@ docker build -t mindspore_topicner:latest -f "./dockerfile" .
 npm i
 npm run dev
 ```
+
+或使用以下页面快速访问：https://winfred666.github.io/Mindspore-BERT-NER/
